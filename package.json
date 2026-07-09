@@ -38,6 +38,7 @@
     "nodemem:smoke": "tsx scripts/nodemem-smoke.ts --json-out docs/eval/nodemem-smoke.json",
     "nodemem:in-memory:smoke": "tsx scripts/nodemem-in-memory-smoke.ts --json-out docs/eval/nodemem-in-memory-smoke.json",
     "nodemem:convex:smoke": "tsx scripts/nodemem-convex-smoke.ts --json-out docs/eval/nodemem-convex-smoke.json",
+    "clip:capture": "node scripts/capture-storyboard.mjs",
     "secret-scan": "node scripts/secret-scan.mjs",
     "prepush": "npm run secret-scan && npm run nodemem:smoke && npm run nodemem:in-memory:smoke && npm run typecheck && npm run test"
   },

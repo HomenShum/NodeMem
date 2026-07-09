@@ -12,7 +12,9 @@ It notices entities in activity streams, surfaces noteworthy suggestions, learns
 
 <img src="assets/noderoom-review-approve.gif" alt="NodeMem passive intelligence in NodeRoom: noteworthy suggestions appear in the inbox, user reviews and approves before any research runs" width="720">
 
-<sub>↑ NodeMem running inside <a href="https://github.com/HomenShum/noderoom">NodeRoom</a> — passive suggestions surface in the noteworthy inbox, user reviews and explicitly approves before any research job runs.</sub>
+<sub>↑ NodeMem running inside <a href="https://github.com/HomenShum/NodeRoom">NodeRoom</a> — passive suggestions surface in the noteworthy inbox, user reviews and explicitly approves before any research job runs.</sub>
+
+Storyboard first: the README media is governed by [`docs/FEATURE_PROOF_STORYBOARD.md`](docs/FEATURE_PROOF_STORYBOARD.md). It must prove passive scan, noteworthy suggestion, explicit approval, dismissal learning, and provider-neutral storage before it is treated as publishable proof.
 
 </div>
 
@@ -191,6 +193,7 @@ npm test
 npm run nodemem:smoke          # Full pipeline smoke
 npm run nodemem:in-memory:smoke  # In-memory adapter smoke
 npm run nodemem:convex:smoke    # Convex schema validation smoke
+npm run clip:capture             # README media/storyboard proof receipt
 ```
 
 ---
