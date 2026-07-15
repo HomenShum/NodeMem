@@ -1,0 +1,37 @@
+schemaVersion: nodekit.repo/v1
+repository: HomenShum/NodeMem
+lifecycle: preview
+support: active
+role: standalone-package
+commandProfile: application
+
+canonicalFor:
+  - nodemem.memory
+
+consumes:
+  - nodeplatform.repo-contract
+  - proofloop.certification
+
+commands:
+  dev: { script: dev, mode: service }
+  demo: { script: demo, mode: finite }
+  doctor: { script: doctor, mode: finite }
+  check: { script: check, mode: finite }
+  proof: { script: proof, mode: finite }
+
+noKey:
+  status: certified
+  command: npm run demo
+  externalAccountsRequired: 0
+  disclosure: The demo uses deterministic classification and an in-memory provider; it never auto-executes a job.
+
+environment:
+  contractVersion: nodeplatform.env/v1
+  status: not-applicable
+
+proof:
+  command: npm run proof
+  receiptSchema: null
+
+contractDeclarations: []
+architectureExceptions: []
