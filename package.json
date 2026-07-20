@@ -28,7 +28,10 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "tsx watch demo/runNodeMemDemo.ts",
+    "doctor": "node --version",
+    "check": "npm run secret-scan && npm run typecheck && npm run test",
+    "proof": "npm run nodemem:smoke && npm run nodemem:in-memory:smoke && npm run nodemem:convex:smoke",
     "build": "tsc --noEmit",
     "demo": "tsx demo/runNodeMemDemo.ts",
     "demo:node": "node demo/runNodeMemDemo.mjs",
