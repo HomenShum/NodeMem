@@ -10,6 +10,7 @@ canonicalFor:
 
 consumes:
   - nodeplatform.repo-contract
+  - nodeagent.event-protocol
   - proofloop.certification
 
 commands:
@@ -23,7 +24,7 @@ noKey:
   status: certified
   command: npm run demo
   externalAccountsRequired: 0
-  disclosure: The demo uses deterministic classification and an in-memory provider; it never auto-executes a job.
+  disclosure: The core and in-memory demonstration are deterministic and provider-agnostic; the included Convex lane validates schema shape only and does not prove a live deployment.
 
 environment:
   contractVersion: nodeplatform.env/v1

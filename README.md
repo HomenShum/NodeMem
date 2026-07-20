@@ -2,6 +2,11 @@
 
 # NodeMem
 
+NodeKit repository ownership and brownfield mapping are documented in
+[`docs/NODEKIT_ADOPTION.md`](docs/NODEKIT_ADOPTION.md). NodeMem is a portable
+memory implementation for host runtimes, not a second agent event or receipt
+protocol.
+
 ### Notice passively. Act explicitly.
 
 A provider-agnostic passive memory component for agent systems.

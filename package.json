@@ -28,13 +28,13 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "tsx watch demo/runNodeMemDemo.ts",
     "build": "tsc --noEmit",
     "demo": "tsx demo/runNodeMemDemo.ts",
     "demo:node": "node demo/runNodeMemDemo.mjs",
     "doctor": "npm run nodemem:smoke",
     "check": "npm run prepush",
-    "proof": "npm run nodemem:smoke",
+    "proof": "npm run nodemem:smoke && npm run nodemem:in-memory:smoke && npm run nodemem:convex:smoke",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
