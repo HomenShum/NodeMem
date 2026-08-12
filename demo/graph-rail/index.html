@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NodeMem — live graph rail</title>
+    <style>
+      :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+      body { margin: 0; background: #0b0e12; color: #dfe5ea; }
+      main { width: min(1240px, calc(100% - 32px)); margin: 24px auto; }
+      h1 { font-size: 22px; letter-spacing: -0.02em; margin: 0 0 2px; }
+      p.sub { margin: 0 0 14px; color: #8b949d; line-height: 1.45; font-size: 13px; max-width: 980px; }
+      #layout { display: grid; grid-template-columns: 380px 1fr; gap: 14px; align-items: start; }
+      section h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: #7f8992; margin: 0 0 6px; }
+      #log { border: 1px solid #1d242c; border-radius: 10px; background: #0e1319; padding: 10px 12px; font-size: 12.5px; line-height: 1.55; min-height: 120px; max-height: 260px; overflow-y: auto; }
+      #log .k { color: #55606a; margin-right: 6px; }
+      #suggestions { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+      .suggestion { border: 1px solid #2a323b; border-radius: 10px; background: #131922; padding: 10px 12px; font-size: 12.5px; line-height: 1.45; }
+      .suggestion .why { color: #8b949d; display: block; margin-top: 2px; }
+      .suggestion .row { margin-top: 8px; display: flex; gap: 8px; }
+      .suggestion button { border: 1px solid #2a323b; border-radius: 8px; background: #10151c; color: #c8d2da; padding: 5px 12px; cursor: pointer; font-size: 12px; }
+      .suggestion button:hover { border-color: #4b5865; }
+      .suggestion.resolved { opacity: 0.55; }
+      .suggestion .state { color: #7f8992; font-size: 12px; }
+      #stage { border: 1px solid #1d242c; border-radius: 12px; overflow: hidden; background: #0e1319; }
+      #caption { margin: 10px 2px 0; color: #7f8992; font-size: 12.5px; line-height: 1.5; max-width: 980px; }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@19.2.0",
+          "react/jsx-runtime": "https://esm.sh/react@19.2.0/jsx-runtime",
+          "react-dom/client": "https://esm.sh/react-dom@19.2.0/client",
+          "graphology": "https://esm.sh/graphology@0.26.0",
+          "graphology-layout-forceatlas2": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+          "graphology-layout-forceatlas2/worker.js": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+          "sigma": "https://esm.sh/sigma@3.0.3",
+          "@sigma/node-border": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>NodeMem — live graph rail</h1>
+      <p class="sub">
+        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not
+        re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act
+        explicitly.
+      </p>
+      <div id="layout">
+        <div>
+          <section>
+            <h2>Activity stream → pipeline</h2>
+            <div id="log"></div>
+          </section>
+          <section style="margin-top:14px">
+            <h2>Suggestions (no edge until you confirm)</h2>
+            <div id="suggestions"></div>
+          </section>
+        </div>
+        <div>
+          <div id="stage"><div id="root"></div></div>
+          <p id="caption">
+            Every entity NodeMem notices lands with no count — the rail says
+            "unknown — not measured", present and dim, because noticing is never evidence.
+            A suggestion draws nothing; only a human clicking Confirm draws an edge, and even
+            then it is faint traversal history (a confirmed hop, still not a measured count).
+            <code>assertEdge</code> is never called: NodeMem has no versioned curated source,
+            so nothing here is entitled to an assertion badge.
+          </p>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

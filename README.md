@@ -180,6 +180,32 @@ npm run demo
 
 </details>
 
+### Live graph rail
+
+The zero-dependency demo's pipeline (same classifier, same store, same fixtures —
+imported from `demo/nodeMemDemoCore.mjs`, not re-implemented) rendered live by
+[NodeGraph Live](https://github.com/HomenShum/NodeGraph) (vendored in
+`vendor/nodegraph-live/`, pending npm publish):
+
+```bash
+npm install
+node scripts/capture-graph-rail.mjs   # serves demo/graph-rail/, asserts, screenshots
+```
+
+Before any confirmation — every noticed entity present, dim, "unknown — not
+measured", and **zero edges** (the capture script exits nonzero if one exists):
+
+![Noticed entities only, zero edges](assets/graph-rail/before-confirm.png)
+
+After a human clicks Confirm on one suggestion — exactly one faint traversal
+edge, a confirmed hop, still not a measured count:
+
+![One traversal edge after one confirmation](assets/graph-rail/after-confirm.png)
+
+Noticing draws a dim node, a suggestion draws nothing, only a human confirmation
+draws an edge — and `assertEdge` is never called, because NodeMem has no
+versioned curated source to back an assertion.
+
 ### Run tests
 
 ```bash

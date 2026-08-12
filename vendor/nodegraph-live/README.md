@@ -1,0 +1,1 @@
+Vendored build of `@homenshum/nodegraph-live` ([HomenShum/NodeGraph](https://github.com/HomenShum/NodeGraph) `render/dist`, built from source) — pending npm publish; this copy retires when the package lands.
