@@ -10,6 +10,12 @@ It notices entities in activity streams, surfaces noteworthy suggestions, learns
 
 <br>
 
+<img src="assets/graph-rail/live-graph-rail.gif" alt="Live graph rail: NodeMem notices entities as dim, unmeasured nodes with no edges; a human confirms one suggestion and exactly one faint traversal edge appears" width="720">
+
+<sub>↑ Live graph rail (<code>demo/graph-rail</code>): entities NodeMem notices stay dim with no measured count and draw no edges; confirming one suggestion draws exactly one traversal edge — a recorded hop, not evidence.</sub>
+
+<br>
+
 <img src="assets/noderoom-review-approve.gif" alt="NodeMem passive intelligence in NodeRoom: noteworthy suggestions appear in the inbox, user reviews and approves before any research runs" width="720">
 
 <sub>↑ NodeMem running inside <a href="https://github.com/HomenShum/NodeRoom">NodeRoom</a> — passive suggestions surface in the noteworthy inbox, user reviews and explicitly approves before any research job runs.</sub>
