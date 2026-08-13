@@ -10,6 +10,7 @@ canonicalFor:
 
 consumes:
   - nodeplatform.repo-contract
+  - nodeagent.event-protocol
   - proofloop.certification
 
 commands:
