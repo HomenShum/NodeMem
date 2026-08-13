@@ -71,6 +71,8 @@ the note carried was "memory library; `countNoteworthyForEntity` is not plumbed
   PASS: 1, 9, 10, 11. FAIL: 2, 3, 4, 5, 6. UNVERIFIED: 7 (no Web Interface
   Guidelines pass run), 8 (no Lighthouse/CWV audit run), 12 (baseline wave made
   no improvements, so no improvement has been verified in the rendered app).
+  **This claim was corrected the same day — condition 1 is UNVERIFIED, not
+  PASS, and the score is 3/12. See § *Correction — 2026-08-13* below.**
 
 ## Defect ledger
 
@@ -81,7 +83,7 @@ measures.
 | # | Severity | Journey | Reproduction | Status |
 |---|----------|---------|--------------|--------|
 | D1 | Major | J4 | Serve repo root; open `/demo/graph-rail/index.html` at viewport width 375×812 and load fresh. `#layout` computes `grid-template-columns: 380px 114.281px` (no media query exists in the file), `document.scrollWidth` 567 vs `clientWidth` 375 — 192px of horizontal overflow; the graph pane, the entire point of the page, is 114px wide and off-screen. Reproduces at 390 (177px over) and 320 (247px over); clean at 768, 1024, 1400. `evidence/mobile-375-fresh.png` | open |
-| D2 | Major | J4 / Recovery | Load the same page with all `**esm.sh**` requests aborted (any network that blocks the CDN in the `<head>` importmap: react, react-dom, graphology, sigma, @sigma/node-border). Result after 4s: log has 0 children, 0 suggestion cards, 0 `<canvas>`, **0 page errors, 0 console errors** — and the caption still describes a graph that is not there. Regex `/error\|failed\|retry\|offline\|could not/i` over `body.innerText` → false. The user sees a blank frame with confident prose and no way back. `evidence/cdn-blocked-no-error-state.png` | open |
+| D2 | Major | J4 / Recovery | Load the same page with all `**esm.sh**` requests aborted (any network that blocks the CDN in the `<head>` importmap: react, react-dom, graphology, sigma, @sigma/node-border). Result after 4s: log has 0 children, 0 suggestion cards, 0 `<canvas>`, **0 page errors** — and the caption still describes a graph that is not there. Regex `/error\|failed\|retry\|offline\|could not/i` over `body.innerText` → false. The user sees a blank frame with confident prose and no way back. `evidence/cdn-blocked-no-error-state.png`. **Corrected 2026-08-13:** this entry originally also claimed *0 console errors*. An independent re-run reproduced every user-facing figure above but observed **2 console errors** (the blocked module fetches). The defect is unchanged — nothing reaches the user either way — but "silent" means silent *on screen*, not silent in the console, and the 0 is wrong. | open |
 | D3 | Major | J4 | `npm run dev` — declared in `nodekit.yaml` as `commands.dev: { script: dev, mode: service }` — runs `vite` over a repo with **no root `index.html`** and with react/sigma/graphology present only in the browser importmap, never in `package.json`. Measured: `GET http://localhost:5999/` → **404**; `GET /vendor/nodegraph-live/NodeGraph.js` → **500** ("Failed to resolve import … Are they installed?"). Also note `vite` itself is not a declared dependency — it resolves only transitively through `vitest`. A stranger following the standard verb gets nothing. | open |
 | D4 | Major | J1 / install | `package.json` declares `"bin": { "nodemem": "./bin/nodemem.mjs" }`. `fs.existsSync('./bin/nodemem.mjs')` → **false**; there is no `bin/` directory in the repo at `ac8e7db`. Any `npm i -g nodemem` / `npx nodemem` creates a broken shim. | open |
 | D5 | Minor | J4 | Every node in the rail reads "unknown — not measured" forever. `docs/GRAPH_INTEGRATION.md:123` specifies `countNoteworthyForEntity(roomId, entityKey): Promise<number>` on `DedupStore`; `grep -rn countNoteworthyForEntity src/` → **no match**. The data exists (`listNoteworthy` + `NoteworthyRow.entityNames` in `src/core/dedup.ts`, rows held in `src/adapters/inMemoryAdapter.ts`) and `EntityRef.count` in `vendor/nodegraph-live/session.d.ts` is waiting for it — the method was simply never added. This is the known API gap named in the wave brief. | open |
@@ -90,3 +92,43 @@ measures.
 ## Iterations
 
 _none — Wave 1 is baseline only._
+
+## Correction — 2026-08-13
+
+An adversarial re-run of the baseline claims against this repo could confirm
+only three of the four PASS rows. Both corrections below are recorded rather
+than silently swapped in, because the useful thing for the next agent is the
+original claim next to what was wrong with it. **No product code was touched;
+this is a scorecard-truth correction, not Wave 2.**
+
+**Scorecard: 4/12 PASS → 3/12 PASS.**
+
+- **Condition 1 — "each canonical journey succeeds end-to-end in a real
+  browser": PASS → UNVERIFIED.** The row cited J1–J4 and never mentioned J5.
+  The shortfall was disclosed in the sibling files — `PRODUCT_JOURNEYS.md` J5
+  says the browser half was "not captured … Treat J5 as partially drivable",
+  and the baseline above says "Journeys drivable: **4.5 of 5**" — but it was
+  not disclosed at the place the condition is scored, and a row that scores
+  "each journey" on four of five journeys is overreach. Confirmed while
+  correcting: no committed producer drives the J5 Dismiss click at all —
+  `scripts/capture-graph-rail.mjs` clicks Confirm only, and
+  `[data-testid="dismiss-suggestion"]` appears nowhere outside
+  `demo/graph-rail/main.js` — so the row cannot be rescued by re-citing
+  existing tooling. It needs the click to actually be driven.
+  Separately, and under the gate's amended artifact rule ("if you measured it
+  but did not retain the tool, the row is UNVERIFIED"): the J4 screenshots in
+  `evidence/` are committed but the Playwright sweep that produced them was
+  not, so they are outputs without a producer. J4's central assertion does
+  survive that rule — `node scripts/capture-graph-rail.mjs` is committed,
+  re-runnable from a fresh clone, and exits 0 with 5/5 checks — and the row now
+  cites it instead.
+- **Defect ledger D2 — "0 console errors" was wrong; the defect stands.** A
+  re-run with `esm.sh` blocked reproduced every user-facing figure exactly
+  (0 log children, 0 suggestion cards, 0 `<canvas>`, no error/failed/retry/
+  offline/could-not text, 0 page errors) but observed **2 console errors**, not
+  0. D2 stays open and stays Major: a blank frame under confident prose with no
+  recovery path is the defect, and two console lines the user never sees do not
+  soften it. The figure was simply mis-recorded.
+
+Unchanged: conditions 9, 10 and 11 remain PASS; 2, 3, 4, 5 and 6 remain FAIL;
+7, 8 and 12 remain UNVERIFIED.

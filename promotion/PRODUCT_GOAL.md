@@ -51,9 +51,13 @@ The only browser surface in this repo is `demo/graph-rail/index.html`; it was
 served on `127.0.0.1:4894` and driven for real. Screenshots in
 [`evidence/`](evidence/).
 
+Corrected 2026-08-13: condition 1 downgraded PASS → UNVERIFIED, 4/12 → 3/12.
+The original claim and the reason for the correction are in
+[PROMOTION_LOG.md](PROMOTION_LOG.md) § *Correction — 2026-08-13*.
+
 | # | Condition | Status | Evidence / reason |
 |---|-----------|--------|-------------------|
-| 1 | Journeys succeed end-to-end in a real browser | PASS | J1/J2/J3 exit 0 (`node demo/runNodeMemDemo.mjs`, `npm run demo`, `npm test`); J4 driven in Chromium — 3 entities noticed, **0 edges** before confirmation, 3 suggestions rendered, one Confirm → exactly 1 traversal edge. `evidence/desktop-1400-loaded.png`, `evidence/desktop-after-keyboard-confirm.png` |
+| 1 | Journeys succeed end-to-end in a real browser | UNVERIFIED | Condition 1 says **each** journey; **J5's browser half was never driven**. The `[data-testid="dismiss-suggestion"]` click was not exercised this wave and no committed producer drives it — `scripts/capture-graph-rail.mjs` clicks Confirm only, and the testid appears nowhere outside `demo/graph-rail/main.js`. Journeys drivable: 4.5 of 5 (see [PRODUCT_JOURNEYS.md](PRODUCT_JOURNEYS.md) J5). What *is* retained: J1/J2/J3 exit 0 (`node demo/runNodeMemDemo.mjs`, `npm run demo`, `npm test`) and J4's honesty assertion has a committed, re-runnable producer — `node scripts/capture-graph-rail.mjs` → 5/5, exit 0 (0 edges before confirmation, exactly 1 traversal edge after). The J4 screenshots `evidence/desktop-1400-loaded.png` / `evidence/desktop-after-keyboard-confirm.png` are committed but came from an ad-hoc sweep: measured 3 entities, 0 edges before confirmation, 3 suggestion cards at 1400×860, probe not retained |
 | 2 | No critical or major usability defect open | FAIL | 4 open, all with reproductions in [PROMOTION_LOG.md](PROMOTION_LOG.md): D1 mobile overflow, D2 silent failure when the CDN is unreachable, D3 `npm run dev` serves 404/500, D4 declared `bin/nodemem.mjs` does not exist |
 | 3 | Mobile and desktop both intentional | FAIL | `#layout` is `grid-template-columns: 380px 1fr` with zero media queries. Measured at a fresh 375px load: computed columns `380px 114.281px` — the graph pane is squeezed to 114px and pushed off-screen. `evidence/mobile-375-fresh.png` |
 | 4 | No horizontal overflow at supported widths | FAIL | `scrollWidth` vs `clientWidth`: 1400→none, 1024→none, 768→none, **390→567/390 (177px over)**, **375→567/375 (192px over)**, **320→567/320 (247px over)**. `evidence/mobile-375.png` |
@@ -66,4 +70,4 @@ served on `127.0.0.1:4894` and driven for real. Screenshots in
 | 11 | Tests and build green | PASS | `npm test` → 27/27, exit 0. `npm run build` (`tsc --noEmit`) → exit 0. `npm run check` (secret-scan + 2 smokes + typecheck + tests) → exit 0. `node scripts/capture-graph-rail.mjs` → 5/5 checks, exit 0. Caveat recorded, not scored: `build` compiles nothing — there is no publishable artifact step |
 | 12 | Verified in the rendered app, not inferred from code | UNVERIFIED | Baseline wave; no improvement was made, so no improvement has been verified. Observations above are rendered-app observations, but condition 12 is about fixes and there are none yet |
 
-**Status: NOT PROMOTED** — 4/12 PASS.
+**Status: NOT PROMOTED** — 3/12 PASS.
