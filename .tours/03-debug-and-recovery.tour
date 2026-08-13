@@ -6,72 +6,84 @@
     {
       "file": "scripts/serve.mjs",
       "line": 45,
+      "symbol": "export async function serveRepo",
       "title": "How to actually open the app",
       "description": "`npm run dev` runs this file and prints one URL. Twenty lines of `node:http`, because the page is hand-written HTML and ES modules — a static file server with correct MIME types is all it needs.\n\nBefore Wave 3, `npm run dev` ran `vite` over a repository with no root `index.html`: `GET /` returned 404 and the vendored renderer returned 500."
     },
     {
       "file": "scripts/serve.mjs",
       "line": 51,
+      "symbol": "outside root",
       "title": "The one run-time input guard in the repository",
       "description": "Any path resolving outside the repo root is a 404. Verified: `GET /../../../etc/passwd` → 404.\n\nThe same function serves the capture scripts on an ephemeral port, so the page a human looks at and the page the gate asserts against are byte-identical."
     },
     {
       "file": "demo/graph-rail/index.html",
       "line": 32,
+      "symbol": "esm.sh/react",
       "title": "Why this page can fail in a way nothing catches",
       "description": "React, graphology and sigma are fetched from `esm.sh` at page load. Per the HTML module spec, if *any* module in the import graph fails to fetch, the module body **never executes at all**.\n\nThe page's own logging function lives in that module. So the single code path that could report the failure is the code path that failed."
     },
     {
       "file": "demo/graph-rail/index.html",
       "line": 94,
+      "symbol": "id=\"rail-module\"",
       "title": "The module that renders everything",
       "description": "One tag. Every pixel a user sees comes from here — the log, the suggestion cards, the graph. When it does not run, three empty boxes sit under confident prose."
     },
     {
       "file": "demo/graph-rail/index.html",
       "line": 117,
+      "symbol": "setTimeout(function",
       "title": "So the reporter lives outside the module",
       "description": "A *classic* script — always executed — listens for the module element's `error` event, and an 8-second watchdog catches the silent variants: a hang, an importmap miss, a throw during evaluation. All of them leave `window.__graphRail` unset, so one sentinel covers all four."
     },
     {
       "file": "demo/graph-rail/index.html",
       "line": 52,
+      "symbol": "data-testid=\"boot-error\"",
       "title": "What the user gets instead",
       "description": "A `role=\"alert\"` panel that names the cause (`esm.sh`), a Retry button, and a fallback that needs no network at all: `node demo/runNodeMemDemo.mjs`. The caption describing the graph is hidden, because a caption about a graph that is not there is a lie."
     },
     {
       "file": "scripts/capture-graph-rail.mjs",
       "line": 51,
+      "symbol": "zero edges before any confirmation",
       "title": "The honesty assertion, executable",
       "description": "`npm run capture` drives the real page in Chromium and **exits nonzero if a single edge exists before a human has confirmed anything**. Noticing must never draw a connection.\n\nIt also asserts every noticed entity is uncounted, and that exactly one `traversal` edge appears after one click."
     },
     {
       "file": "scripts/capture-graph-rail.mjs",
       "line": 74,
+      "symbol": "esm.sh blocked",
       "title": "Phase 2: the same page with the CDN blocked",
       "description": "Playwright aborts every `esm.sh` request and asserts the six properties of the error state: visible, announced to assistive tech, names the cause, offers a recovery path, reads as failed to a human, and the caption is gone."
     },
     {
       "file": "scripts/capture-graph-rail.mjs",
       "line": 111,
+      "symbol": "Retry recovers the page",
       "title": "A Retry that does not recover is decoration",
       "description": "The CDN is unblocked, Retry is clicked, and the gate waits for the pipeline to actually finish. Screenshots land in `promotion/evidence/`."
     },
     {
       "file": "tests/packageContract.test.ts",
       "line": 38,
+      "symbol": "gets every binary its scripts invoke",
       "title": "The failure that only a human ever hit",
       "description": "`npm run dev` invoked `vite`, which nothing in `package.json` installs — it happened to be present because vitest ships it. Nothing in CI noticed, because nothing in CI types the command.\n\nPut `\"dev\": \"vite\"` back and this test fails."
     },
     {
       "file": "tests/demoMirror.test.ts",
       "line": 37,
+      "symbol": "expect(demoCopy(text)).toEqual(library(text))",
       "title": "The two classifiers cannot drift again",
       "description": "The library and the demo's plain-JavaScript copy are compared as whole objects across ten texts. They had already diverged: on \"The Next Series will be announced\" the copy invented a company and scored 0.54 where the library scored 0.36."
     },
     {
       "file": "demo/demo-runner.ts",
       "line": 27,
+      "symbol": "export async function runDemo",
       "title": "The end-to-end story, with a receipt",
       "description": "`npm run demo` prints all thirteen checks; `npm run proof` writes them to `docs/eval/nodemem-smoke.json` as well. Both are this one function — the receipt is a side effect, never a second code path."
     }

@@ -136,8 +136,8 @@ activity — nothing more.
 `observe(a, b, measuredCount)` produces evidence only when `measuredCount` is a
 real number from a system of record. Nothing in NodeMem measures a *pair*:
 `classifyNoteworthy` emits at most one entity per event
-(`entities: candidates.length ? [{...}] : []`, one element —
-`demo/nodeMemDemoCore.mjs` line 85), and facets are string tags, not measured
+(`entities: candidates.length` (`demo/nodeMemDemoCore.mjs:91`) builds an
+array of at most one element), and facets are string tags, not measured
 quantities. The change:
 
 - A co-occurrence count in the store: `countRowsMentioningBoth(roomId, keyA,

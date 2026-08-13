@@ -1,9 +1,12 @@
 /**
- * The guided tours point at real lines.
+ * The guided tours point at the right lines — not merely at lines that exist.
  *
  * A CodeTour with a stale line number is worse than no tour: it sends a new
- * engineer to the wrong place with full confidence. Files move, so this runs on
- * every `npm test`.
+ * engineer to the wrong place with full confidence. Checking that the number is
+ * in range does not catch that; every line in the file is in range. So each step
+ * carries the `symbol` it is about, and the check is that the cited line still
+ * contains it. This found a live defect: step 2 of tour 1 pointed at the line
+ * closing a docblock, one above the `DEMO_EVENTS` array it claimed to show.
  */
 
 import { describe, it, expect } from "vitest";
@@ -29,8 +32,13 @@ describe(".tours", () => {
       const lines = readFileSync(target, "utf8").split("\n");
       expect(step.line, `${where} — not a line number`).toBeGreaterThan(0);
       expect(step.line, `${where} — past end of file (${lines.length} lines)`).toBeLessThanOrEqual(lines.length);
-      // A step landing on a blank line means the file moved underneath the tour.
-      expect(lines[step.line - 1].trim(), `${where} — lands on a blank line`).not.toBe("");
+      // The check that matters: the cited line is the one the step is about.
+      // Without `symbol` the step only proves a line exists, which every line does.
+      expect(typeof step.symbol, `${where} — step has no "symbol" to check the line against`).toBe("string");
+      expect(
+        lines[step.line - 1],
+        `${where} — cited line does not contain ${JSON.stringify(step.symbol)}; it is ${JSON.stringify(lines[step.line - 1].trim())}`,
+      ).toContain(step.symbol);
       expect(String(step.description).length, `${where} — description too short to be useful`).toBeGreaterThan(20);
     }
   });

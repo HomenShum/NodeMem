@@ -1,7 +1,7 @@
 # Testing
 
 ```bash
-npm test          # 47 tests, 6 files, ~2s
+npm test          # 8 test files, under 3s
 npm run typecheck # tsc --noEmit
 npm run proof     # the 13-check pipeline story + a JSON receipt
 npm run capture   # 12 checks in a real browser (needs: npx playwright install chromium)
@@ -10,14 +10,20 @@ npm run check     # secret-scan + typecheck + tests + proof — run this before 
 
 ## What each file proves
 
-| File | Tests | It fails when |
-|---|---:|---|
-| `tests/scanOrchestrator.test.ts` | 14 | A gate stops firing, its `reason` string changes, the policy comparison flips, the dedupe key stops separating authors, or the debounce window stops capping |
-| `tests/classifier.test.ts` | 11 | A signal regex, a score threshold, the stop-name filter or the pinned `CLASSIFIER_VERSION` changes |
-| `tests/demoMirror.test.ts` | 10 | The plain-JS copy of the classifier in `demo/nodeMemDemoCore.mjs` disagrees with `src/core/classifier.ts` on any of ten texts |
-| `tests/packageContract.test.ts` | 6 | The README tells readers to import something the barrel does not export, a script invokes a binary no declared dependency provides, or `bin` points at a missing file |
-| `tests/inMemoryAdapter.test.ts` | 5 | The reference store stops satisfying the port |
-| `tests/convexSchema.test.ts` | 1 | The Convex schema module stops loading at run time |
+| File | It fails when |
+|---|---|
+| `tests/scanOrchestrator.test.ts` | A gate stops firing, its `reason` string changes, a new gate arrives without a test, the policy comparison flips, the dedupe key stops separating authors, or the debounce window stops capping |
+| `tests/classifier.test.ts` | A signal regex, a score threshold, the stop-name filter or the pinned `CLASSIFIER_VERSION` changes |
+| `tests/demoMirror.test.ts` | The plain-JS copy of the classifier in `demo/nodeMemDemoCore.mjs` disagrees with `src/core/classifier.ts` on any of ten texts |
+| `tests/packageContract.test.ts` | The README tells readers to import something the barrel does not export, a script invokes a binary no declared dependency provides, or `bin` points at a missing file |
+| `tests/inMemoryAdapter.test.ts` | The reference store stops satisfying the port |
+| `tests/tours.test.ts` | A `.tour` step cites a line that no longer holds the symbol the step names, or a step carries no symbol to check |
+| `tests/docs.test.ts` | A document cites a line that no longer holds the symbol it names, writes a citation in a form nothing can check, or states a test-file count the tree contradicts |
+| `tests/convexSchema.test.ts` | The Convex schema module stops loading at run time |
+
+The counts these documents quote are derived from the tree by `tests/docs.test.ts`,
+not typed: both `START_HERE.md` and this file once said "47 tests" against a tree
+that had more.
 
 ## Three of these exist because of a specific defect
 

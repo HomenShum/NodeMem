@@ -70,7 +70,7 @@ Split by area, because a single diffstat hides which way the code went:
 | Deleted | Why it was safe |
 |---|---|
 | `src/core/dedup.ts`, `src/core/dismissalLearner.ts` | Their port interfaces moved to the new `src/core/ports.ts`; their one real function (`findExistingNoteworthyForEntity`) moved next to its only caller |
-| `signalFingerprintHash` + the dead block in `scanActivity` that called it | The orchestrator computed a hash, wrote a three-line comment about it being an optional extension, and threw the value away. `NODE-LOOPS.md:129` already documented it as a no-op |
+| `signalFingerprintHash` + the dead block in `scanActivity` that called it | The orchestrator computed a hash, wrote a three-line comment about it being an optional extension, and threw the value away. `NODE-LOOPS.md` already documented it as a no-op |
 | Convex tables `suggestionFeedback`, `roomSuggestionDigests` (≈40 lines) | Nothing in the repository ever wrote them; their only producer was the deleted hash |
 | `isEntityDismissed`, `roomNoteworthyQuotaExceeded`, `isEntityDismissedSync` | Three exported wrappers around one store call each. Now one line at the single call site |
 | `asEntityType` in `classifier.ts` | Declared, never called. No tool reported it — a non-exported unused function is invisible to knip |
@@ -137,7 +137,7 @@ unchanged.
 
 ```bash
 npm install
-npm run check                  # secret-scan, typecheck, 51 tests, 13-check proof
+npm run check                  # secret-scan, typecheck, 8 test files, 13-check proof
 npx playwright install chromium
 npm run capture                # 12 assertions in a real browser
 npx knip@5 --no-config-hints

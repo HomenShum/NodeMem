@@ -7,6 +7,7 @@
  */
 
 import { describe, it, expect, beforeEach } from "vitest";
+import { readFileSync } from "node:fs";
 import { InMemoryAdapter } from "../src/adapters/inMemoryAdapter.js";
 import { resolveAssistivePolicy, isSignalDisabled, isEntityWatchlisted } from "../src/core/policyResolver.js";
 import { activityDedupeKey } from "../src/core/dedupeKey.js";
@@ -57,6 +58,46 @@ describe("scanActivity", () => {
     const third = await scanMessage(store, "NewCo announced their seed funding round today", { config });
     expect(third.status).toBe("not_noteworthy");
     expect(third.reason).toBe("room_quota_exceeded");
+  });
+
+  it("stops at the classifier, before any policy is read, when nothing is worth a look", async () => {
+    const result = await scanMessage(store, "lunch tomorrow, nothing noteworthy — just personal errands.");
+    expect(result.status).toBe("not_noteworthy");
+    // The first gate is the only one that writes no reason: nothing suppressed
+    // this, it simply never rose to the bar.
+    expect(result.reason).toBeUndefined();
+  });
+
+  it("suppresses a kind of signal the room muted", async () => {
+    await store.setRoomPolicy("r1", {
+      mode: "suggestions_only", allowExternalCalls: true, maxSuggestionsPerHour: 10,
+      maxApprovedBackgroundJobsPerDay: 5, disabledSignalKinds: ["finance_signal"], approvedEntityWatchlist: [],
+    });
+    const result = await scanMessage(store, "CardioNova announced their Series A funding raise");
+    expect(result.status).toBe("not_noteworthy");
+    expect(result.reason).toBe("signal_disabled_by_policy");
+  });
+
+  it("suppresses an entity nobody approved when the room watches a list", async () => {
+    await store.setRoomPolicy("r1", {
+      mode: "approved_watchlist_only", allowExternalCalls: true, maxSuggestionsPerHour: 10,
+      maxApprovedBackgroundJobsPerDay: 5, disabledSignalKinds: [], approvedEntityWatchlist: ["Stripe"],
+    });
+    const result = await scanMessage(store, "CardioNova announced their Series A funding raise");
+    expect(result.status).toBe("not_noteworthy");
+    expect(result.reason).toBe("not_on_watchlist");
+  });
+
+  // `docs/START_HERE.md` promises "one test per reason". Two reasons had no test
+  // and nothing noticed for two waves. This is what notices.
+  it("has a test above for every suppression reason the orchestrator can write", () => {
+    const src = readFileSync(new URL("../src/core/scanOrchestrator.ts", import.meta.url), "utf8");
+    const reasons = [...src.matchAll(/settle\("not_noteworthy", "(\w+)"\)/g)].map((m) => m[1]);
+    expect(reasons.length).toBeGreaterThan(0);
+    const self = readFileSync(new URL(import.meta.url), "utf8");
+    for (const reason of reasons) {
+      expect(self, `no test asserts the reason "${reason}"`).toContain(`toBe("${reason}")`);
+    }
   });
 });
 

@@ -77,16 +77,16 @@ the note carried was "memory library; `countNoteworthyForEntity` is not plumbed
 ## Defect ledger
 
 Open defects, most-impactful first. A defect is only listed once it has a
-reproduction; a hunch is not a defect. **None of these were fixed** — Wave 1
-measures.
+reproduction; a hunch is not a defect. Wave 1 fixed none of them; the Status
+column is what later waves updated.
 
 | # | Severity | Journey | Reproduction | Status |
 |---|----------|---------|--------------|--------|
 | D1 | Major | J4 | Serve repo root; open `/demo/graph-rail/index.html` at viewport width 375×812 and load fresh. `#layout` computes `grid-template-columns: 380px 114.281px` (no media query exists in the file), `document.scrollWidth` 567 vs `clientWidth` 375 — 192px of horizontal overflow; the graph pane, the entire point of the page, is 114px wide and off-screen. Reproduces at 390 (177px over) and 320 (247px over); clean at 768, 1024, 1400. `evidence/mobile-375-fresh.png` | open |
 | D2 | Major | J4 / Recovery | Load the same page with all `**esm.sh**` requests aborted (any network that blocks the CDN in the `<head>` importmap: react, react-dom, graphology, sigma, @sigma/node-border). Result after 4s: log has 0 children, 0 suggestion cards, 0 `<canvas>`, **0 page errors** — and the caption still describes a graph that is not there. Regex `/error\|failed\|retry\|offline\|could not/i` over `body.innerText` → false. The user sees a blank frame with confident prose and no way back. `evidence/cdn-blocked-no-error-state.png`. **Corrected 2026-08-13:** this entry originally also claimed *0 console errors*. An independent re-run reproduced every user-facing figure above but observed **2 console errors** (the blocked module fetches). The defect is unchanged — nothing reaches the user either way — but "silent" means silent *on screen*, not silent in the console, and the 0 is wrong. | **fixed — Iteration 1** |
-| D3 | Major | J4 | `npm run dev` — declared in `nodekit.yaml` as `commands.dev: { script: dev, mode: service }` — runs `vite` over a repo with **no root `index.html`** and with react/sigma/graphology present only in the browser importmap, never in `package.json`. Measured: `GET http://localhost:5999/` → **404**; `GET /vendor/nodegraph-live/NodeGraph.js` → **500** ("Failed to resolve import … Are they installed?"). Also note `vite` itself is not a declared dependency — it resolves only transitively through `vitest`. A stranger following the standard verb gets nothing. | open |
-| D4 | Major | J1 / install | `package.json` declares `"bin": { "nodemem": "./bin/nodemem.mjs" }`. `fs.existsSync('./bin/nodemem.mjs')` → **false**; there is no `bin/` directory in the repo at `ac8e7db`. Any `npm i -g nodemem` / `npx nodemem` creates a broken shim. | open |
-| D5 | Minor | J4 | Every node in the rail reads "unknown — not measured" forever. `docs/GRAPH_INTEGRATION.md:123` specifies `countNoteworthyForEntity(roomId, entityKey): Promise<number>` on `DedupStore`; `grep -rn countNoteworthyForEntity src/` → **no match**. The data exists (`listNoteworthy` + `NoteworthyRow.entityNames` in `src/core/dedup.ts`, rows held in `src/adapters/inMemoryAdapter.ts`) and `EntityRef.count` in `vendor/nodegraph-live/session.d.ts` is waiting for it — the method was simply never added. This is the known API gap named in the wave brief. | open |
+| D3 | Major | J4 | `npm run dev` — declared in `nodekit.yaml` as `commands.dev: { script: dev, mode: service }` — runs `vite` over a repo with **no root `index.html`** and with react/sigma/graphology present only in the browser importmap, never in `package.json`. Measured: `GET http://localhost:5999/` → **404**; `GET /vendor/nodegraph-live/NodeGraph.js` → **500** ("Failed to resolve import … Are they installed?"). Also note `vite` itself is not a declared dependency — it resolves only transitively through `vitest`. A stranger following the standard verb gets nothing. | **fixed — Wave 3** |
+| D4 | Major | J1 / install | `package.json` declares `"bin": { "nodemem": "./bin/nodemem.mjs" }`. `fs.existsSync('./bin/nodemem.mjs')` → **false**; there is no `bin/` directory in the repo at `ac8e7db`. Any `npm i -g nodemem` / `npx nodemem` creates a broken shim. | **fixed — Wave 3** |
+| D5 | Minor | J4 | A store method the docs specify does not exist. `countNoteworthyForEntity` (`docs/GRAPH_INTEGRATION.md:123`) specifies `countNoteworthyForEntity(roomId, entityKey): Promise<number>` on `DedupStore`; `grep -rn countNoteworthyForEntity src/` → **no match**. The data exists (`listNoteworthy` + `NoteworthyRow.entityNames`, now in `src/core/ports.ts`, rows held in `src/adapters/inMemoryAdapter.ts`) and `EntityRef.count` in `vendor/nodegraph-live/session.d.ts` is waiting for it — the method was simply never added. **What is *not* the defect: the rail showing every node as uncounted.** Nothing measures those counts yet, so an uncounted node is the honest render — the page says so (`"unknown — not measured"` (`demo/graph-rail/index.html:85`)) and the browser gate fails the build if any node arrives counted (`every noticed entity is unmeasured` (`scripts/capture-graph-rail.mjs:53`)). Implementing the method adds a *measured* count; it does not make today's page a lie. | open |
 | D6 | Minor | J4 / a11y | On the loaded rail: 8 `<canvas>` elements, **0** carrying `aria-label`, `role`, or text content; **0** elements with `aria-live`/`role=status`/`role=log` despite the activity log appending rows asynchronously. Keyboard itself is fine (Confirm reachable in 2 Tabs, visible focus ring, Enter works). A screen-reader user gets the headings and nothing else. | open |
 
 ## Iterations
@@ -104,7 +104,8 @@ measures.
   run against the unfixed page, printed **6 failing checks and exited 1**
   (confirmed twice — once before the fix was written, once by stashing only
   `demo/graph-rail/{index.html,main.js}` with the producer left in place).
-- **Root cause** — `demo/graph-rail/index.html:75`, and it is structural, not
+- **Root cause** — the module tag `id="rail-module"`
+  (`demo/graph-rail/index.html:94`), and it is structural, not
   cosmetic. Every pixel of feedback on this page is produced by one
   `<script type="module">` whose import graph resolves through the importmap to
   `esm.sh`. Per the HTML module spec, if any module in that graph fails to
@@ -254,3 +255,56 @@ and evidence from a structural refactor that claims new images would be a lie.
 **Still open:** D1 (mobile overflow), D5 (`countNoteworthyForEntity` never
 implemented), D6 (canvas accessibility). All three are product defects; Wave 3
 was structural and did not mix feature work into it.
+
+## Wave 3b — 2026-08-13 — what a cold reader found in the documents
+
+An engineer given only this repository ran it, traced the nine steps of
+[`docs/START_HERE.md`](../docs/START_HERE.md), and reported three things the
+tree contradicted. All three were true.
+
+- **"The seven gates, one test per reason" described five.**
+  `tests/scanOrchestrator.test.ts` asserted `policy_off`, `room_quota_exceeded`,
+  `duplicate_entity` and `previously_dismissed`; the first gate (the classifier
+  said ignore), `signal_disabled_by_policy` and `not_on_watchlist` had no test
+  at all. Three tests added, so the sentence is now true — and one more asserts
+  it stays true: it reads every `settle("not_noteworthy", …)` literal out of
+  `scanActivity` (`src/core/scanOrchestrator.ts:101`) and fails if any reason
+  has no test. A new gate can no longer arrive without one.
+- **D5 said the rail was broken; the build gate said the same behavior was
+  required.** The gate is right. Nothing in NodeMem measures a per-entity count
+  yet, so a node drawn as counted would be a lie — which is why
+  `every noticed entity is unmeasured` (`scripts/capture-graph-rail.mjs:53`)
+  fails the build if one arrives. The defect is only the specified-but-absent
+  store method; D5 now says that and nothing more.
+- **"47 tests" in two documents, against a tree with more.** Every stated suite
+  size is now "N test files", derived from the same directory read the suite
+  runs on, and `tests/docs.test.ts` fails when a document disagrees with the
+  tree.
+
+**The citation guard proved anchor stability, not anchor correctness.**
+`tests/tours.test.ts` checked that a step's line number was in range and not
+blank. Every line in a file is in range, so it passed while a step pointed at
+the wrong symbol — and one did: step 2 of tour 1 cited the line closing a
+docblock, one above the `DEMO_EVENTS` array it claimed to show. Documents had
+the same hole with no check at all: four of the five `path:line` citations in
+`NODE-LOOPS.md` pointed at comment text or the wrong file.
+
+Every step now carries the `symbol` it is about and every document citation is
+written `` `symbol` (`path:line`) ``; both guards assert the cited line contains
+it, and `tests/docs.test.ts` fails on a citation written any other way, so one
+cannot be added outside the check.
+
+- **Proof the hardened guards fail on a wrong anchor:** step 3 of tour 1, which
+  cites `export function classifyNoteworthy` (`src/core/classifier.ts:108`), was
+  repointed one line up, and the START_HERE citation of `scanActivity`
+  (`src/core/scanOrchestrator.ts:101`) likewise — both then land on a real,
+  non-blank line one above the symbol they name. Hardened: 2 failed ("cited line does not contain
+  …; it is ` */`"). The previous guard, restored from `HEAD` and run against
+  that same mutated tree: **4 passed**. Both mutations reverted.
+- **Measured on this tree, after the changes:** `npm test` **77 passed, 8 test
+  files** (was 51 in 7), 1.4s warm / 2.6s cold; `npm run check` exit 0;
+  `npm run proof` 13/13; `npm run capture` **12/12 exit 0** — including the
+  uncounted-node check that decided D5. Screenshots were regenerated by the
+  capture gate and byte-restored: this wave changed no pixels.
+- **Not fixed:** D1, D5, D6 stay open. D3 and D4 were closed by Wave 3 and their
+  ledger rows still said `open`; the rows now agree with the Wave 3 entry above.

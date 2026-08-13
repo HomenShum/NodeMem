@@ -521,7 +521,7 @@ NodeMem/
 │   └── adapters/
 │       ├── inMemoryAdapter.ts    # Zero-dependency reference
 │       └── convexSchema.ts       # Convex table definitions
-├── tests/                        # 51 tests — see docs/codebase/TESTING.md
+├── tests/                        # 8 test files — see docs/codebase/TESTING.md
 ├── demo/
 │   ├── demo-runner.ts            # the 13-check pipeline story
 │   ├── runNodeMemDemo.ts         # npm run demo / npm run proof

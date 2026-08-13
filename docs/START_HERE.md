@@ -17,7 +17,7 @@ npm install
 npm run demo        # the whole pipeline in the terminal, 13 checks
 npm run dev         # http://127.0.0.1:5173/demo/graph-rail/index.html
 npm run capture     # the browser gate: 12 checks, exits nonzero if the page lies
-npm test            # 47 tests
+npm test            # the unit suite: 8 test files
 ```
 
 Nine steps follow. Steps 5 and part of 3 say "this does not exist here" — that
@@ -28,7 +28,7 @@ is deliberate; a stage nobody built is more useful named than invented.
 ## Step 1 — The entry point is a static file server, not a web framework
 
 **File:** `scripts/serve.mjs`
-**Symbol:** `serveRepo`
+**Symbol:** `serveRepo` (`scripts/serve.mjs:45`)
 **Called by:** `npm run dev`, `scripts/capture-graph-rail.mjs`, `scripts/record-graph-rail.mjs`
 **Calls next:** nothing — it hands files to the browser, which then loads `demo/graph-rail/index.html`
 
@@ -59,8 +59,8 @@ missing file, returns `404`. There is no directory listing.
 ## Step 2 — The primary user action: activity arrives, and a person later says yes or no
 
 **File:** `demo/graph-rail/main.js`
-**Symbol:** `runPipeline` (line 81), then `renderSuggestion` (line 38)
-**Called by:** the page itself, on load (line 126)
+**Symbol:** `runPipeline` (`demo/graph-rail/main.js:81`), then `renderSuggestion` (`demo/graph-rail/main.js:38`)
+**Called by:** the page itself, on load — `runPipeline();` (`demo/graph-rail/main.js:126`)
 **Calls next:** `classifyNoteworthy`, then `session.observe` for anything noticed
 
 **Why this exists**
@@ -91,7 +91,7 @@ file ever runs; Step 8 is the guard that covers exactly that.
 ## Step 3 — What "trusted input" means here: a score, not a validator
 
 **File:** `src/core/classifier.ts`
-**Symbol:** `classifyNoteworthy` (line 108)
+**Symbol:** `classifyNoteworthy` (`src/core/classifier.ts:108`)
 **Called by:** `scanActivity`, the demos, the graph rail
 **Calls next:** nothing — it is a pure function with no I/O and no model call
 
@@ -128,7 +128,7 @@ returns `ignore` with no entities.
 ## Step 4 — The pipeline: seven gates, and the first one that trips wins
 
 **File:** `src/core/scanOrchestrator.ts`
-**Symbol:** `scanActivity` (line 101)
+**Symbol:** `scanActivity` (`src/core/scanOrchestrator.ts:101`)
 **Called by:** a host application; here, `demo/demo-runner.ts` and the tests
 **Calls next:** `classifyNoteworthy`, `resolveAssistivePolicy`, then the store
 
@@ -180,7 +180,7 @@ looks like a feature. See `docs/SIMPLIFICATION_REPORT.md`.
 ## Step 6 — Persistence: seven methods, and the verdict written back
 
 **File:** `src/core/ports.ts` (contract) and `src/adapters/inMemoryAdapter.ts` (reference)
-**Symbol:** `MemoryStore` (line 76) / `InMemoryAdapter.patchRow` (line 66)
+**Symbol:** `MemoryStore` (`src/core/ports.ts:76`) / `patchRow` (`src/adapters/inMemoryAdapter.ts:66`)
 **Called by:** `scanActivity` via the local `settle` helper
 **Calls next:** your database; in the demo, a `Map`
 
@@ -207,7 +207,7 @@ A real adapter should not; the contract does not currently say so.
 ## Step 7 — Rendering: a suggestion draws nothing until a person clicks
 
 **File:** `demo/graph-rail/main.js`
-**Symbol:** `App` (line 113) with `useSyncExternalStore`; the Confirm handler at line 63
+**Symbol:** `App` (`demo/graph-rail/main.js:113`) with `useSyncExternalStore`; the Confirm handler `confirm.addEventListener` (`demo/graph-rail/main.js:63`)
 **Called by:** React, on every graph mutation
 **Calls next:** `NodeGraph` from `vendor/nodegraph-live/react.js`
 
@@ -237,7 +237,7 @@ all, on purpose.
 ## Step 8 — Failure and recovery: the reporter cannot live inside the thing that failed
 
 **File:** `demo/graph-rail/index.html`
-**Symbol:** the classic `<script>` at line 95 and the alert panel at line 52
+**Symbol:** the classic `<script>` (`demo/graph-rail/index.html:95`) and the alert panel `data-testid="boot-error"` (`demo/graph-rail/index.html:52`)
 **Called by:** the browser, always — it is not a module
 **Calls next:** nothing; it hides the graph and shows a named cause
 
@@ -273,12 +273,14 @@ those six properties is missing.
 
 | What it proves | File | Command |
 |---|---|---|
-| The seven gates, one test per reason | `tests/scanOrchestrator.test.ts` | `npm test` |
+| The seven gates, one test per reason — and a check that a new gate cannot arrive without one | `tests/scanOrchestrator.test.ts` | `npm test` |
 | The classifier's thresholds and stop-name filtering | `tests/classifier.test.ts` | `npm test` |
 | The reference store satisfies the port | `tests/inMemoryAdapter.test.ts` | `npm test` |
 | The demo's JavaScript copy of the classifier has not drifted from the TypeScript original | `tests/demoMirror.test.ts` | `npm test` |
 | The README's import lines resolve, no script invokes an undeclared binary, no `bin` points at a missing file | `tests/packageContract.test.ts` | `npm test` |
 | The Convex schema still loads at run time | `tests/convexSchema.test.ts` | `npm test` |
+| Every `symbol` (`path:line`) citation in this document still lands on that symbol, and the counts above are the tree's | `tests/docs.test.ts` | `npm test` |
+| Every guided tour step still lands on the symbol it names | `tests/tours.test.ts` | `npm test` |
 | The whole pipeline end to end, with a receipt | `demo/demo-runner.ts` | `npm run proof` |
 | The rendered page: zero edges before a human confirms, exactly one after, and a legible failure when the CDN is blocked | `scripts/capture-graph-rail.mjs` | `npm run capture` |
 
