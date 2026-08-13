@@ -6,6 +6,13 @@
  * and verifies exactly one traversal edge appears. Screenshots land in
  * assets/graph-rail/{before,after}-confirm.png.
  *
+ * Phase 2 is the same page with the esm.sh CDN unreachable (defect D2). The
+ * page's whole UI is one ES module resolved through an importmap; when that
+ * graph fails to fetch the module body never runs, so the gate asserts the
+ * failure is legible OUTSIDE the module — visible alert, named cause, working
+ * recovery — instead of a blank frame under confident prose. Screenshot lands
+ * in promotion/evidence/cdn-blocked-error-state.png.
+ *
  *   node scripts/capture-graph-rail.mjs
  */
 
@@ -82,6 +89,50 @@ check("exactly one edge after one confirmation", after.edges === 1, `edges=${aft
 check("the confirmed edge is traversal, not evidence", after.types.every((t) => String(t).includes("traversal")), `types=${after.types.join(",")}`);
 
 await page.screenshot({ path: join(root, "assets", "graph-rail", "after-confirm.png") });
+await page.close();
+
+// ---------------------------------------------------------------- phase 2: D2
+// Same page, esm.sh unreachable. Nothing the module renders can appear, so the
+// only honest outcome is an error state produced outside the module.
+console.log("\n  esm.sh blocked:");
+const offline = await browser.newPage({ viewport: { width: 1400, height: 860 } });
+await offline.route("**esm.sh**", (r) => r.abort());
+await offline.goto(url);
+await offline.locator('[data-testid="boot-error"]').waitFor({ state: "visible", timeout: 20000 }).catch(() => {});
+
+const blocked = await offline.evaluate(() => {
+  const panel = document.querySelector('[data-testid="boot-error"]');
+  const caption = document.getElementById("caption");
+  const visible = (el) => !!el && el.getClientRects().length > 0;
+  return {
+    alertVisible: visible(panel),
+    role: panel?.getAttribute("role") ?? null,
+    namesCause: /esm\.sh/.test(panel?.innerText ?? ""),
+    retryVisible: visible(document.querySelector('[data-testid="boot-retry"]')),
+    // the ledger's own probe: the user must be able to read that this failed
+    readsAsFailure: /error|failed|retry|offline|could not/i.test(document.body.innerText),
+    captionVisible: visible(caption),
+  };
+});
+
+check("an error state is visible when esm.sh is blocked", blocked.alertVisible);
+check("it is announced to assistive tech", blocked.role === "alert", `role=${blocked.role}`);
+check("it names the cause (esm.sh)", blocked.namesCause);
+check("it offers a recovery path", blocked.retryVisible);
+check("the page reads as failed to a human", blocked.readsAsFailure);
+check("the caption no longer describes a graph that is not there", !blocked.captionVisible);
+
+await offline.screenshot({ path: join(root, "promotion", "evidence", "cdn-blocked-error-state.png") });
+
+// A Retry that does not recover is decoration, not a recovery path.
+await offline.unroute("**esm.sh**");
+await offline.locator('[data-testid="boot-retry"]').click({ timeout: 5000 }).catch(() => {});
+const recovered = await offline
+  .waitForFunction(() => window.__graphRail?.pipelineDone === true, null, { timeout: 30000 })
+  .then(() => true)
+  .catch(() => false);
+check("Retry recovers the page once the CDN is reachable again", recovered);
+await offline.screenshot({ path: join(root, "promotion", "evidence", "cdn-blocked-after-retry.png") });
 
 await browser.close();
 server.close();

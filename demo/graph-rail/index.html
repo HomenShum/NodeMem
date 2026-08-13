@@ -22,6 +22,7 @@
       .suggestion button:hover { border-color: #4b5865; }
       .suggestion.resolved { opacity: 0.55; }
       .suggestion .state { color: #7f8992; font-size: 12px; }
+      #boot-error { border-color: #5c3033; background: #1a1214; margin-bottom: 14px; max-width: 980px; }
       #stage { border: 1px solid #1d242c; border-radius: 12px; overflow: hidden; background: #0e1319; }
       #caption { margin: 10px 2px 0; color: #7f8992; font-size: 12.5px; line-height: 1.5; max-width: 980px; }
     </style>
@@ -48,11 +49,29 @@
         re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act
         explicitly.
       </p>
+      <div class="suggestion" id="boot-error" data-testid="boot-error" role="alert" hidden>
+        <strong>The graph rail could not start.</strong>
+        <span class="why" id="boot-reason"></span>
+        <span class="why">
+          This page loads React, graphology and sigma from <code>esm.sh</code> at run time. When
+          that CDN is blocked or unreachable, the module below never executes, so no pipeline log,
+          no suggestions and no graph can appear — whatever the caption says.
+        </span>
+        <div class="row">
+          <button type="button" id="boot-retry" data-testid="boot-retry">Retry</button>
+        </div>
+        <span class="why">
+          Still blocked? The same pipeline — same classifier, same fixtures — runs in the terminal
+          with no CDN and no install: <code>node demo/runNodeMemDemo.mjs</code>
+        </span>
+      </div>
       <div id="layout">
         <div>
           <section>
             <h2>Activity stream → pipeline</h2>
-            <div id="log"></div>
+            <div id="log">
+              <div id="boot-status"><span class="k">loading</span>fetching React, graphology and sigma from esm.sh…</div>
+            </div>
           </section>
           <section style="margin-top:14px">
             <h2>Suggestions (no edge until you confirm)</h2>
@@ -72,6 +91,36 @@
         </div>
       </div>
     </main>
-    <script type="module" src="./main.js"></script>
+    <script type="module" id="rail-module" src="./main.js"></script>
+    <script>
+      // Everything a user sees on this page is rendered by that module, and the
+      // module's imports resolve through the importmap to esm.sh. If any of those
+      // fetches fails the module body never executes — so the code that reports
+      // the failure cannot live inside it. It lives here, in the one script that
+      // always runs. The watchdog covers the silent variants too: a hang, an
+      // importmap miss, or a throw during evaluation all leave __graphRail unset.
+      (function () {
+        var shown = false;
+        function fail(reason) {
+          if (shown || window.__graphRail) return;
+          shown = true;
+          document.getElementById("boot-reason").textContent = reason;
+          document.getElementById("boot-error").hidden = false;
+          document.getElementById("stage").hidden = true;
+          document.getElementById("caption").hidden = true;
+          var status = document.getElementById("boot-status");
+          if (status) status.remove();
+        }
+        document.getElementById("rail-module").addEventListener("error", function () {
+          fail("A module it needs could not be downloaded.");
+        });
+        setTimeout(function () {
+          fail("It did not finish loading within 8 seconds.");
+        }, 8000);
+        document.getElementById("boot-retry").addEventListener("click", function () {
+          location.reload();
+        });
+      })();
+    </script>
   </body>
 </html>

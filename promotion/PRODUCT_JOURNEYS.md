@@ -106,9 +106,11 @@ Each journey states, in this order:
 - **Evidence:** `evidence/desktop-1400-loaded.png` (3 nodes, 0 edges, 3
   suggestion cards), `evidence/keyboard-focus-confirm.png` (focus ring on
   Confirm), `evidence/desktop-after-keyboard-confirm.png` (1 edge after Enter).
-  Also `node scripts/capture-graph-rail.mjs` → 5/5 checks, exit 0.
-  Defect surfaces found while driving this journey: `evidence/mobile-375-fresh.png`,
-  `evidence/cdn-blocked-no-error-state.png`.
+  Also `node scripts/capture-graph-rail.mjs` → 12/12 checks, exit 0 (5 honesty
+  checks + 7 recovery checks added in Iteration 1).
+  Defect surfaces found while driving this journey: `evidence/mobile-375-fresh.png`
+  (D1, still open), `evidence/cdn-blocked-no-error-state.png` (D2, fixed in
+  Iteration 1 — see `evidence/cdn-blocked-error-state.png`).
 
 ## J5 — "I said no. Does it stay no?"
 
@@ -137,11 +139,16 @@ Each journey states, in this order:
 If this product runs an agent on the user's behalf, at least one journey must
 exercise each of these, because they are where agent products fail a stranger:
 
-- **Recovery** — **applies, and is missing.** NodeMem itself never runs a job,
-  but the graph rail loads React, sigma and graphology from `esm.sh` at runtime.
-  On a network that blocks the CDN the surface degrades to a blank frame with no
-  message and no retry, and the user cannot get back to a good state without
-  guessing. Logged as D2; no journey can pass it today.
+- **Recovery** — **applies, and now passes (Iteration 1).** NodeMem itself never
+  runs a job, but the graph rail loads React, sigma and graphology from `esm.sh`
+  at runtime. It used to degrade on a CDN-blocking network to a blank frame with
+  no message and no retry (D2). It now names the failure in a `role="alert"`
+  panel, hides the caption that described a graph that is not there, and offers
+  two ways back: Retry, and the no-CDN terminal fallback
+  `node demo/runNodeMemDemo.mjs`. Driven by `scripts/capture-graph-rail.mjs`
+  phase 2, which aborts every `esm.sh` request, asserts the alert is visible and
+  legible, and then proves Retry recovers the page. Evidence:
+  `evidence/cdn-blocked-error-state.png`, `evidence/cdn-blocked-after-retry.png`.
 - **Steering** — **J5.** Dismiss is the steering control: the correction is
   recorded and visibly takes effect on the next scan
   (`previously_dismissed`).

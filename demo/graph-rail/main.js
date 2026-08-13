@@ -20,6 +20,7 @@ const session = new GraphSession({ maxNodes: 200, maxEdges: 400, maxSeen: 1000 }
 const store = new InMemoryStore();
 
 const logEl = document.getElementById("log");
+document.getElementById("boot-status")?.remove(); // the imports resolved; drop the loading row
 const sugEl = document.getElementById("suggestions");
 const log = (kind, text) => {
   const line = document.createElement("div");

@@ -83,7 +83,7 @@ measures.
 | # | Severity | Journey | Reproduction | Status |
 |---|----------|---------|--------------|--------|
 | D1 | Major | J4 | Serve repo root; open `/demo/graph-rail/index.html` at viewport width 375×812 and load fresh. `#layout` computes `grid-template-columns: 380px 114.281px` (no media query exists in the file), `document.scrollWidth` 567 vs `clientWidth` 375 — 192px of horizontal overflow; the graph pane, the entire point of the page, is 114px wide and off-screen. Reproduces at 390 (177px over) and 320 (247px over); clean at 768, 1024, 1400. `evidence/mobile-375-fresh.png` | open |
-| D2 | Major | J4 / Recovery | Load the same page with all `**esm.sh**` requests aborted (any network that blocks the CDN in the `<head>` importmap: react, react-dom, graphology, sigma, @sigma/node-border). Result after 4s: log has 0 children, 0 suggestion cards, 0 `<canvas>`, **0 page errors** — and the caption still describes a graph that is not there. Regex `/error\|failed\|retry\|offline\|could not/i` over `body.innerText` → false. The user sees a blank frame with confident prose and no way back. `evidence/cdn-blocked-no-error-state.png`. **Corrected 2026-08-13:** this entry originally also claimed *0 console errors*. An independent re-run reproduced every user-facing figure above but observed **2 console errors** (the blocked module fetches). The defect is unchanged — nothing reaches the user either way — but "silent" means silent *on screen*, not silent in the console, and the 0 is wrong. | open |
+| D2 | Major | J4 / Recovery | Load the same page with all `**esm.sh**` requests aborted (any network that blocks the CDN in the `<head>` importmap: react, react-dom, graphology, sigma, @sigma/node-border). Result after 4s: log has 0 children, 0 suggestion cards, 0 `<canvas>`, **0 page errors** — and the caption still describes a graph that is not there. Regex `/error\|failed\|retry\|offline\|could not/i` over `body.innerText` → false. The user sees a blank frame with confident prose and no way back. `evidence/cdn-blocked-no-error-state.png`. **Corrected 2026-08-13:** this entry originally also claimed *0 console errors*. An independent re-run reproduced every user-facing figure above but observed **2 console errors** (the blocked module fetches). The defect is unchanged — nothing reaches the user either way — but "silent" means silent *on screen*, not silent in the console, and the 0 is wrong. | **fixed — Iteration 1** |
 | D3 | Major | J4 | `npm run dev` — declared in `nodekit.yaml` as `commands.dev: { script: dev, mode: service }` — runs `vite` over a repo with **no root `index.html`** and with react/sigma/graphology present only in the browser importmap, never in `package.json`. Measured: `GET http://localhost:5999/` → **404**; `GET /vendor/nodegraph-live/NodeGraph.js` → **500** ("Failed to resolve import … Are they installed?"). Also note `vite` itself is not a declared dependency — it resolves only transitively through `vitest`. A stranger following the standard verb gets nothing. | open |
 | D4 | Major | J1 / install | `package.json` declares `"bin": { "nodemem": "./bin/nodemem.mjs" }`. `fs.existsSync('./bin/nodemem.mjs')` → **false**; there is no `bin/` directory in the repo at `ac8e7db`. Any `npm i -g nodemem` / `npx nodemem` creates a broken shim. | open |
 | D5 | Minor | J4 | Every node in the rail reads "unknown — not measured" forever. `docs/GRAPH_INTEGRATION.md:123` specifies `countNoteworthyForEntity(roomId, entityKey): Promise<number>` on `DedupStore`; `grep -rn countNoteworthyForEntity src/` → **no match**. The data exists (`listNoteworthy` + `NoteworthyRow.entityNames` in `src/core/dedup.ts`, rows held in `src/adapters/inMemoryAdapter.ts`) and `EntityRef.count` in `vendor/nodegraph-live/session.d.ts` is waiting for it — the method was simply never added. This is the known API gap named in the wave brief. | open |
@@ -91,7 +91,72 @@ measures.
 
 ## Iterations
 
-_none — Wave 1 is baseline only._
+### Iteration 1 — 2026-08-13 — D2, the silent CDN failure
+
+- **Journey exercised:** J4 (open the rail in a browser and watch the pipeline)
+  and its recovery path, on `2c76123`, Node v22.22.2, Playwright Chromium,
+  Windows 11.
+- **Observed (reproduced before touching anything):** with `**esm.sh**`
+  requests aborted, `demo/graph-rail/index.html` renders its headings, its
+  confident sub-heading and its caption over three empty containers — 0 log
+  rows, 0 suggestion cards, 0 `<canvas>`, no error text, no way back. The
+  reproduction is now executable: phase 2 of `scripts/capture-graph-rail.mjs`,
+  run against the unfixed page, printed **6 failing checks and exited 1**
+  (confirmed twice — once before the fix was written, once by stashing only
+  `demo/graph-rail/{index.html,main.js}` with the producer left in place).
+- **Root cause** — `demo/graph-rail/index.html:75`, and it is structural, not
+  cosmetic. Every pixel of feedback on this page is produced by one
+  `<script type="module">` whose import graph resolves through the importmap to
+  `esm.sh`. Per the HTML module spec, if any module in that graph fails to
+  fetch, the script body **never executes at all**. The page's only logging
+  function (`log()` in `main.js`) lives inside that module. So the single code
+  path that could report the failure is the code path that failed, and nothing
+  outside the module ever observed the boot. The blank frame was not a missing
+  error message — it was an error reporter that cannot run in the one situation
+  it exists for.
+- **Fixed** — the guard now lives where it can always run:
+  - `demo/graph-rail/index.html` — a `role="alert"` panel
+    (`[data-testid="boot-error"]`, reusing the existing `.suggestion` card
+    styling, no new component) plus a **classic** inline script after the module
+    tag. It fails fast on the module element's `error` event and, as a
+    backstop, on an 8s watchdog that catches the silent variants the error event
+    misses — a hang, an importmap miss, a throw during evaluation. All four
+    leave `window.__graphRail` unset, so one sentinel covers them. On failure it
+    names the cause, hides `#stage` and the caption that describes a graph that
+    is not there, and offers two recovery paths: a Retry button and the
+    no-CDN, no-install terminal fallback `node demo/runNodeMemDemo.mjs`.
+  - A designed **loading** state (`#boot-status`, "fetching React, graphology
+    and sigma from esm.sh…") so the seconds before the verdict are not the same
+    blank frame in miniature. `demo/graph-rail/main.js` removes it in one line
+    once the imports resolve.
+- **Re-proved in the rendered app:** `node scripts/capture-graph-rail.mjs` →
+  **12/12 checks, exit 0**, up from 5 checks. The seven new ones assert the
+  alert is *visible*, carries `role="alert"`, names `esm.sh`, offers a control,
+  makes `body.innerText` match the ledger's own
+  `/error|failed|retry|offline|could not/i` probe, hides the caption — and that
+  **Retry actually recovers**, because a button that does not recover is
+  decoration. Evidence:
+  `promotion/evidence/cdn-blocked-error-state.png` (the legible failure) and
+  `promotion/evidence/cdn-blocked-after-retry.png` (same page, recovered, 3
+  entities and 3 suggestion cards). The baseline
+  `promotion/evidence/cdn-blocked-no-error-state.png` is the before.
+- **Tests:** `npm test` → 27/27 exit 0. `npm run build` (`tsc --noEmit`) → exit
+  0. `npm run check` (secret-scan + 2 smokes + typecheck + tests) → exit 0.
+  `node scripts/capture-graph-rail.mjs` → 12/12 exit 0.
+- **Regression check:** phase 2 of `scripts/capture-graph-rail.mjs`. If the
+  boot guard is removed or the alert stops rendering, it exits 1. **Confirmed
+  failing on the pre-fix tree** by `git stash push -- demo/graph-rail/*` with
+  the producer left in place: 6 ✗, exit 1.
+- **Conditions newly PASS:** 5 (error state now exists and is designed) and 12
+  (an improvement verified in the rendered app, with a producer that fails
+  without it). **3/12 → 5/12.**
+- **Not fixed, deliberately — one defect per iteration:** D1 (mobile overflow),
+  D3 (`npm run dev` 404/500), D4 (missing `bin/nodemem.mjs`), D5, D6 stay open,
+  so condition 2 stays FAIL. Disclosed residual on condition 5: when boot
+  fails, the "Activity stream" and "Suggestions" headings still stand over
+  empty containers. They are no longer unexplained — the alert directly above
+  them says no log, no suggestions and no graph can appear — but they are not
+  separately designed empty states.
 
 ## Correction — 2026-08-13
 
