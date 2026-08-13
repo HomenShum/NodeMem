@@ -53,8 +53,8 @@ moment, and what the graph is therefore entitled to show:
 | Entity noticed | `session.observe([entityRef(e)], undefined, {eventId: "notice:..."})` in `demo/graph-rail/main.js` | One `EntityRef` (`{kind, label}` — no `count`) | No. The second argument is literally `undefined`; `EntityDetection` has no count field to pass | **Node only, unmeasured** — dim, edge-less. A single participant can never form an edge of any type | Noticing is an unmeasured observation. `EntityRef.count` absent means unknown, and the renderer says so on screen: "unknown — not measured" |
 | Suggestion surfaced | `renderSuggestion(...)` in `demo/graph-rail/main.js`; the pair is entity ↔ facet from `NoteworthyFinding` | None into the graph — the suggestion is a DOM card, not a graph mutation | No. The suggestion carries the same heuristic `score` | **Nothing.** Zero graph calls | A suggestion is a question addressed to a human. Drawing it would render the classifier's guess as if it were a relationship in the world |
 | Suggestion confirmed | Confirm button handler: `session.observe([s.a, s.b], undefined, {eventId: "confirmed:..."})` | Two `EntityRef`s (entity + facet), still no count | No. A human click is consent, not a measurement — `measuredCount` stays `undefined` | **`traversal`** — exactly one faint, constant-width edge per confirm | Per `session.d.ts`, a pair with no measurement produces "only traversal telemetry". The click records that a human walked this pair together — a confirmed hop, telemetry about us, not evidence about the world |
-| Suggestion dismissed | Dismiss button handler: `store.recordDismissal(ROOM, [label], "human")` (`InMemoryStore` in `demo/nodeMemDemoCore.mjs`; contract: `DismissalStore` in `src/core/dismissalLearner.ts`) | None into the graph | No — but a count *starts accumulating*: `DismissalEntry.dismissCount` increments in `src/adapters/inMemoryAdapter.ts` | **Nothing.** The graph does not change | Dismissal is negative feedback to the *suggestion pipeline* (future suggestions for that entity are suppressed via `isEntityDismissed`). It says nothing about relationships in the world, so it earns no ink |
-| Dedup hit | `activityDedupeKey` (`src/core/dedupeKey.ts`) coalesces rapid activity; `isDuplicateSuggestion` / quota via `DedupStore.countNoteworthyLastHour` (`src/core/dedup.ts`) | None — the point is that a repeat extracts *nothing new* | The store counts rows (`countNoteworthyLastHour` is a real count), but of NodeMem's own activity, not of the world | **Nothing** — and crucially, no strengthening of existing nodes or edges | Replaying the same event must not make a relationship look stronger — the same rule `GraphSession` enforces internally with its `seen` receipts. A dedup hit is the system recognizing its own echo |
+| Suggestion dismissed | Dismiss button handler: `store.recordDismissal(ROOM, [label], "human")` (`InMemoryStore` in `demo/nodeMemDemoCore.mjs`; contract: `DismissalStore` in `src/core/ports.ts`) | None into the graph | No — but a count *starts accumulating*: `DismissalEntry.dismissCount` increments in `src/adapters/inMemoryAdapter.ts` | **Nothing.** The graph does not change | Dismissal is negative feedback to the *suggestion pipeline* (future suggestions for that entity are suppressed via `isEntityDismissed`). It says nothing about relationships in the world, so it earns no ink |
+| Dedup hit | `activityDedupeKey` (`src/core/dedupeKey.ts`) coalesces rapid activity; `isDuplicateSuggestion` / quota via `DedupStore.countNoteworthyLastHour` (`src/core/ports.ts`) | None — the point is that a repeat extracts *nothing new* | The store counts rows (`countNoteworthyLastHour` is a real count), but of NodeMem's own activity, not of the world | **Nothing** — and crucially, no strengthening of existing nodes or edges | Replaying the same event must not make a relationship look stronger — the same rule `GraphSession` enforces internally with its `seen` receipts. A dedup hit is the system recognizing its own echo |
 
 The bar the wiring clears: nothing in this table is entitled to an `evidence`
 edge (no measured conjunction exists anywhere in the pipeline) or an
@@ -109,13 +109,13 @@ suggestion and requires exactly one edge whose type includes `traversal`.
 
 NodeMem's stores already count things about their own corpus:
 
-- `DedupStore.countNoteworthyLastHour(roomId)` (`src/core/dedup.ts`) — a real
+- `DedupStore.countNoteworthyLastHour(roomId)` (`src/core/ports.ts`) — a real
   count of noteworthy rows.
-- `NoteworthyRow.entityNames` (`src/core/dedup.ts`) — every noteworthy row
+- `NoteworthyRow.entityNames` (`src/core/ports.ts`) — every noteworthy row
   names its entities, so "how many activity rows mention CardioNova" is one
   filter away in any adapter (`src/adapters/inMemoryAdapter.ts` holds the rows;
   `src/adapters/convexSchema.ts` indexes `roomActivityOutbox` the same way).
-- `DismissalEntry.dismissCount` (`src/core/dismissalLearner.ts`) — already
+- `DismissalEntry.dismissCount` (`src/core/ports.ts`) — already
   incremented per repeat dismissal in `src/adapters/inMemoryAdapter.ts`.
 
 None of this reaches the graph, because no type carries it there. The change:

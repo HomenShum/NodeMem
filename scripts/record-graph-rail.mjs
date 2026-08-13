@@ -14,39 +14,17 @@
  *   node scripts/record-graph-rail.mjs
  */
 
-import http from "node:http";
-import { readFile, stat } from "node:fs/promises";
+import { stat } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
-import { extname, join, normalize } from "node:path";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { serveRepo, DEMO_PATH } from "./serve.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
-const MIME = {
-  ".html": "text/html; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".mjs": "text/javascript; charset=utf-8",
-  ".map": "application/json",
-  ".json": "application/json",
-  ".css": "text/css",
-};
-
-const server = http.createServer(async (req, res) => {
-  try {
-    const path = normalize(decodeURIComponent(new URL(req.url, "http://x").pathname)).replace(/^([/\\])+/, "");
-    const file = join(root, path);
-    if (!file.startsWith(normalize(root))) throw new Error("outside root");
-    const body = await readFile(file);
-    res.writeHead(200, { "content-type": MIME[extname(file)] ?? "application/octet-stream" });
-    res.end(body);
-  } catch {
-    res.writeHead(404);
-    res.end("not found");
-  }
-});
-await new Promise((r) => server.listen(0, "127.0.0.1", r));
-const url = `http://127.0.0.1:${server.address().port}/demo/graph-rail/index.html`;
+const { server, origin } = await serveRepo();
+const url = `${origin}${DEMO_PATH}`;
 
 const videoDir = join(tmpdir(), `graph-rail-video-${Date.now()}`);
 const browser = await chromium.launch();

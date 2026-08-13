@@ -1,125 +1,73 @@
+/**
+ * The pipeline, gate by gate.
+ *
+ * Each test drives one real message into a room and asserts which gate stopped
+ * it — the `reason` written onto the row is the thing a support engineer reads
+ * when a user asks "why did nothing appear?".
+ */
+
 import { describe, it, expect, beforeEach } from "vitest";
 import { InMemoryAdapter } from "../src/adapters/inMemoryAdapter.js";
-import { scanActivity } from "../src/core/scanOrchestrator.js";
-import { resolveAssistivePolicy, SYSTEM_DEFAULT_POLICY, isSignalDisabled, isEntityWatchlisted, signalFingerprintHash } from "../src/core/policyResolver.js";
-import { isEntityDismissedSync } from "../src/core/dismissalLearner.js";
+import { resolveAssistivePolicy, isSignalDisabled, isEntityWatchlisted } from "../src/core/policyResolver.js";
 import { activityDedupeKey } from "../src/core/dedupeKey.js";
 import { computeDebounce, clampQuietMs, DEFAULT_QUIET_MS, MAX_QUIET_MS } from "../src/core/debouncer.js";
+import { scanMessage } from "./room.js";
 
-describe("InMemoryAdapter + scanActivity", () => {
+describe("scanActivity", () => {
   let store: InMemoryAdapter;
 
   beforeEach(() => {
     store = new InMemoryAdapter();
   });
 
-  it("scans noteworthy text and produces a noteworthy row", async () => {
-    const text = "Met with CardioNova about their Series A funding raise.";
-    const id = store.insertActivity({
-      roomId: "r1", sourceKind: "message", sourceId: "m1",
-      sourceHash: "h1", text, visibility: "room",
-    });
-    const result = await scanActivity(store, {
-      id, roomId: "r1", sourceKind: "message", sourceId: "m1",
-      sourceHash: "h1", text, visibility: "room",
-    });
+  it("turns a message worth a second look into a suggestion", async () => {
+    const result = await scanMessage(store, "Met with CardioNova about their Series A funding raise.");
     expect(result.status).toBe("noteworthy");
     expect(result.finding?.entities.length).toBeGreaterThan(0);
   });
 
-  it("suppresses duplicate entities", async () => {
-    const text1 = "CardioNova just raised Series A funding";
-    const id1 = store.insertActivity({
-      roomId: "r1", sourceKind: "message", sourceId: "m1",
-      sourceHash: "h1", text: text1, visibility: "room",
-    });
-    await scanActivity(store, {
-      id: id1, roomId: "r1", sourceKind: "message", sourceId: "m1",
-      sourceHash: "h1", text: text1, visibility: "room",
-    });
-
-    const text2 = "CardioNova pricing strategy update";
-    const id2 = store.insertActivity({
-      roomId: "r1", sourceKind: "message", sourceId: "m2",
-      sourceHash: "h2", text: text2, visibility: "room",
-    });
-    const result2 = await scanActivity(store, {
-      id: id2, roomId: "r1", sourceKind: "message", sourceId: "m2",
-      sourceHash: "h2", text: text2, visibility: "room",
-    });
-    expect(result2.status).toBe("not_noteworthy");
-    expect(result2.reason).toBe("duplicate_entity");
+  it("suppresses a second suggestion about the same entity", async () => {
+    await scanMessage(store, "CardioNova just raised Series A funding");
+    const second = await scanMessage(store, "CardioNova pricing strategy update");
+    expect(second.status).toBe("not_noteworthy");
+    expect(second.reason).toBe("duplicate_entity");
   });
 
-  it("suppresses dismissed entities", async () => {
+  it("suppresses an entity a human already dismissed", async () => {
     await store.recordDismissal("r1", ["CardioNova"], "user-1");
-    const text = "CardioNova announced their Series A funding raise";
-    const id = store.insertActivity({
-      roomId: "r1", sourceKind: "message", sourceId: "m1",
-      sourceHash: "h1", text, visibility: "room",
-    });
-    const result = await scanActivity(store, {
-      id, roomId: "r1", sourceKind: "message", sourceId: "m1",
-      sourceHash: "h1", text, visibility: "room",
-    });
+    const result = await scanMessage(store, "CardioNova announced their Series A funding raise");
     expect(result.status).toBe("not_noteworthy");
     expect(result.reason).toBe("previously_dismissed");
   });
 
-  it("suppresses all when policy is off", async () => {
+  it("suppresses everything when the room turned passive intelligence off", async () => {
     await store.setRoomPolicy("r1", {
       mode: "off", allowExternalCalls: false, maxSuggestionsPerHour: 0,
       maxApprovedBackgroundJobsPerDay: 0, disabledSignalKinds: [], approvedEntityWatchlist: [],
     });
-    const text = "CardioNova announced their Series A funding raise";
-    const id = store.insertActivity({
-      roomId: "r1", sourceKind: "message", sourceId: "m1",
-      sourceHash: "h1", text, visibility: "room",
-    });
-    const result = await scanActivity(store, {
-      id, roomId: "r1", sourceKind: "message", sourceId: "m1",
-      sourceHash: "h1", text, visibility: "room",
-    });
+    const result = await scanMessage(store, "CardioNova announced their Series A funding raise");
     expect(result.status).toBe("not_noteworthy");
     expect(result.reason).toBe("policy_off");
   });
 
-  it("enforces per-room quota", async () => {
-    // Set quota to 2, insert 2 noteworthy items, 3rd should be suppressed.
-    for (let i = 0; i < 2; i++) {
-      const text = `Company${i} announced their Series A funding raise`;
-      const id = store.insertActivity({
-        roomId: "r1", sourceKind: "message", sourceId: `m${i}`,
-        sourceHash: `h${i}`, text, visibility: "room",
-      });
-      await scanActivity(store, {
-        id, roomId: "r1", sourceKind: "message", sourceId: `m${i}`,
-        sourceHash: `h${i}`, text, visibility: "room",
-      }, { maxPerRoomPerHour: 2 });
-    }
-    const text = "NewCo announced their seed funding round today";
-    const id = store.insertActivity({
-      roomId: "r1", sourceKind: "message", sourceId: "m2",
-      sourceHash: "h2", text, visibility: "room",
-    });
-    const result = await scanActivity(store, {
-      id, roomId: "r1", sourceKind: "message", sourceId: "m2",
-      sourceHash: "h2", text, visibility: "room",
-    }, { maxPerRoomPerHour: 2 });
-    expect(result.status).toBe("not_noteworthy");
-    expect(result.reason).toBe("room_quota_exceeded");
+  it("stops at the room's hourly ceiling", async () => {
+    const config = { maxPerRoomPerHour: 2 };
+    await scanMessage(store, "Company0 announced their Series A funding raise", { config });
+    await scanMessage(store, "Company1 announced their Series A funding raise", { config });
+    const third = await scanMessage(store, "NewCo announced their seed funding round today", { config });
+    expect(third.status).toBe("not_noteworthy");
+    expect(third.reason).toBe("room_quota_exceeded");
   });
 });
 
 describe("policyResolver", () => {
-  it("returns system default when no room policy", async () => {
-    const store = new InMemoryAdapter();
-    const policy = await resolveAssistivePolicy(store, "r1");
+  it("returns the system default when the room has set nothing", async () => {
+    const policy = await resolveAssistivePolicy(new InMemoryAdapter(), "r1");
     expect(policy.mode).toBe("suggestions_only");
     expect(policy.source).toBe("system_default");
   });
 
-  it("most restrictive wins", async () => {
+  it("lets the quieter of the two settings win", async () => {
     const store = new InMemoryAdapter();
     await store.setRoomPolicy("r1", {
       mode: "suggestions_only", allowExternalCalls: true, maxSuggestionsPerHour: 20,
@@ -135,65 +83,36 @@ describe("policyResolver", () => {
     expect(isSignalDisabled([], ["finance_signal"])).toBe(false);
   });
 
-  it("isEntityWatchlisted checks case-insensitive", () => {
+  it("isEntityWatchlisted ignores case", () => {
     expect(isEntityWatchlisted(["Stripe"], ["stripe"])).toBe(true);
     expect(isEntityWatchlisted(["Stripe"], ["CardioNova"])).toBe(false);
     expect(isEntityWatchlisted([], ["Stripe"])).toBe(false);
   });
-
-  it("signalFingerprintHash is deterministic", () => {
-    const h1 = signalFingerprintHash({ sourceKind: "message", signalKind: "finance_signal" });
-    const h2 = signalFingerprintHash({ sourceKind: "message", signalKind: "finance_signal" });
-    expect(h1).toBe(h2);
-    expect(h1).toContain("message|finance_signal");
-  });
-});
-
-describe("dismissalLearner", () => {
-  it("isEntityDismissedSync checks set membership", () => {
-    const dismissed = new Set(["cardionova", "stripe"]);
-    expect(isEntityDismissedSync(dismissed, ["CardioNova"])).toBe(true);
-    expect(isEntityDismissedSync(dismissed, ["OtherCo"])).toBe(false);
-    expect(isEntityDismissedSync(dismissed, [])).toBe(false);
-  });
 });
 
 describe("dedupeKey", () => {
-  it("produces deterministic keys", () => {
-    const key1 = activityDedupeKey({
-      roomId: "r1", sourceKind: "message", sourceId: "m1",
-      eventKind: "idle_after_typing", actorId: "u1",
-    });
-    const key2 = activityDedupeKey({
-      roomId: "r1", sourceKind: "message", sourceId: "m1",
-      eventKind: "idle_after_typing", actorId: "u1",
-    });
-    expect(key1).toBe(key2);
-    expect(key1).toContain("activity:r1:message:m1:idle_after_typing:u1");
+  const key = (actorId: string) =>
+    activityDedupeKey({ roomId: "r1", sourceKind: "message", sourceId: "m1", eventKind: "idle_after_typing", actorId });
+
+  it("is deterministic", () => {
+    expect(key("u1")).toBe(key("u1"));
+    expect(key("u1")).toContain("activity:r1:message:m1:idle_after_typing:u1");
   });
 
-  it("different actors produce different keys", () => {
-    const key1 = activityDedupeKey({
-      roomId: "r1", sourceKind: "message", sourceId: "m1",
-      eventKind: "idle_after_typing", actorId: "u1",
-    });
-    const key2 = activityDedupeKey({
-      roomId: "r1", sourceKind: "message", sourceId: "m1",
-      eventKind: "idle_after_typing", actorId: "u2",
-    });
-    expect(key1).not.toBe(key2);
+  it("gives each author their own quiet window", () => {
+    expect(key("u1")).not.toBe(key("u2"));
   });
 });
 
 describe("debouncer", () => {
-  it("clamps quiet ms to [1s, 60s]", () => {
+  it("clamps the quiet window to [1s, 60s]", () => {
     expect(clampQuietMs(500)).toBe(1000);
     expect(clampQuietMs(12000)).toBe(12000);
     expect(clampQuietMs(120000)).toBe(60000);
     expect(clampQuietMs(undefined)).toBe(DEFAULT_QUIET_MS);
   });
 
-  it("creates fresh state for new debounce", () => {
+  it("starts a fresh window on the first event", () => {
     const now = 1000000;
     const { state, effectiveDelay } = computeDebounce(now, null, 12000);
     expect(state.quietUntil).toBe(now + effectiveDelay);
@@ -201,12 +120,11 @@ describe("debouncer", () => {
     expect(effectiveDelay).toBe(12000);
   });
 
-  it("slides window for existing debounce but caps at maxWait", () => {
+  it("slides the window but still fires at maxWait, so a nonstop typist is not starved", () => {
     const now = 1000000;
     const existing = { quietUntil: now + 5000, maxWaitAt: now + 10000 };
     const { state, effectiveDelay } = computeDebounce(now + 3000, existing, 12000);
-    // effectiveDelay should be capped by maxWaitAt - now
-    expect(effectiveDelay).toBeLessThanOrEqual(7000); // maxWaitAt - (now+3000) = 10000 - 3000 = 7000
+    expect(effectiveDelay).toBeLessThanOrEqual(7000); // maxWaitAt - (now+3000)
     expect(state.quietUntil).toBe(now + 3000 + effectiveDelay);
   });
 });

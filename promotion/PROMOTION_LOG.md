@@ -197,3 +197,56 @@ this is a scorecard-truth correction, not Wave 2.**
 
 Unchanged: conditions 9, 10 and 11 remain PASS; 2, 3, 4, 5 and 6 remain FAIL;
 7, 8 and 12 remain UNVERIFIED.
+
+## Wave 3 — 2026-08-13 — human-readiness (structure, not features)
+
+The second loop, run against the [HUMAN-READY gate](https://raw.githubusercontent.com/HomenShum/NodeKit/main/templates/promotion/HUMAN_READY.md):
+can a stranger run, trace, change and explain this without the person who built
+it. Measurements and every unresolved finding are in
+[`docs/SIMPLIFICATION_REPORT.md`](../docs/SIMPLIFICATION_REPORT.md); the ordered
+walkthrough is [`docs/START_HERE.md`](../docs/START_HERE.md).
+
+**Two ledger defects closed, both by deletion:**
+
+- **D3 — `npm run dev` does not serve the app: fixed.** Root cause was not the
+  missing `index.html`; it was that `dev` invoked `vite`, which nothing in
+  `package.json` installs — it resolved only because vitest happens to ship it.
+  Meanwhile the repository already contained a working static server, twice,
+  copy-pasted into the two capture scripts. Both now import
+  `scripts/serve.mjs`, and `dev` runs it. Measured after: `GET /demo/graph-rail/index.html`
+  **200** (was 404), `GET /vendor/nodegraph-live/NodeGraph.js` **200** (was 500),
+  `GET /../../../etc/passwd` 404. Regression guard: `tests/packageContract.test.ts`
+  fails with `` `vite` is in a script but no declared dependency provides it ``
+  if the old script is restored — confirmed by restoring it.
+- **D4 — `bin` points at a file that does not exist: fixed by deleting the
+  claim.** `bin/nodemem.mjs` was never written; writing a CLI to satisfy a stray
+  line of JSON would have been the wrong repair. The same test now fails on any
+  `bin` target that is missing.
+
+**One defect found by this wave, not previously in the ledger:**
+
+- **D7 — the demo's classifier had drifted from the library's.** Severity: major.
+  Reproduction: `classifyNoteworthy("The Next Series will be announced")` returns
+  no entity and score 0.36 from `src/core/classifier.ts`, but an entity named
+  "The Next Series" and score 0.54 from `demo/nodeMemDemoCore.mjs` — the copy was
+  missing the rule that a candidate's first word must not be a stop name. The
+  page renders the claim "same classifier … imported, not re-implemented" while
+  running the copy. **Fixed**, and bound by `tests/demoMirror.test.ts`, which
+  compares whole findings across ten texts. Status: **fixed — Wave 3**.
+
+**Note for anyone following an older entry:** `src/core/dedup.ts` and
+`src/core/dismissalLearner.ts` no longer exist. Their port interfaces are in
+`src/core/ports.ts` (all of them, in one file); `findExistingNoteworthyForEntity`
+moved into `src/core/scanOrchestrator.ts` beside its only caller. D5's data
+sources are unchanged, just relocated: `listNoteworthy` and
+`NoteworthyRow.entityNames` are now in `src/core/ports.ts`.
+
+**Verification run on this tree:** `npm run typecheck` exit 0; `npm test`
+**51 passed** (was 27); `npm run proof` 13/13 exit 0; `npm run capture` **12/12
+exit 0**; `node demo/runNodeMemDemo.mjs` 6/6 exit 0. Screenshots were regenerated
+by the capture gate and byte-restored afterwards — this wave changed no pixels,
+and evidence from a structural refactor that claims new images would be a lie.
+
+**Still open:** D1 (mobile overflow), D5 (`countNoteworthyForEntity` never
+implemented), D6 (canvas accessibility). All three are product defects; Wave 3
+was structural and did not mix feature work into it.

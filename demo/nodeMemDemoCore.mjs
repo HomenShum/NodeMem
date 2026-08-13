@@ -1,13 +1,18 @@
 /**
- * NodeMem zero-dependency demo core — the classifier, in-memory store, and
- * fixtures that `runNodeMemDemo.mjs` (CLI) and `graph-rail/` (browser) BOTH
- * run. One pipeline, two surfaces; neither re-implements the other.
+ * A plain-JavaScript copy of the classifier, for the two demo surfaces that
+ * cannot load TypeScript: `runNodeMemDemo.mjs` (runs with no install and no
+ * build) and `graph-rail/` (runs in a browser with no bundler).
  *
- * Code is verbatim from the original runNodeMemDemo.mjs, only exported.
+ * **`src/core/classifier.ts` is the original. This file must not disagree with
+ * it.** `tests/demoMirror.test.ts` runs both over the same corpus and fails if
+ * they ever do — they already drifted once, and the demo copy invented a
+ * company called "The Next Series" that the library correctly ignored.
+ *
+ * Change the TypeScript first, then mirror it here.
  */
 
-export const CLASSIFIER_VERSION = "noteworthy-v1";
-export const SIGNAL = {
+const CLASSIFIER_VERSION = "noteworthy-v1";
+const SIGNAL = {
   ORG_CANDIDATE: "organization_candidate",
   FINANCE_SIGNAL: "finance_signal",
   PERSON_INTERACTION: "person_or_interaction",
@@ -30,7 +35,7 @@ function firstMatch(text, re) {
   return m ? m[0] : null;
 }
 
-export function normalizeEntityKey(name) {
+function normalizeEntityKey(name) {
   return name.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "unknown";
 }
 
@@ -52,7 +57,7 @@ export function classifyNoteworthy(text) {
 
   const candidates = [...text.matchAll(/\b([A-Z][A-Za-z0-9&.-]{2,}(?:\s+[A-Z][A-Za-z0-9&.-]{2,}){0,3})\b/g)]
     .map((m) => m[1])
-    .filter((name) => !STOP_NAMES.has(name));
+    .filter((name) => !STOP_NAMES.has(name) && !STOP_NAMES.has(name.split(/\s+/)[0]));
   if (candidates.length && !signals.has(SIGNAL.ORG_CANDIDATE)) add(SIGNAL.ORG_CANDIDATE, candidates[0], 0.7);
 
   const personSpan = firstMatch(text, /\b(met|spoke|talked|call|founder|ceo|cfo|contact|intro|emailed)\b/i);
@@ -79,6 +84,7 @@ export function classifyNoteworthy(text) {
     score,
     action: score >= 0.70 ? "start_research_job" : score >= 0.50 ? "create_coach_cue" : score >= 0.35 ? "index_only" : "ignore",
     signals: sortedSignals,
+    reasons: sortedSignals,
     evidenceSpans,
     classifierVersion: CLASSIFIER_VERSION,
     facets: [...facets],
@@ -86,7 +92,11 @@ export function classifyNoteworthy(text) {
   };
 }
 
-// --- Minimal in-memory store ---
+/**
+ * Just enough store for the demos: insert a row, patch it, remember a
+ * dismissal. The real reference implementation, with all seven port methods, is
+ * `src/adapters/inMemoryAdapter.ts`.
+ */
 export class InMemoryStore {
   constructor() {
     this.rows = new Map();
@@ -97,13 +107,6 @@ export class InMemoryStore {
     const id = `row-${++this.idCounter}`;
     this.rows.set(id, { id, roomId, status: "queued", entityNames: [], updatedAt: Date.now() });
     return id;
-  }
-  async listNoteworthy(roomId, limit = 50) {
-    return [...this.rows.values()].filter((r) => r.roomId === roomId && r.status === "noteworthy").slice(0, limit);
-  }
-  async countNoteworthyLastHour(roomId) {
-    const cutoff = Date.now() - 3600000;
-    return [...this.rows.values()].filter((r) => r.roomId === roomId && r.status === "noteworthy" && r.updatedAt >= cutoff).length;
   }
   async isEntityDismissed(roomId, entityNames) {
     const set = new Set((this.dismissals.get(roomId) ?? []).map((d) => d.entityName));
@@ -122,8 +125,6 @@ export class InMemoryStore {
     Object.assign(row, patch);
     if (patch.finding) row.entityNames = patch.finding.entities.map((e) => e.displayName);
   }
-  async getRoomPolicy() { return null; }
-  async setRoomPolicy() {}
 }
 
 /**

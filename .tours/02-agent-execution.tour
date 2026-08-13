@@ -1,0 +1,79 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "2 · The seven gates and the storage seam",
+  "description": "What runs between 'this text looks interesting' and 'a suggestion exists', and what a database has to provide. There is no LLM anywhere in this repository — this deterministic sequence is the whole of the execution model.",
+  "steps": [
+    {
+      "file": "src/core/scanOrchestrator.ts",
+      "line": 111,
+      "title": "Every path ends the same way",
+      "description": "`settle` writes the verdict onto the row and returns the same verdict to the caller. One writer, so a decision can never be reported and not stored, or stored and not reported.\n\nThe `reason` it writes is what a support engineer reads when a user asks *why did nothing appear?*"
+    },
+    {
+      "file": "src/core/policyResolver.ts",
+      "line": 53,
+      "title": "Gate 1–3: how much noticing this room allows",
+      "description": "**The person:** a room owner who does not want background suggestions during a client call. They set a mode. The product may also impose its own ceiling.\n\nWhen the two disagree, the quieter one wins — a room can always ask for *less* noticing than the system permits, never more."
+    },
+    {
+      "file": "src/core/policyResolver.ts",
+      "line": 20,
+      "title": "'Quieter' is a position in this list",
+      "description": "Most restrictive first. Comparing two modes is comparing two indexes — no precedence table, no config."
+    },
+    {
+      "file": "src/core/scanOrchestrator.ts",
+      "line": 133,
+      "title": "Gate 4: the hourly ceiling",
+      "description": "Ten suggestions per room per hour by default. Without it, one busy meeting fills the inbox and the user stops reading it — at which point every later suggestion is worthless too."
+    },
+    {
+      "file": "src/core/scanOrchestrator.ts",
+      "line": 66,
+      "title": "Gate 5: is this company already in the inbox?",
+      "description": "One company mentioned in six messages should be one card, not six. Suggestions older than two days stop blocking — a mention this morning about a company last discussed in March is genuinely new."
+    },
+    {
+      "file": "src/core/scanOrchestrator.ts",
+      "line": 138,
+      "title": "Gate 6: the human already said no",
+      "description": "The dismissal from tour 1 arrives here. This is the difference between a system that learns and one that nags."
+    },
+    {
+      "file": "src/core/ports.ts",
+      "line": 76,
+      "title": "The whole storage contract",
+      "description": "**The person:** an engineer wiring NodeMem into an app that already has a database. Their question is *what exactly must I implement?* — and the answer is this file and nothing else. Seven methods.\n\nBefore Wave 3 these interfaces were spread across four modules, so the only way to be sure was to read all four."
+    },
+    {
+      "file": "src/core/ports.ts",
+      "line": 49,
+      "title": "Two reads carry the whole dedup story",
+      "description": "`listNoteworthy` answers gate 5, `countNoteworthyLastHour` answers gate 4. If you port this to SQL, index for these two or they become table scans."
+    },
+    {
+      "file": "src/adapters/inMemoryAdapter.ts",
+      "line": 29,
+      "title": "The worked example",
+      "description": "Three `Map`s and no cleverness. This is what the tests and both demos run against, and the thing to copy when writing a real adapter."
+    },
+    {
+      "file": "src/adapters/inMemoryAdapter.ts",
+      "line": 66,
+      "title": "The only write in the pipeline",
+      "description": "Rows are patched, never deleted — the status, the finding, and the reason. The history of what the system decided stays readable.\n\nNote the silent return on an unknown id: acceptable in memory, probably not in your database."
+    },
+    {
+      "file": "src/adapters/convexSchema.ts",
+      "line": 52,
+      "title": "The same contract as Convex tables",
+      "description": "Three tables — activity rows, dismissals, room policy. Copy this file into your `convex/` directory and merge the exports into your schema.\n\nSome columns here (`latestJobId`, `attempts`, `decision`) belong to the host application that owns the row; NodeMem never writes them. See `docs/codebase/CONCERNS.md` §5."
+    },
+    {
+      "file": "src/index.ts",
+      "line": 14,
+      "title": "What is public",
+      "description": "28 names. If a symbol is not in this file it is internal, and un-exporting things is normal maintenance here.\n\n`tests/packageContract.test.ts` checks that everything the README tells a reader to import actually appears in this barrel — that check exists because `computeDebounce` did not."
+    }
+  ]
+}

@@ -74,11 +74,6 @@ export function normalizeEntityKey(name: string): string {
   return name.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "unknown";
 }
 
-function asEntityType(value: string): EntityType {
-  const valid: EntityType[] = ["company", "person", "product", "source", "metric"];
-  return valid.includes(value as EntityType) ? (value as EntityType) : "unknown";
-}
-
 /** Common false-positive names to filter out. */
 const STOP_NAMES = new Set([
   "Series", "Next", "The", "This", "Convex", "NodeRoom", "Need", "Follow",

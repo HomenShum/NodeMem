@@ -11,9 +11,6 @@
     "type": "git",
     "url": "https://github.com/HomenShum/NodeMem.git"
   },
-  "bin": {
-    "nodemem": "./bin/nodemem.mjs"
-  },
   "keywords": [
     "agent",
     "memory",
@@ -28,22 +25,17 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit",
+    "dev": "node scripts/serve.mjs",
     "demo": "tsx demo/runNodeMemDemo.ts",
     "demo:node": "node demo/runNodeMemDemo.mjs",
-    "doctor": "npm run nodemem:smoke",
-    "check": "npm run prepush",
-    "proof": "npm run nodemem:smoke",
+    "proof": "tsx demo/runNodeMemDemo.ts --json-out=docs/eval/nodemem-smoke.json",
+    "doctor": "npm run proof",
+    "capture": "node scripts/capture-graph-rail.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "nodemem:smoke": "tsx scripts/nodemem-smoke.ts --json-out docs/eval/nodemem-smoke.json",
-    "nodemem:in-memory:smoke": "tsx scripts/nodemem-in-memory-smoke.ts --json-out docs/eval/nodemem-in-memory-smoke.json",
-    "nodemem:convex:smoke": "tsx scripts/nodemem-convex-smoke.ts --json-out docs/eval/nodemem-convex-smoke.json",
-    "clip:capture": "node scripts/capture-storyboard.mjs",
     "secret-scan": "node scripts/secret-scan.mjs",
-    "prepush": "npm run secret-scan && npm run nodemem:smoke && npm run nodemem:in-memory:smoke && npm run typecheck && npm run test"
+    "check": "npm run secret-scan && npm run typecheck && npm run test && npm run proof"
   },
   "dependencies": {
     "convex": "^1.41.0"

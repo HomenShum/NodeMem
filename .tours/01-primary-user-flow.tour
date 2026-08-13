@@ -1,0 +1,79 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "1 · One message becomes a suggestion",
+  "description": "Follow a single sentence typed by a user from the activity stream to a card a human can accept or refuse. Start here.",
+  "steps": [
+    {
+      "file": "demo/graph-rail/main.js",
+      "line": 81,
+      "title": "Activity arrives",
+      "description": "**The person:** an analyst typing in a shared workspace. **The job:** a company they mentioned should be offered for follow-up — not researched behind their back.\n\nThis loop is the demo's stand-in for a real activity stream: four fixture sentences, one at a time. In a real host, each iteration is one debounced burst of typing.\n\nRun it: `npm run dev`, then open the printed URL."
+    },
+    {
+      "file": "demo/nodeMemDemoCore.mjs",
+      "line": 134,
+      "title": "The four fixtures",
+      "description": "The messages the demo replays. The last one — \"lunch tomorrow, nothing noteworthy\" — is there to be *ignored*; a system that flags everything is as useless as one that flags nothing."
+    },
+    {
+      "file": "src/core/classifier.ts",
+      "line": 108,
+      "title": "Is this worth a person's attention?",
+      "description": "The one decision that matters, and it is deliberately dumb: six regular expressions, each worth 0.18. No model, no network, no randomness — the same sentence always produces the same finding, which is why a fixed corpus can be a test.\n\n(`demo/nodeMemDemoCore.mjs` line 42 is a plain-JavaScript copy of this function for the two demo surfaces that cannot load TypeScript. `tests/demoMirror.test.ts` fails if the two ever disagree.)"
+    },
+    {
+      "file": "src/core/classifier.ts",
+      "line": 78,
+      "title": "Why 'The Next Series' is not a company",
+      "description": "Capitalised words look like company names. This stop list, plus the rule that a candidate's *first word* must not be a stop name, is what keeps \"The Next Series will be announced\" from becoming an entity.\n\nThat exact sentence is where the demo's copy of the classifier once disagreed with this one."
+    },
+    {
+      "file": "src/core/classifier.ts",
+      "line": 186,
+      "title": "Score, then action",
+      "description": "0.18 per signal; four or more signals reaches 0.70 and the action becomes `start_research_job`. Note what that action is: a *label on a suggestion*. Nothing in this repository starts a job."
+    },
+    {
+      "file": "src/core/scanOrchestrator.ts",
+      "line": 101,
+      "title": "The finding enters the pipeline",
+      "description": "A host calls this with its store and one activity row. Everything below is a decision about whether to bother a human, and every refusal is written down."
+    },
+    {
+      "file": "src/core/scanOrchestrator.ts",
+      "line": 142,
+      "title": "It survived every gate",
+      "description": "The row becomes `noteworthy`: an offer sitting in an inbox. Turning it into an action is the host's job, after a person clicks. This is the doctrine — *notice passively, act explicitly* — in one line of code."
+    },
+    {
+      "file": "demo/graph-rail/main.js",
+      "line": 93,
+      "title": "What the user sees first: a dim, uncounted node",
+      "description": "The entity is drawn with `undefined` as its count — the rail renders that as \"unknown — not measured\". Noticing something is not evidence about it, and the picture says so."
+    },
+    {
+      "file": "demo/graph-rail/main.js",
+      "line": 38,
+      "title": "The suggestion card",
+      "description": "Two buttons, and the copy on the card says what it is: *a suggestion, not an edge*. Drawing the card changes the graph not at all — `npm run capture` fails the build if a single edge exists at this point."
+    },
+    {
+      "file": "demo/graph-rail/main.js",
+      "line": 63,
+      "title": "The human decides — Confirm",
+      "description": "Only this click mutates the graph, and only into one faint `traversal` edge: a recorded hop, still not a measured count."
+    },
+    {
+      "file": "demo/graph-rail/main.js",
+      "line": 68,
+      "title": "The human decides — Dismiss",
+      "description": "Records the dismissal and changes the graph not at all. That record is what makes the same company stop coming back — the last gate in tour 2."
+    },
+    {
+      "file": "tests/scanOrchestrator.test.ts",
+      "line": 29,
+      "title": "The test that proves it",
+      "description": "Every gate has one of these. `scanMessage` (in `tests/room.ts`) does the insert-then-scan a host would do, so the test body is the assertion and nothing else.\n\nRun: `npm test`."
+    }
+  ]
+}

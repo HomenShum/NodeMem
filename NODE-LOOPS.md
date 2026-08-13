@@ -23,7 +23,7 @@ The three failure modes it explicitly fixes ([`README.md` → Why this exists](R
 - M1 — Deterministic classifier ([`src/core/classifier.ts`](src/core/classifier.ts), version-pinned `noteworthy-v1`): text → `{ entities, signals, score, action }`, no LLM.
 - M2 — Full gated scan pipeline ([`src/core/scanOrchestrator.ts`](src/core/scanOrchestrator.ts)): classify → policy → watchlist → quota → dedup → dismissal → `noteworthy`.
 - M3 — Reference port impl ([`src/adapters/inMemoryAdapter.ts`](src/adapters/inMemoryAdapter.ts)) + Convex schema drop-in ([`src/adapters/convexSchema.ts`](src/adapters/convexSchema.ts)).
-- M4 — Honesty gates: tests (27) + three smoke receipts + secret scan, all wired into `prepush` ([`package.json`](package.json)).
+- M4 — Honesty gates: tests (51) + the pipeline proof receipt + secret scan, all wired into `check` ([`package.json`](package.json)); the browser gate `npm run capture` on top.
 
 ---
 
@@ -61,7 +61,7 @@ The three failure modes it explicitly fixes ([`README.md` → Why this exists](R
 
 The outer loop is **human dismissal feeding back into future scans** — the only learning signal in the system, and it is honest (recorded by a real user/agent id, not synthesized).
 
-- **How traces/failures feed back:** when a suggestion is wrong, the user dismisses it → `store.recordDismissal(roomId, entityNames, by)` ([`README.md` → Learn from dismissals](README.md)). The next scan of that entity in that room hits the `previously_dismissed` gate ([`src/core/dismissalLearner.ts`](src/core/dismissalLearner.ts), `isEntityDismissed`). Suppression is durable, per-room, and learned — not hard-coded.
+- **How traces/failures feed back:** when a suggestion is wrong, the user dismisses it → `store.recordDismissal(roomId, entityNames, by)` ([`README.md` → Learn from dismissals](README.md)). The next scan of that entity in that room hits the `previously_dismissed` gate ([`src/core/scanOrchestrator.ts`](src/core/scanOrchestrator.ts), calling `DismissalStore.isEntityDismissed`). Suppression is durable, per-room, and learned — not hard-coded.
 - **What gets edited:** room behavior is tuned via **assistive policy**, not code — `setRoomPolicy` ([`src/core/policyResolver.ts`](src/core/policyResolver.ts)) adjusts `mode`, `disabledSignalKinds`, `approvedEntityWatchlist`, `maxSuggestionsPerHour`. Policy resolution is **most-restrictive-wins** across system default → room policy.
 - **Promotion gate:** a suggestion is *never* auto-promoted to a job. Promotion to a research job / coach cue is an **explicit caller decision** outside this repo (the doctrine boundary). The classifier's `action` is a *recommendation surface*, not an execution trigger.
 - **Kill criteria:** policy `mode = "off"` kills all detection for a room; per-room hourly quota (`maxPerRoomPerHour`, default 10, max 50 — [`scanOrchestrator.ts:74`](src/core/scanOrchestrator.ts)) kills runaway suggestion volume; dedup kills repeat suggestions for a live entity.
@@ -77,16 +77,16 @@ Grounded in real files in this repo:
 - **Memory substrate** — the `MemoryStore` port ([`src/core/scanOrchestrator.ts:61`](src/core/scanOrchestrator.ts)) composed of `DismissalStore` + `DedupStore` + `PolicyStore` + `patchRow`. Reference implementation: [`src/adapters/inMemoryAdapter.ts`](src/adapters/inMemoryAdapter.ts) (zero-dep). Durable backend drop-in: [`src/adapters/convexSchema.ts`](src/adapters/convexSchema.ts) (tables `roomActivityOutbox`, `roomDismissedEntities`, `roomAssistivePolicies`).
 - **Knowledge / signal layer** — [`src/core/classifier.ts`](src/core/classifier.ts): six stable signal enums (`SIGNAL`), a `STOP_NAMES` false-positive filter, evidence spans, and `facets` (`funding`, `runway_inputs`, `product_news`, `source_validation`, …) — the closest thing to an OKF/concept layer. **Finding: there is no embedding/RAG/vector layer** — detection is pure regex + deterministic scoring by design (provider-agnostic, zero-dep core). That is a deliberate scope choice, not an omission.
 - **Codebase-graph note:** dedup/dismissal keys are deterministic ([`src/core/dedupeKey.ts`](src/core/dedupeKey.ts) `activityDedupeKey`; `normalizeEntityKey` in classifier), giving stable cross-row identity without a graph DB.
-- **Key modules** — public API barrel [`src/index.ts`](src/index.ts); debounce [`src/core/debouncer.ts`](src/core/debouncer.ts) (`computeDebounce`, sliding window + maxWait cap); dedup [`src/core/dedup.ts`](src/core/dedup.ts).
-- **Eval gates** — vitest suites [`tests/classifier.test.ts`](tests/classifier.test.ts) (11) + [`tests/scanOrchestrator.test.ts`](tests/scanOrchestrator.test.ts) (16); smoke receipts [`scripts/nodemem-smoke.ts`](scripts/nodemem-smoke.ts), [`scripts/nodemem-in-memory-smoke.ts`](scripts/nodemem-in-memory-smoke.ts), [`scripts/nodemem-convex-smoke.ts`](scripts/nodemem-convex-smoke.ts); secret scan [`scripts/secret-scan.mjs`](scripts/secret-scan.mjs).
+- **Key modules** — public API barrel [`src/index.ts`](src/index.ts); debounce [`src/core/debouncer.ts`](src/core/debouncer.ts) (`computeDebounce`, sliding window + maxWait cap); the pipeline and its dedup gate [`src/core/scanOrchestrator.ts`](src/core/scanOrchestrator.ts); the storage contract [`src/core/ports.ts`](src/core/ports.ts).
+- **Eval gates** — seven vitest suites in [`tests/`](tests/) (51 tests; see [`docs/codebase/TESTING.md`](docs/codebase/TESTING.md)); the pipeline proof [`demo/runNodeMemDemo.ts`](demo/runNodeMemDemo.ts) with `--json-out`; the browser gate [`scripts/capture-graph-rail.mjs`](scripts/capture-graph-rail.mjs); secret scan [`scripts/secret-scan.mjs`](scripts/secret-scan.mjs).
 
 ---
 
 ## 5. Verification protocol
 
 - **Separate verifier:** the judge (`classifyNoteworthy`) is a different artifact from any text producer, and is deterministic — it cannot be talked into a higher score by the agent that wrote the text. Tests assert exact scores/actions/signals, so a taxonomy change that silently shifts a verdict fails CI.
-- **No-proof-no-claim:** smoke runs emit a **JSON receipt** with `{ pass, fail, total, checks, status, timestamp }` ([`scripts/nodemem-smoke.ts`](scripts/nodemem-smoke.ts)); `process.exit(1)` on any fail. A green claim must point at a receipt, not a vibe. (Receipts are written to `docs/eval/*.json` on demand — see Status.)
-- **Pre-push gate** ([`package.json`](package.json) `prepush`): `secret-scan && nodemem:smoke && nodemem:in-memory:smoke && typecheck && test`. Nothing ships without secret-scan + two smokes + `tsc --noEmit` + the full vitest suite passing.
+- **No-proof-no-claim:** `npm run proof` emits a **JSON receipt** with `{ pass, fail, total, checks, status, timestamp }` ([`demo/runNodeMemDemo.ts`](demo/runNodeMemDemo.ts)); `process.exit(1)` on any fail. A green claim must point at a receipt, not a vibe. (Receipts are written to `docs/eval/*.json` on demand — see Status.)
+- **Pre-push gate** ([`package.json`](package.json) `check`): `secret-scan && typecheck && test && proof`. Nothing ships without the secret scan, `tsc --noEmit`, the full vitest suite, and the 13-check pipeline proof passing.
 - **Runtime reliability invariants (enforced in the loop, not aspirational):**
   - **Bounded:** per-room hourly quota (`maxPerRoomPerHour`, default 10 / hard max 50) bounds suggestion volume; dedup bounds duplicates.
   - **Honest status:** suppression returns `not_noteworthy` with a typed `reason` — never a fake "success". The status enum is explicit ([`scanOrchestrator.ts:26`](src/core/scanOrchestrator.ts)).
@@ -109,24 +109,24 @@ Grounded in real files in this repo:
 - **Approval:** doctrine — suggestions never auto-promote; `ask_before_research` mode requires explicit user approval before any research; `allowExternalCalls` is policy-gated.
 - **No-clobber:** dedup gate prevents stacking duplicate suggestions on the same live entity.
 - **No foreground starvation:** the founding motivation — passive detection creates options, not jobs, so it cannot saturate the job queue or starve foreground work ([`README.md` → Doctrine](README.md)).
-- **Secret hygiene:** [`scripts/secret-scan.mjs`](scripts/secret-scan.mjs) is the first link in `prepush`.
+- **Secret hygiene:** [`scripts/secret-scan.mjs`](scripts/secret-scan.mjs) is the first link in `check`.
 
 ---
 
 ## 7. Status / receipts
 
-**Where proof lives:** vitest suites in [`tests/`](tests/); smoke scripts in [`scripts/`](scripts/) that write JSON receipts to `docs/eval/*.json` when run with `--json-out`. The full gate is `npm run prepush`.
+**Where proof lives:** vitest suites in [`tests/`](tests/); the pipeline proof writes a JSON receipt to `docs/eval/nodemem-smoke.json` when run with `--json-out`; the browser gate writes screenshots to `assets/graph-rail/` and `promotion/evidence/`. The full gate is `npm run check`.
 
 **PROVEN (mechanically, in-repo):**
-- 27 unit tests exist (11 classifier + 16 scanOrchestrator) and gate `prepush`.
+- 51 unit tests exist across seven suites and gate `check`.
 - The full gate pipeline (classify → policy → watchlist → quota → dedup → dismissal) is implemented and each gate has a typed suppression reason — verified by reading [`src/core/scanOrchestrator.ts`](src/core/scanOrchestrator.ts).
 - Deterministic, LLM-free classifier pinned to `noteworthy-v1`.
-- Three smoke scripts + secret scan are wired into `prepush` ([`package.json`](package.json)).
+- The pipeline proof + secret scan are wired into `check` ([`package.json`](package.json)); the two adapter smokes became vitest suites in Wave 3 (see [`docs/SIMPLIFICATION_REPORT.md`](docs/SIMPLIFICATION_REPORT.md)).
 
 **OPEN / honest gaps:**
 - **No committed receipt artifacts:** `docs/eval/` does not exist in the repo at time of writing — smoke receipts are generated on demand, not checked in. There are **no committed benchmark scores or pass-rate numbers** beyond the illustrative demo output in the README (which is documentation, not a stored receipt). No fabricated metrics are claimed here.
 - **CLI bin unimplemented:** [`package.json`](package.json) declares `"bin": { "nodemem": "./bin/nodemem.mjs" }`, but no `bin/` directory exists. The CLI entry is a stub.
 - **Signal-scoped dismissal is a no-op:** `scanOrchestrator` step 9 computes a `signalFingerprintHash` but does not act on it — the code comments it as an optional adapter extension. Entity-level dismissal is the only learning path actually wired.
-- **No CI workflow committed** (`.github/workflows` absent) — `prepush` is the gate, run locally.
+- **CI runs the NodeKit platform conformance workflow only** ([`.github/workflows/node-platform-conformance.yml`](.github/workflows/node-platform-conformance.yml)); it checks the repository contract in `nodekit.yaml`, not the tests. `npm run check` is the gate, run locally.
 
 The honest one-line status: **the loop and its gates are real and tested; the eval *receipts* are run-on-demand and not yet committed as artifacts.**

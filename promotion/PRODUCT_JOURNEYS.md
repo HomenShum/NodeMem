@@ -71,13 +71,14 @@ Each journey states, in this order:
 - **Goal:** See every method of the port called and asserted, so the adapter
   they write has a spec.
 - **Steps:**
-  1. `npm run nodemem:in-memory:smoke` (`scripts/nodemem-in-memory-smoke.ts`,
-     writes `docs/eval/nodemem-in-memory-smoke.json`).
-  2. `npm run nodemem:convex:smoke` to confirm the Convex table definitions in
-     `src/adapters/convexSchema.ts` export cleanly.
-  3. `npm test` for the 27 unit tests over `src/core/`.
-- **Done when:** All three exit 0 — in-memory smoke `PASS (10/10)`, convex
-  smoke `PASS (7/7)`, vitest `27 passed`.
+  1. `npm test` — `tests/inMemoryAdapter.test.ts` exercises the reference store
+     against the port, and `tests/convexSchema.test.ts` confirms the Convex
+     table definitions in `src/adapters/convexSchema.ts` still load at run time.
+     (Both were standalone smoke scripts until Wave 3 moved them into the test
+     runner; see `docs/SIMPLIFICATION_REPORT.md`.)
+  2. Read `src/core/ports.ts` — the whole contract they must implement, in one
+     file.
+- **Done when:** `npm test` exits 0 with `51 passed`.
 - **Evidence:** run 2026-08-13 — 10/10, 7/7, 27/27, all exit 0.
 
 ## J4 — "Show me on screen that noticing never draws a line" *(the browser journey)*
@@ -154,7 +155,7 @@ exercise each of these, because they are where agent products fail a stranger:
   (`previously_dismissed`).
 - **Receipt** — **J2 and J4.** Every suppression prints the reason that caused
   it, and the rail logs one line per event distinguishing `noticed` (no
-  evidence) from `confirmed` (a human hop). `scripts/nodemem-smoke.ts` writes a
+  evidence) from `confirmed` (a human hop). `npm run proof` writes a
   machine-readable receipt to `docs/eval/nodemem-smoke.json`.
 - **Approval** — deliberately *not* an agent-approval journey in the usual
   sense: NodeMem's whole doctrine is that it creates suggestions, never jobs,

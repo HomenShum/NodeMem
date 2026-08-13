@@ -20,7 +20,9 @@ It notices entities in activity streams, surfaces noteworthy suggestions, learns
 
 <sub>↑ NodeMem running inside <a href="https://github.com/HomenShum/NodeRoom">NodeRoom</a> — passive suggestions surface in the noteworthy inbox, user reviews and explicitly approves before any research job runs.</sub>
 
-Storyboard first: the README media is governed by [`docs/FEATURE_PROOF_STORYBOARD.md`](docs/FEATURE_PROOF_STORYBOARD.md). It must prove passive scan, noteworthy suggestion, explicit approval, dismissal learning, and provider-neutral storage before it is treated as publishable proof.
+**New here? Read [`docs/START_HERE.md`](docs/START_HERE.md)** — one message followed through the code in the order it runs. The same walkthrough is clickable in `.tours/` if you use the [CodeTour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour) extension.
+
+Both clips above have committed producers: `node scripts/record-graph-rail.mjs` records the rail, `npm run capture` re-asserts and re-shoots the stills.
 
 </div>
 
@@ -28,6 +30,7 @@ Storyboard first: the README media is governed by [`docs/FEATURE_PROOF_STORYBOAR
 
 ## Table of contents
 
+- [Documentation](#documentation)
 - [Why this exists](#why-this-exists)
 - [How it works](#how-it-works)
 - [Quick start](#quick-start)
@@ -40,6 +43,23 @@ Storyboard first: the README media is governed by [`docs/FEATURE_PROOF_STORYBOAR
 - [Doctrine](#doctrine)
 - [Project structure](#project-structure)
 - [License](#license)
+
+---
+
+## Documentation
+
+| Document | What it answers |
+|---|---|
+| [`docs/START_HERE.md`](docs/START_HERE.md) | One message, followed through the code in runtime order. Start here. |
+| [`docs/codebase/STACK.md`](docs/codebase/STACK.md) | What is installed and why; every command |
+| [`docs/codebase/STRUCTURE.md`](docs/codebase/STRUCTURE.md) | What each file is for |
+| [`docs/codebase/ARCHITECTURE.md`](docs/codebase/ARCHITECTURE.md) | The boundaries, the gate order, why the browser page is shaped as it is |
+| [`docs/codebase/CONVENTIONS.md`](docs/codebase/CONVENTIONS.md) | How code here is written |
+| [`docs/codebase/INTEGRATIONS.md`](docs/codebase/INTEGRATIONS.md) | Convex, esm.sh, the vendored renderer, CI |
+| [`docs/codebase/TESTING.md`](docs/codebase/TESTING.md) | What each test proves, and what is not covered |
+| [`docs/codebase/CONCERNS.md`](docs/codebase/CONCERNS.md) | Everything known to be wrong, with reproductions |
+| [`docs/SIMPLIFICATION_REPORT.md`](docs/SIMPLIFICATION_REPORT.md) | Before/after measurements for the Wave 3 cleanup |
+| [`promotion/PROMOTION_LOG.md`](promotion/PROMOTION_LOG.md) | The product loop: defect ledger and iterations |
 
 ---
 
@@ -180,8 +200,8 @@ npm run demo
   Step 6: Per-room quota exceeded
   ✓ Quota exceeded suppresses — room_quota_exceeded
 
-  Summary: Pass=13  Fail=0
-  ✓ DEMO PASSED — all gates green
+  Summary: Pass=13  Fail=0  Total=13
+  ✓ DEMO PASSED — all gates green (13/13)
 ```
 
 </details>
@@ -195,8 +215,11 @@ imported from `demo/nodeMemDemoCore.mjs`, not re-implemented) rendered live by
 
 ```bash
 npm install
-node scripts/capture-graph-rail.mjs   # serves demo/graph-rail/, asserts, screenshots
+npm run dev       # serves the repo; prints http://127.0.0.1:5173/demo/graph-rail/index.html
+npm run capture   # the same page in headless Chromium: 12 assertions + screenshots
 ```
+
+`npm run capture` needs Chromium once: `npx playwright install chromium`.
 
 Before any confirmation — every noticed entity present, dim, "unknown — not
 measured", and **zero edges** (the capture script exits nonzero if one exists):
@@ -219,13 +242,11 @@ npm install
 npm test
 ```
 
-### Run smoke checks
+### Everything, before you push
 
 ```bash
-npm run nodemem:smoke          # Full pipeline smoke
-npm run nodemem:in-memory:smoke  # In-memory adapter smoke
-npm run nodemem:convex:smoke    # Convex schema validation smoke
-npm run clip:capture             # README media/storyboard proof receipt
+npm run check     # secret-scan + typecheck + tests + the 13-check pipeline proof
+npm run proof     # the pipeline story plus a receipt at docs/eval/nodemem-smoke.json
 ```
 
 ---
@@ -333,15 +354,14 @@ console.log(d2.effectiveDelay); // capped by maxWaitAt - now
 
 ```
 src/
-  index.ts                    # Public API barrel
+  index.ts                    # Public API barrel — 28 names, nothing else is public
   core/
     classifier.ts             # Pure: entity + signal detection from text
-    dedup.ts                  # Pure: duplicate entity + per-room quota checks
-    dismissalLearner.ts       # Pure: entity dismissal tracking + suppression
-    policyResolver.ts         # Pure: assistive policy resolution (most restrictive wins)
+    scanOrchestrator.ts       # The pipeline: seven gates, one verdict per row
+    policyResolver.ts         # Pure: how much noticing a room allows (quieter wins)
+    ports.ts                  # The entire storage contract, in one file
     dedupeKey.ts              # Pure: deterministic activity dedupe keys
     debouncer.ts              # Pure: sliding-window debounce logic
-    scanOrchestrator.ts       # Orchestrates: classify → policy → quota → dedup → dismiss → noteworthy
   adapters/
     inMemoryAdapter.ts        # Zero-dependency reference MemoryStore implementation
     convexSchema.ts           # Convex table definitions (drop into your convex/ dir)
@@ -489,33 +509,35 @@ NodeMem detects what's noteworthy and surfaces it as a suggestion. The user — 
 
 ```
 NodeMem/
-├── src/
+├── src/                          # the library — 9 files, this is what you import
 │   ├── index.ts                  # Public API barrel
 │   ├── core/
 │   │   ├── classifier.ts         # Entity + signal detection
-│   │   ├── dedup.ts              # Duplicate entity + quota checks
-│   │   ├── dismissalLearner.ts   # Dismissal tracking + suppression
+│   │   ├── scanOrchestrator.ts   # The pipeline: seven gates
 │   │   ├── policyResolver.ts     # Assistive policy resolution
+│   │   ├── ports.ts              # The whole storage contract
 │   │   ├── dedupeKey.ts          # Deterministic dedupe keys
-│   │   ├── debouncer.ts          # Sliding-window debounce
-│   │   └── scanOrchestrator.ts   # Full pipeline orchestrator
+│   │   └── debouncer.ts          # Sliding-window debounce
 │   └── adapters/
 │       ├── inMemoryAdapter.ts    # Zero-dependency reference
 │       └── convexSchema.ts       # Convex table definitions
-├── tests/
-│   ├── classifier.test.ts        # 11 tests
-│   └── scanOrchestrator.test.ts  # 16 tests
+├── tests/                        # 51 tests — see docs/codebase/TESTING.md
 ├── demo/
-│   ├── runNodeMemDemo.ts         # TypeScript demo
-│   ├── runNodeMemDemo.mjs        # Zero-dependency demo
-│   └── demo-runner.ts            # Shared demo logic
+│   ├── demo-runner.ts            # the 13-check pipeline story
+│   ├── runNodeMemDemo.ts         # npm run demo / npm run proof
+│   ├── runNodeMemDemo.mjs        # npm run demo:node — no install, no build
+│   ├── nodeMemDemoCore.mjs       # plain-JS classifier copy for the no-build surfaces
+│   └── graph-rail/               # the one page a human can open
 ├── scripts/
-│   ├── nodemem-smoke.ts          # Full pipeline smoke
-│   ├── nodemem-in-memory-smoke.ts # Adapter smoke
-│   ├── nodemem-convex-smoke.ts   # Schema smoke
+│   ├── serve.mjs                 # npm run dev, and both capture scripts
+│   ├── capture-graph-rail.mjs    # the browser gate — 12 assertions
+│   ├── record-graph-rail.mjs     # records the README clip (needs ffmpeg)
 │   └── secret-scan.mjs           # Secret scanner
-├── assets/
-│   └── noderoom-review-approve.gif
+├── docs/                         # START_HERE, codebase/, SIMPLIFICATION_REPORT
+├── .tours/                       # the same walkthrough, clickable in VS Code
+├── promotion/                    # product loop: goal, journeys, defect ledger
+├── vendor/nodegraph-live/        # vendored graph renderer (browser only)
+├── assets/                       # clips and screenshots, each with a producer
 ├── package.json
 ├── tsconfig.json
 ├── vitest.config.ts
