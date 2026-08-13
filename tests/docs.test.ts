@@ -4,7 +4,7 @@
  * Two failures this file exists to stop, both of which shipped here:
  *
  * 1. A citation that names a symbol and a line number that no longer holds it.
- *    `docs/NODE-LOOPS.md` sent readers to `scanOrchestrator.ts:94` for
+ *    `NODE-LOOPS.md` sent readers to `scanOrchestrator.ts:94` for
  *    `scanActivity` — a line inside a comment, seven lines above the function.
  *    A guard that only checks "is that line number in range" passes every one of
  *    these, because every line in a file is in range. So a citation must carry
