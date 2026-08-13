@@ -213,9 +213,13 @@ walkthrough is [`docs/START_HERE.md`](../docs/START_HERE.md).
   `package.json` installs — it resolved only because vitest happens to ship it.
   Meanwhile the repository already contained a working static server, twice,
   copy-pasted into the two capture scripts. Both now import
-  `scripts/serve.mjs`, and `dev` runs it. Measured after: `GET /demo/graph-rail/index.html`
-  **200** (was 404), `GET /vendor/nodegraph-live/NodeGraph.js` **200** (was 500),
-  `GET /../../../etc/passwd` 404. Regression guard: `tests/packageContract.test.ts`
+  `scripts/serve.mjs`, and `dev` runs it. Measured on this tree by running both
+  commands against the same clone, not quoted from the Wave 1 baseline:
+  `GET /vendor/nodegraph-live/NodeGraph.js` **500 to 200**; `GET /` 404 to 404
+  (there is no root page — `dev` now prints the URL that exists);
+  `GET /demo/graph-rail/index.html` 200 either way; `GET /../../../etc/passwd`
+  404. The row that broke the page is the middle one: under vite the page loaded
+  and rendered nothing, because the renderer it imports never arrived. Regression guard: `tests/packageContract.test.ts`
   fails with `` `vite` is in a script but no declared dependency provides it ``
   if the old script is restored — confirmed by restoring it.
 - **D4 — `bin` points at a file that does not exist: fixed by deleting the

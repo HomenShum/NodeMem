@@ -33,9 +33,26 @@ lines: a test that makes drift impossible, and a working `npm run dev`.
 | Pipeline proof checks | 13 | 13 | 0 | `npm run proof` |
 | Browser workflow checks | 12 pass | 12 pass | 0 | `npm run capture` |
 | Typecheck | clean | clean | 0 | `npm run typecheck` |
-| `npm run dev` serves the app | **no** (404 / 500) | yes (200) | fixed | `PORT=4511 npm run dev` then `curl -o /dev/null -w "%{http_code}" …/demo/graph-rail/index.html` |
+| `npm run dev` serves a working page | **no** | yes | fixed | see the three status codes below |
 | Production bundle size | not applicable — no bundler and no build artifact; `npm run build` was `tsc --noEmit`, which emits nothing | | | `cat tsconfig.json` (`"noEmit": true`) |
 | Additions / deletions | — | 42 files, +1762 / −922 | — | `git diff --shortstat 06ef268` |
+
+### The `npm run dev` row, measured both ways
+
+Re-measured on this tree rather than quoted from the Wave 1 ledger, by running
+the old command (`./node_modules/.bin/vite`, v8.1.3 — present only because vitest
+ships it) against the same clone:
+
+| Request | Before (`vite`) | After (`node scripts/serve.mjs`) |
+|---|---|---|
+| `GET /` | **404** | 404 (there is no root page; `dev` prints the URL that exists) |
+| `GET /demo/graph-rail/index.html` | 200 | 200 |
+| `GET /vendor/nodegraph-live/NodeGraph.js` | **500** — "Failed to resolve import … Are they installed?" | **200** |
+| `GET /../../../etc/passwd` | — | 404 |
+
+The page therefore *loaded* under vite and rendered nothing, because the renderer
+it imports never arrived. "Before: 404/500, after: 200" would have been the
+convenient summary; it is not what the three requests actually return.
 
 Split by area, because a single diffstat hides which way the code went:
 
@@ -69,7 +86,7 @@ Split by area, because a single diffstat hides which way the code went:
 |---|---|---|
 | `scripts/nodemem-in-memory-smoke.ts` (94 lines) and `scripts/nodemem-convex-smoke.ts` (59 lines) — hand-rolled runners with their own pass/fail counters, `--json-out` receipt writers and `process.exit` | Vitest, already installed | 153 lines → 62 lines of tests, in the place a stranger looks for assertions. Every assertion was carried over |
 | Two copies of a 31-line static file server, one in each capture script | One `scripts/serve.mjs`, imported by both | Also gave `npm run dev` a server that works, deleting the phantom dependency on `vite` |
-| `vite` as the `dev` command (undeclared, resolved only transitively through vitest) | 20 lines of `node:http` that the repo already contained twice | `GET /` 404 → 200; `GET /vendor/nodegraph-live/NodeGraph.js` 500 → 200 |
+| `vite` as the `dev` command (undeclared, resolved only transitively through vitest) | 20 lines of `node:http` that the repo already contained twice | `GET /vendor/nodegraph-live/NodeGraph.js` 500 → 200, so the page renders instead of loading empty |
 | Four unused methods on the demo's `InMemoryStore` (`listNoteworthy`, `countNoteworthyLastHour`, `getRoomPolicy`, `setRoomPolicy`) | Nothing — the demos never called them; `src/adapters/inMemoryAdapter.ts` is the real reference | The demo copy is now visibly "just enough for the demo" |
 
 ## Defects found while measuring, and fixed
