@@ -217,9 +217,15 @@ imported from `demo/nodeMemDemoCore.mjs`, not re-implemented) rendered live by
 npm install
 npm run dev       # serves the repo; prints http://127.0.0.1:5173/demo/graph-rail/index.html
 npm run capture   # the same page in headless Chromium: 12 assertions + screenshots
+npm run audit:web # lighthouse + axe against the served page; fails on a regression
+npm run audit:wig # Web Interface Guidelines review at 320/375/412/768/1440
 ```
 
 `npm run capture` needs Chromium once: `npx playwright install chromium`.
+The two audits write their raw output to `promotion/evidence/audit/`; what the
+review concluded from it is [`promotion/WIG_REVIEW.md`](promotion/WIG_REVIEW.md).
+`audit:web` pulls `lighthouse@13.4.1` and `@axe-core/cli@4.13.0` through `npx`
+at pinned versions, so it needs a network and a local Chrome.
 
 Before any confirmation — every noticed entity present, dim, "unknown — not
 measured", and **zero edges** (the capture script exits nonzero if one exists):

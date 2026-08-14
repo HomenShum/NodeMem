@@ -86,7 +86,7 @@ column is what later waves updated.
 | D2 | Major | J4 / Recovery | Load the same page with all `**esm.sh**` requests aborted (any network that blocks the CDN in the `<head>` importmap: react, react-dom, graphology, sigma, @sigma/node-border). Result after 4s: log has 0 children, 0 suggestion cards, 0 `<canvas>`, **0 page errors** — and the caption still describes a graph that is not there. Regex `/error\|failed\|retry\|offline\|could not/i` over `body.innerText` → false. The user sees a blank frame with confident prose and no way back. `evidence/cdn-blocked-no-error-state.png`. **Corrected 2026-08-13:** this entry originally also claimed *0 console errors*. An independent re-run reproduced every user-facing figure above but observed **2 console errors** (the blocked module fetches). The defect is unchanged — nothing reaches the user either way — but "silent" means silent *on screen*, not silent in the console, and the 0 is wrong. | **fixed — Iteration 1** |
 | D3 | Major | J4 | `npm run dev` — declared in `nodekit.yaml` as `commands.dev: { script: dev, mode: service }` — runs `vite` over a repo with **no root `index.html`** and with react/sigma/graphology present only in the browser importmap, never in `package.json`. Measured: `GET http://localhost:5999/` → **404**; `GET /vendor/nodegraph-live/NodeGraph.js` → **500** ("Failed to resolve import … Are they installed?"). Also note `vite` itself is not a declared dependency — it resolves only transitively through `vitest`. A stranger following the standard verb gets nothing. | **fixed — Wave 3** |
 | D4 | Major | J1 / install | `package.json` declares `"bin": { "nodemem": "./bin/nodemem.mjs" }`. `fs.existsSync('./bin/nodemem.mjs')` → **false**; there is no `bin/` directory in the repo at `ac8e7db`. Any `npm i -g nodemem` / `npx nodemem` creates a broken shim. | **fixed — Wave 3** |
-| D5 | Minor | J4 | A store method the docs specify does not exist. `countNoteworthyForEntity` (`docs/GRAPH_INTEGRATION.md:123`) specifies `countNoteworthyForEntity(roomId, entityKey): Promise<number>` on `DedupStore`; `grep -rn countNoteworthyForEntity src/` → **no match**. The data exists (`listNoteworthy` + `NoteworthyRow.entityNames`, now in `src/core/ports.ts`, rows held in `src/adapters/inMemoryAdapter.ts`) and `EntityRef.count` in `vendor/nodegraph-live/session.d.ts` is waiting for it — the method was simply never added. **What is *not* the defect: the rail showing every node as uncounted.** Nothing measures those counts yet, so an uncounted node is the honest render — the page says so (`"unknown — not measured"` (`demo/graph-rail/index.html:85`)) and the browser gate fails the build if any node arrives counted (`every noticed entity is unmeasured` (`scripts/capture-graph-rail.mjs:53`)). Implementing the method adds a *measured* count; it does not make today's page a lie. | open |
+| D5 | Minor | J4 | A store method the docs specify does not exist. `countNoteworthyForEntity` (`docs/GRAPH_INTEGRATION.md:123`) specifies `countNoteworthyForEntity(roomId, entityKey): Promise<number>` on `DedupStore`; `grep -rn countNoteworthyForEntity src/` → **no match**. The data exists (`listNoteworthy` + `NoteworthyRow.entityNames`, now in `src/core/ports.ts`, rows held in `src/adapters/inMemoryAdapter.ts`) and `EntityRef.count` in `vendor/nodegraph-live/session.d.ts` is waiting for it — the method was simply never added. **What is *not* the defect: the rail showing every node as uncounted.** Nothing measures those counts yet, so an uncounted node is the honest render — the page says so (`"unknown — not measured"` (`demo/graph-rail/index.html:131`)) and the browser gate fails the build if any node arrives counted (`every noticed entity is unmeasured` (`scripts/capture-graph-rail.mjs:53`)). Implementing the method adds a *measured* count; it does not make today's page a lie. | open |
 | D6 | Minor | J4 / a11y | On the loaded rail: 8 `<canvas>` elements, **0** carrying `aria-label`, `role`, or text content; **0** elements with `aria-live`/`role=status`/`role=log` despite the activity log appending rows asynchronously. Keyboard itself is fine (Confirm reachable in 2 Tabs, visible focus ring, Enter works). A screen-reader user gets the headings and nothing else. | open |
 
 ## Iterations
@@ -105,7 +105,7 @@ column is what later waves updated.
   (confirmed twice — once before the fix was written, once by stashing only
   `demo/graph-rail/{index.html,main.js}` with the producer left in place).
 - **Root cause** — the module tag `id="rail-module"`
-  (`demo/graph-rail/index.html:94`), and it is structural, not
+  (`demo/graph-rail/index.html:140`), and it is structural, not
   cosmetic. Every pixel of feedback on this page is produced by one
   `<script type="module">` whose import graph resolves through the importmap to
   `esm.sh`. Per the HTML module spec, if any module in that graph fails to
@@ -308,3 +308,133 @@ cannot be added outside the check.
   capture gate and byte-restored: this wave changed no pixels.
 - **Not fixed:** D1, D5, D6 stay open. D3 and D4 were closed by Wave 3 and their
   ledger rows still said `open`; the rows now agree with the Wave 3 entry above.
+
+## Iteration 2 — 2026-08-13 — the two audits that had never been run
+
+Conditions 7 and 8 had sat UNVERIFIED since Wave 1 for one reason: nobody had
+run the tools. Both toolchains installed on this machine, so both were run
+against the real served page, their raw output is committed, and the scripts
+that produce it are committed beside it. Everything below was measured on
+`d717fcf`, Node v22.22.2, Chrome 151 headless, Windows 11, with the rail served
+by `scripts/serve.mjs` on `127.0.0.1:4911`.
+
+- **Journey exercised:** J4, at 320, 375, 412, 768 and 1440.
+- **What was run, and what it left behind:**
+
+  | command | artifact | producer |
+  |---|---|---|
+  | `npm run audit:web` | `evidence/audit/lighthouse.json`, `evidence/audit/axe.json` | `scripts/audit-web-quality.mjs` |
+  | `npm run audit:web -- --tag=before` | the `-before` pair | same script |
+  | `npm run audit:wig` | `evidence/audit/wig-review.json` + `wig-*.png` | `scripts/wig-review.mjs` |
+  | `npm run audit:wig -- --tag=before` | `wig-review-before.json` + `wig-before-*.png` | same script |
+
+  The underlying commands are pinned inside the scripts:
+  `npx --yes lighthouse@13.4.1 <url> --output=json --output-path=<file> --chrome-flags="--headless"`
+  and `npx --yes @axe-core/cli@4.13.0 <url> --save <file>`.
+
+**Observed, before touching anything.** Eight major Web Interface Guidelines
+findings and one serious axe violation, all reproduced by the committed
+producers on the unmodified page:
+
+- `documentElement.scrollWidth` 524 against `clientWidth` 320 / 375 / 412 —
+  204px, 149px and 112px off-screen. That is D1, still open since Wave 1.
+- `#layout` computed `380px 114.281px` at every one of those widths; the graph
+  pane, which is the point of the page, was 114px.
+- `#log` appends a row per pipeline event and carried no `aria-live`,
+  `role="log"` or `role="status"`. The page's only live region was the
+  boot-error alert, hidden on the success path.
+- 8 `<canvas>`, 0 with any accessible name; `#stage` had no role and no name.
+  That is D6.
+- axe: `color-contrast`, **serious**, the log's kind labels at 2.9:1 against a
+  4.5:1 threshold.
+- Lighthouse `errors-in-console`: a `/favicon.ico` **404 on every load**. This
+  one contradicted a standing PASS — see the correction below.
+
+**Fixed, in `demo/graph-rail/index.html` only, using what the page already had.**
+One media query at `max-width: 767px`, one existing palette colour swapped in,
+five head tags, and three attributes. No new component, no new dependency, no
+JavaScript.
+
+- One column below 768, graph above the rail, and 44px controls.
+- `#stage` reserves its own height. Without that the box goes 0 to 620 when
+  sigma mounts and everything after it moves.
+- `.k` from `#55606a` to the palette's existing `#7f8992`: 2.9:1 to 5.24:1.
+- `role="log" aria-live="polite"` on the log; `role="figure"` plus a name on the
+  graph surface.
+- An inline empty `icon`, a `description`, a `theme-color`, a `preconnect` to
+  `esm.sh`, and `touch-action: manipulation`.
+
+**Two things the audits caught that reading the code would not have.**
+
+1. **`role="img"` on the graph surface was wrong, and axe said so.** It was the
+   obvious way to name a canvas region. But `img` makes its children
+   presentational, and NodeGraph renders a "fit" button and type filters inside
+   that box — axe reported `nested-interactive`, **serious**, one node, on a
+   change made to *improve* accessibility. `role="figure"` names the graphic and
+   leaves the controls reachable. The regression never reached a commit because
+   the gate that would catch it ran before the commit, not after.
+2. **The mobile fix made layout shift worse before it made it better.** One
+   column with the rail on top measured **CLS 0.303** — the rail grows a card at
+   a time as the pipeline runs, and everything under it moves, three times. Same
+   page with the graph on top and its height reserved: **CLS 0.000**. The first
+   arrangement was the intuitive one and it was the wrong one.
+
+**Re-proved in the rendered app.**
+
+| | before | after |
+|---|---|---|
+| WIG majors | 8 | **0** |
+| axe violations | 1 serious | **0** (28 rules pass) |
+| Lighthouse accessibility | 0.90 | **1.0** |
+| Lighthouse best-practices | 0.96 | **1.0** |
+| Lighthouse SEO | 0.90 | **1.0** |
+| LCP | 1659ms | 1661ms |
+| CLS | 0.062 | **0.000** |
+| console errors | 1 (`/favicon.ico` 404) | **0** |
+| overflow at 320 / 375 / 412 | 204 / 149 / 112px | **0 / 0 / 0** |
+
+Both producers fail on the pre-fix tree, which is the half that makes the after
+number mean anything: `git stash push -- demo/graph-rail/index.html`, then
+`npm run audit:wig` → 8 major, exit 1, and `npm run audit:web` → exit 1 on axe
+and on the console error. Both confirmed, both stashes restored.
+
+- **Tests:** `npm test` → 8 test files, exit 0. `npm run check` (secret-scan +
+  typecheck + tests + proof) → exit 0. `npm run capture` → 12/12, exit 0.
+- **Conditions newly PASS:** 2, 3, 4, 6, 7, 8. Conditions 9 and 10 were already
+  PASS and now rest on a retained producer instead of an unretained sweep.
+  **5/12 → 11/12.**
+- **Not moved, deliberately:** condition 1. J5's Dismiss click still has no
+  committed producer driving it, and driving a journey is not an audit. It stays
+  UNVERIFIED with the same reason it has carried since the Wave 1 correction.
+
+### Correction — condition 9's PASS was true of its probe, not of a browser
+
+The Wave 1 row said "0 console errors, 0 page errors, 0 failed requests". Every
+one of those numbers is reproducible. They were also incomplete, and in a way
+the instrument could not see: **Playwright does not request `/favicon.ico`.**
+Chrome does. The page declared no icon, so every real load logged a 404 that the
+Playwright sweep was structurally incapable of observing. Lighthouse, driving
+full Chrome, reported it on the first run.
+
+The lesson is not that the number was wrong. It is that *a probe that cannot
+make a request cannot find the failure in that request*, and a condition scored
+by one instrument inherits that instrument's blind spots. Condition 9 is now
+scored by both.
+
+### Ledger updates
+
+- **D1 — mobile overflow: fixed.** Reproduced by
+  `scripts/wig-review.mjs` at 320/375/412 on the unmodified page, fixed with one
+  media query, re-measured to 0px at all five widths. Regression guard: the same
+  script, which calls any overflow major and exits 1.
+- **D6 — canvas accessibility: fixed.** Both halves of its reproduction are
+  closed — the log is a live region, the graph surface is a named figure.
+  Residual, disclosed rather than hidden: the 8 `<canvas>` elements remain
+  individually unnamed. The named figure plus the text narration in the live log
+  is the alternative, and a per-canvas label on a sigma-managed element is not
+  something this page can set without reaching into the vendor renderer.
+- **D5** stays open, unchanged and Minor.
+- Six minor WIG findings are recorded in `WIG_REVIEW.md` rather than here, with
+  the guideline and the measurement for each. The largest is that
+  `prefers-reduced-motion` is honoured by the browser but not branched on by the
+  page: the sigma force layout still animates.

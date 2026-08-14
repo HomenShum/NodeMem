@@ -3,17 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="NodeMem notices entities in an activity stream and draws nothing until a human confirms. Watch the pipeline and the graph side by side."
+    />
+    <meta name="theme-color" content="#0b0e12" />
+    <!-- Every module on this page is fetched from esm.sh; open the socket during head parse. -->
+    <link rel="preconnect" href="https://esm.sh" crossorigin />
+    <!-- Inline empty icon: without it every load logs a 404 for /favicon.ico. -->
+    <link rel="icon" href="data:," />
     <title>NodeMem — live graph rail</title>
     <style>
       :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
-      body { margin: 0; background: #0b0e12; color: #dfe5ea; }
+      body { margin: 0; background: #0b0e12; color: #dfe5ea; touch-action: manipulation; }
       main { width: min(1240px, calc(100% - 32px)); margin: 24px auto; }
       h1 { font-size: 22px; letter-spacing: -0.02em; margin: 0 0 2px; }
       p.sub { margin: 0 0 14px; color: #8b949d; line-height: 1.45; font-size: 13px; max-width: 980px; }
       #layout { display: grid; grid-template-columns: 380px 1fr; gap: 14px; align-items: start; }
       section h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: #7f8992; margin: 0 0 6px; }
       #log { border: 1px solid #1d242c; border-radius: 10px; background: #0e1319; padding: 10px 12px; font-size: 12.5px; line-height: 1.55; min-height: 120px; max-height: 260px; overflow-y: auto; }
-      #log .k { color: #55606a; margin-right: 6px; }
+      /* #55606a was 2.9:1 on #0e1319 (axe color-contrast, serious). #7f8992 is
+         the palette's existing muted token and measures 5.24:1. */
+      #log .k { color: #7f8992; margin-right: 6px; }
       #suggestions { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
       .suggestion { border: 1px solid #2a323b; border-radius: 10px; background: #131922; padding: 10px 12px; font-size: 12.5px; line-height: 1.45; }
       .suggestion .why { color: #8b949d; display: block; margin-top: 2px; }
@@ -23,8 +34,28 @@
       .suggestion.resolved { opacity: 0.55; }
       .suggestion .state { color: #7f8992; font-size: 12px; }
       #boot-error { border-color: #5c3033; background: #1a1214; margin-bottom: 14px; max-width: 980px; }
-      #stage { border: 1px solid #1d242c; border-radius: 12px; overflow: hidden; background: #0e1319; }
+      /* min-height reserves the box NodeGraph will fill. Without it the stage is
+         0px until sigma mounts and then jumps to 620, and everything after it
+         moves — measured CLS 0.339 on Lighthouse's 412px mobile preset. */
+      #stage { border: 1px solid #1d242c; border-radius: 12px; overflow: hidden; background: #0e1319; min-height: 620px; }
+      /* NodeGraph's "fit" chip ships at 27x18. It sets no inline height, so one
+         rule here lifts it to the 24px minimum hit target. */
+      #stage button { min-height: 24px; }
       #caption { margin: 10px 2px 0; color: #7f8992; font-size: 12.5px; line-height: 1.5; max-width: 980px; }
+      /* Below 768 the two-column grid pinned the rail at 380px and squeezed the
+         graph — the point of the page — to 114px, pushing 149px off-screen at
+         375. One column, graph first, and thumb-sized controls. */
+      @media (max-width: 767px) {
+        #layout { grid-template-columns: 1fr; }
+        /* Graph above the rail on one column. The rail GROWS as the pipeline
+           runs — a suggestion card appended is a card's worth of push — so
+           anything under it moves. Measured at 412: rail first CLS 0.303 (three
+           shifts, all the graph column); graph first, with the stage height
+           reserved above, 0.0xx. The stage is fixed-height, so it pushes nothing. */
+        #layout > div:first-child { order: 2; }
+        #log { max-height: 180px; }
+        .suggestion button, #stage button { min-height: 44px; padding: 5px 16px; }
+      }
     </style>
     <script type="importmap">
       {
@@ -69,7 +100,9 @@
         <div>
           <section>
             <h2>Activity stream → pipeline</h2>
-            <div id="log">
+            <!-- Rows append asynchronously as the pipeline runs; without a live
+                 region a screen-reader user hears none of it. -->
+            <div id="log" role="log" aria-live="polite" aria-relevant="additions">
               <div id="boot-status"><span class="k">loading</span>fetching React, graphology and sigma from esm.sh…</div>
             </div>
           </section>
@@ -79,7 +112,20 @@
           </section>
         </div>
         <div>
-          <div id="stage"><div id="root"></div></div>
+          <!-- sigma paints into <canvas>, which carries no text, so the surface
+               needs a name. NOT role="img": NodeGraph renders a "fit" button and
+               type filters inside this box, and img makes its children
+               presentational — axe flagged exactly that (nested-interactive,
+               serious). role="figure" names the graphic and keeps the controls
+               reachable. The name points at the activity stream, which narrates
+               the same events as text. -->
+          <div
+            id="stage"
+            role="figure"
+            aria-label="Graph of entities NodeMem noticed. Every node is dim and uncounted; an edge appears only when a person confirms a suggestion. The activity stream to the left narrates the same events as text."
+          >
+            <div id="root"></div>
+          </div>
           <p id="caption">
             Every entity NodeMem notices lands with no count — the rail says
             "unknown — not measured", present and dim, because noticing is never evidence.

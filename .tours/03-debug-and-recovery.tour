@@ -19,28 +19,28 @@
     },
     {
       "file": "demo/graph-rail/index.html",
-      "line": 32,
+      "line": 63,
       "symbol": "esm.sh/react",
       "title": "Why this page can fail in a way nothing catches",
       "description": "React, graphology and sigma are fetched from `esm.sh` at page load. Per the HTML module spec, if *any* module in the import graph fails to fetch, the module body **never executes at all**.\n\nThe page's own logging function lives in that module. So the single code path that could report the failure is the code path that failed."
     },
     {
       "file": "demo/graph-rail/index.html",
-      "line": 94,
+      "line": 140,
       "symbol": "id=\"rail-module\"",
       "title": "The module that renders everything",
       "description": "One tag. Every pixel a user sees comes from here — the log, the suggestion cards, the graph. When it does not run, three empty boxes sit under confident prose."
     },
     {
       "file": "demo/graph-rail/index.html",
-      "line": 117,
+      "line": 163,
       "symbol": "setTimeout(function",
       "title": "So the reporter lives outside the module",
       "description": "A *classic* script — always executed — listens for the module element's `error` event, and an 8-second watchdog catches the silent variants: a hang, an importmap miss, a throw during evaluation. All of them leave `window.__graphRail` unset, so one sentinel covers all four."
     },
     {
       "file": "demo/graph-rail/index.html",
-      "line": 52,
+      "line": 83,
       "symbol": "data-testid=\"boot-error\"",
       "title": "What the user gets instead",
       "description": "A `role=\"alert\"` panel that names the cause (`esm.sh`), a Retry button, and a fallback that needs no network at all: `node demo/runNodeMemDemo.mjs`. The caption describing the graph is hidden, because a caption about a graph that is not there is a lie."

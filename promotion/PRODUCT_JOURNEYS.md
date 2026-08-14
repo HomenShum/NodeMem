@@ -110,8 +110,14 @@ Each journey states, in this order:
   Also `node scripts/capture-graph-rail.mjs` → 12/12 checks, exit 0 (5 honesty
   checks + 7 recovery checks added in Iteration 1).
   Defect surfaces found while driving this journey: `evidence/mobile-375-fresh.png`
-  (D1, still open), `evidence/cdn-blocked-no-error-state.png` (D2, fixed in
+  (D1, fixed in Iteration 2 — the same page at five widths is
+  `evidence/audit/wig-320.png` through `wig-1440.png`),
+  `evidence/cdn-blocked-no-error-state.png` (D2, fixed in
   Iteration 1 — see `evidence/cdn-blocked-error-state.png`).
+  Iteration 2 also audited this journey rather than only driving it:
+  `npm run audit:wig` → 0 major (was 8) and `npm run audit:web` → axe 0
+  violations, Lighthouse accessibility / best-practices / SEO 1.0. Receipts in
+  `evidence/audit/`, review in [WIG_REVIEW.md](WIG_REVIEW.md).
 
 ## J5 — "I said no. Does it stay no?"
 

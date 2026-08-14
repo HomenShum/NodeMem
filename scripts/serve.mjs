@@ -57,7 +57,13 @@ export async function serveRepo(port = 0) {
       res.end("not found");
     }
   });
-  await new Promise((resolve) => server.listen(port, "127.0.0.1", resolve));
+  // Reject rather than emit an unhandled 'error' — a caller asking for a fixed
+  // port needs to be able to fall back when it is taken (Windows refuses a bind
+  // while the previous run's sockets are still in TIME_WAIT).
+  await new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(port, "127.0.0.1", resolve);
+  });
   return { server, origin: `http://127.0.0.1:${server.address().port}` };
 }
 
