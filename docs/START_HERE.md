@@ -59,8 +59,8 @@ missing file, returns `404`. There is no directory listing.
 ## Step 2 — The primary user action: activity arrives, and a person later says yes or no
 
 **File:** `demo/graph-rail/main.js`
-**Symbol:** `runPipeline` (`demo/graph-rail/main.js:81`), then `renderSuggestion` (`demo/graph-rail/main.js:38`)
-**Called by:** the page itself, on load — `runPipeline();` (`demo/graph-rail/main.js:126`)
+**Symbol:** `runPipeline` (`demo/graph-rail/main.js:83`), then `renderSuggestion` (`demo/graph-rail/main.js:38`)
+**Called by:** the page itself, on load — `runPipeline();` (`demo/graph-rail/main.js:128`)
 **Calls next:** `classifyNoteworthy`, then `session.observe` for anything noticed
 
 **Why this exists**
@@ -207,7 +207,7 @@ A real adapter should not; the contract does not currently say so.
 ## Step 7 — Rendering: a suggestion draws nothing until a person clicks
 
 **File:** `demo/graph-rail/main.js`
-**Symbol:** `App` (`demo/graph-rail/main.js:113`) with `useSyncExternalStore`; the Confirm handler `confirm.addEventListener` (`demo/graph-rail/main.js:63`)
+**Symbol:** `App` (`demo/graph-rail/main.js:115`) with `useSyncExternalStore`; the Confirm handler `confirm.addEventListener` (`demo/graph-rail/main.js:65`)
 **Called by:** React, on every graph mutation
 **Calls next:** `NodeGraph` from `vendor/nodegraph-live/react.js`
 
@@ -237,7 +237,7 @@ all, on purpose.
 ## Step 8 — Failure and recovery: the reporter cannot live inside the thing that failed
 
 **File:** `demo/graph-rail/index.html`
-**Symbol:** the classic `<script>` (`demo/graph-rail/index.html:141`) and the alert panel `data-testid="boot-error"` (`demo/graph-rail/index.html:83`)
+**Symbol:** the classic `<script>` (`demo/graph-rail/index.html:146`) and the alert panel `data-testid="boot-error"` (`demo/graph-rail/index.html:89`)
 **Called by:** the browser, always — it is not a module
 **Calls next:** nothing; it hides the graph and shows a named cause
 

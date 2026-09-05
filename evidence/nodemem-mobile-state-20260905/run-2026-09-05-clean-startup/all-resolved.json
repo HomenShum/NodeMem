@@ -1,0 +1,190 @@
+{
+  "nodes": [
+    {
+      "id": "[\"company\",\"CardioNova\"]",
+      "label": "CardioNova",
+      "type": "company",
+      "visits": 2
+    },
+    {
+      "id": "[\"person\",\"Glia Therapeutics\"]",
+      "label": "Glia Therapeutics",
+      "type": "person",
+      "visits": 1
+    },
+    {
+      "id": "[\"company\",\"Meridian Capital\"]",
+      "label": "Meridian Capital",
+      "type": "company",
+      "visits": 1
+    },
+    {
+      "id": "[\"facet\",\"funding\"]",
+      "label": "funding",
+      "type": "facet",
+      "visits": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "[\"company\",\"CardioNova\"]",
+      "target": "[\"facet\",\"funding\"]",
+      "weight": 1,
+      "type": "traversal"
+    }
+  ],
+  "ready": true,
+  "resolved": [
+    "CardioNova ↔ funding\nnoticed together in one event (start_research_job, score 0.90) — a suggestion, not an edge\nconfirmed — drawn as faint traversal history",
+    "Glia Therapeutics ↔ funding\nnoticed together in one event (start_research_job, score 1.00) — a suggestion, not an edge\ndismissed — nothing changed",
+    "Meridian Capital ↔ product_news\nnoticed together in one event (start_research_job, score 0.72) — a suggestion, not an edge\ndismissed — nothing changed"
+  ],
+  "active": {
+    "tag": "DIV",
+    "id": "",
+    "className": "state",
+    "text": "dismissed — nothing changed"
+  },
+  "overflow": 0,
+  "labels": {
+    "Glia Therapeutics": {
+      "text": "Glia Therapeutics",
+      "left": 290.8658821284771,
+      "right": 392.8551399409771,
+      "top": 82.33333828022914,
+      "bottom": 95.33333828022914,
+      "width": 810,
+      "height": 403,
+      "frame": 73
+    },
+    "Meridian Capital": {
+      "text": "Meridian Capital",
+      "left": 354.37598101125343,
+      "right": 451.25146929250343,
+      "top": 178.92651880971468,
+      "bottom": 191.92651880971468,
+      "width": 810,
+      "height": 403,
+      "frame": 73
+    },
+    "funding": {
+      "text": "funding",
+      "left": 537.1341178715229,
+      "right": 583.6009147465229,
+      "top": 270.6226860865549,
+      "bottom": 283.6226860865549,
+      "width": 810,
+      "height": 403,
+      "frame": 73
+    },
+    "CardioNova": {
+      "text": "CardioNova",
+      "left": 509.4026298084751,
+      "right": 579.0666923084751,
+      "top": 309.33332838643753,
+      "bottom": 319.33332838643753,
+      "width": 810,
+      "height": 403,
+      "frame": 73
+    }
+  },
+  "labelFrame": 73,
+  "logRows": 10,
+  "scrollY": 0,
+  "width": 1440,
+  "height": 960,
+  "geometry": {
+    "stage": {
+      "x": 494,
+      "y": 142.53125,
+      "right": 1340,
+      "bottom": 642.53125,
+      "width": 846,
+      "height": 500,
+      "pageY": 142.53125
+    },
+    "renderer": {
+      "x": 495,
+      "y": 143.53125,
+      "right": 1339,
+      "bottom": 641.53125,
+      "width": 844,
+      "height": 498,
+      "pageY": 143.53125
+    },
+    "canvas": {
+      "x": 513,
+      "y": 220.53125,
+      "right": 1323,
+      "bottom": 623.53125,
+      "width": 810,
+      "height": 403,
+      "pageY": 220.53125
+    },
+    "caption": {
+      "x": 496,
+      "y": 652.53125,
+      "right": 1338,
+      "bottom": 709.78125,
+      "width": 842,
+      "height": 57.25,
+      "pageY": 652.53125
+    },
+    "bootStatus": null
+  },
+  "startup": {
+    "count": 0,
+    "hitVisible": false
+  },
+  "cls": {
+    "supported": true,
+    "maxSession": 0.010760096169302983,
+    "allShiftValue": 0.01135667196517128,
+    "entries": [
+      {
+        "startTime": 495.40000009536743,
+        "value": 0.0019375522440843623,
+        "hadRecentInput": false
+      },
+      {
+        "startTime": 795,
+        "value": 0.006701735508294753,
+        "hadRecentInput": false
+      },
+      {
+        "startTime": 1095.6000000238419,
+        "value": 0.0021208084169238688,
+        "hadRecentInput": false
+      },
+      {
+        "startTime": 2053.5,
+        "value": 0.00039771719724553107,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 2088.4000000953674,
+        "value": 0.00019885859862276553,
+        "hadRecentInput": true
+      }
+    ],
+    "dropped": 0
+  },
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true,
+  "axe": {
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "#log"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          }
+        ]
+      }
+    ]
+  }
+}

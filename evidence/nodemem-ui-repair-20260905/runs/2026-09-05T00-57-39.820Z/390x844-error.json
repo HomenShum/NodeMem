@@ -1,0 +1,23 @@
+{
+  "nodes": [],
+  "edges": [],
+  "ready": false,
+  "resolved": [],
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "overflow": 0,
+  "labels": {},
+  "logRows": 0,
+  "scrollY": 0,
+  "width": 390,
+  "height": 844,
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": false,
+  "axe": {
+    "violations": []
+  }
+}

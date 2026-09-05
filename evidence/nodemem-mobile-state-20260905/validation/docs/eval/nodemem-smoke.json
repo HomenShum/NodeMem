@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-09-05T03:11:05.289Z",
+  "pass": 13,
+  "fail": 0,
+  "total": 13,
+  "checks": [
+    {
+      "label": "Entity detected",
+      "ok": true,
+      "detail": "CardioNova"
+    },
+    {
+      "label": "Score > 0.35",
+      "ok": true,
+      "detail": "score=0.90"
+    },
+    {
+      "label": "Multiple signals",
+      "ok": true,
+      "detail": "organization_candidate, finance_signal, person_or_interaction, open_question_or_task"
+    },
+    {
+      "label": "Action is start_research_job",
+      "ok": true,
+      "detail": "start_research_job"
+    },
+    {
+      "label": "Finance signal detected",
+      "ok": true
+    },
+    {
+      "label": "Person interaction detected",
+      "ok": true
+    },
+    {
+      "label": "Scan result is noteworthy",
+      "ok": true,
+      "detail": "noteworthy"
+    },
+    {
+      "label": "Finding has entities",
+      "ok": true
+    },
+    {
+      "label": "Duplicate suppressed",
+      "ok": true,
+      "detail": "duplicate_entity"
+    },
+    {
+      "label": "Dismissal recorded",
+      "ok": true,
+      "detail": "cardionova by user-alice"
+    },
+    {
+      "label": "Dismissed entity suppressed",
+      "ok": true,
+      "detail": "previously_dismissed"
+    },
+    {
+      "label": "Policy 'off' suppresses all",
+      "ok": true,
+      "detail": "policy_off"
+    },
+    {
+      "label": "Quota exceeded suppresses",
+      "ok": true,
+      "detail": "room_quota_exceeded"
+    }
+  ],
+  "status": "pass"
+}

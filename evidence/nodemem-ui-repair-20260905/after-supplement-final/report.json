@@ -1,0 +1,236 @@
+{
+  "sourceHashes": {
+    "demo/graph-rail/index.html": "b7d822ff586fe116ee74ed20e74131c35ca48f13745ce589faf8b553b3857892",
+    "demo/graph-rail/main.js": "a0e9f743b03d6cbd1263909f9dede4a26b65a7e1c4cf34386e94492d828c1e41",
+    "vendor/nodegraph-live/NodeGraph.js": "ab295d13e3fa254122ba9f4ad65a67bd2dc167dd3b544ac682f8e3d873dde86b",
+    "package-lock.json": "97319336b1e5e425074b0630e065acc57b66d53898a7fcb6c150ed908db7df3a"
+  },
+  "startedAt": "2026-09-05T01:00:33.778Z",
+  "finishedAt": "2026-09-05T01:00:39.301Z",
+  "browser": "151.0.7922.34",
+  "route": "/demo/graph-rail/index.html",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "reducedMotion": {
+    "media": true,
+    "nodes": 3,
+    "edges": 0,
+    "settledScreenshotsIdentical": false
+  },
+  "dependencies": [
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200,
+      "bytes": 369,
+      "sha256": "2ac84654e6a7fce69acad8d2b5c670672554fd204bbc5913342a1d43c492d09d"
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200,
+      "bytes": 158,
+      "sha256": "de8d9b57f1a61f5d12e417f9c5759a226f29ddf50e49b5858a5bec34497361e3"
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200,
+      "bytes": 134,
+      "sha256": "60d030b51442b13e7ebb7fe7f42f64977f7d7879db834edc993683a5c357e569"
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200,
+      "bytes": 330,
+      "sha256": "ec858ba66fa6a3f82fe20325625046755a0aa3bd81b495d8cc760f09ead47940"
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200,
+      "bytes": 186,
+      "sha256": "cc9835d1ac339f884cccb74f340955d40dea5478d6721ebe5b26e30ab68fa2cb"
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200,
+      "bytes": 209,
+      "sha256": "b2ed24e7969f35b4f3640fb8f41326cb736d0fbcefb9db845c7486bc82cab2f4"
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200,
+      "bytes": 288,
+      "sha256": "1bd2f277559ce417f0a43dedf3331de9488ce4b4b9fa68cde85baebce40309cb"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200,
+      "bytes": 600,
+      "sha256": "e0fceddfae41965338e0853ad90313b20f624751f5530c81744e0487877ff918"
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200,
+      "bytes": 12122,
+      "sha256": "4c6150b88c1444aa1fe9331013e3f37eda9836206f629f7f3ae8f3743dd90fa8"
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200,
+      "bytes": 179,
+      "sha256": "fc7f1e5590d848c663879719a4adc08f204c1b1cf09186f6bb60c51296cd3be7"
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200,
+      "bytes": 176,
+      "sha256": "0ff94d4ab9eb3f57f19ea651663c13917c83985461ccd1485409a68d90a0860e"
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200,
+      "bytes": 9997,
+      "sha256": "d19160930c1cb8323b5dc898d3283cee8776b2ff60eb852fca0deb5b469895f7"
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200,
+      "bytes": 1454,
+      "sha256": "699820cc117e07b0a78a9af97770b5ffc2eab7ea59a221adfbd3d0c1252f3435"
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200,
+      "bytes": 154,
+      "sha256": "7c41c54dcb14689edec0e87226b7b8367b20eba46f5155378990dbc71cd2cd8e"
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200,
+      "bytes": 10093,
+      "sha256": "9c33627f3952eb1ecf0b788820125e3989dad5f685869f21f82886fe89df8b6f"
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200,
+      "bytes": 61132,
+      "sha256": "8c408ed4ed662813e09241d32ffa76e6fd6afacb7137cede5788523941393053"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200,
+      "bytes": 961,
+      "sha256": "27ad6d1fc44c811b16187a455de5033a82da4949b4f1e4aa50eaab61ce5487a9"
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200,
+      "bytes": 179,
+      "sha256": "fc7f1e5590d848c663879719a4adc08f204c1b1cf09186f6bb60c51296cd3be7"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200,
+      "bytes": 3779,
+      "sha256": "fca73acd0de586c720214fbfc4287fe7cfac9c1db2418f6e97b3389fbab5c168"
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200,
+      "bytes": 10948,
+      "sha256": "dc177776777bac0898e99acac5ad69d22f8e1547e59a9a2a8697f299bdcbf9d5"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200,
+      "bytes": 2032,
+      "sha256": "6de6a0c9401d7550a54dced76ed3b76695c3728616c40af68e964b4cea1f186c"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200,
+      "bytes": 329,
+      "sha256": "73947a06a3a7de90b2bcbd68dc590f27e2f541c56feaa2f1fa2b0bb74060b78f"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200,
+      "bytes": 5766,
+      "sha256": "0170b5d1da752fd3b00b9a053dac7fe6c919dcae0137a40f0a9a1807b0cd9eb0"
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200,
+      "bytes": 11695,
+      "sha256": "d3bb9b7d3801bce0715bd12f682e74b543bee75a9fcaec1d2ca9c6151f8bfbe3"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200,
+      "bytes": 12609,
+      "sha256": "e3f5cf3b31900dae60caf5349aafb4c041915153ef4759fe55521a535efe6332"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200,
+      "bytes": 1926,
+      "sha256": "54b1c92947029b697d1f8c50ac59d4ca2b2b48c87419484a12e39136931e8966"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200,
+      "bytes": 1187,
+      "sha256": "d4179a66a9540877d351c7e4f316688f5796046610b1bf6da10acac4e6b64e9d"
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200,
+      "bytes": 2938,
+      "sha256": "b7862dbfba8bbbca956f19e4e08280b529e4b27468779775a9093aef8c92dc1d"
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200,
+      "bytes": 178468,
+      "sha256": "27511c3b8ccf21f42b56f044b413e377e1b5725c41697f3cf1f987ba76463428"
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200,
+      "bytes": 5563,
+      "sha256": "5b75f48d6248348dd90e849588aea01a1e1ef16cf22883544d544e6f9bac97a7"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200,
+      "bytes": 53532,
+      "sha256": "9285aca8bde3a39f7dd8caca1edd290cc9cd5f62cd865e36cf892092e4e28214"
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200,
+      "bytes": 27077,
+      "sha256": "1131c052d8eaa061952ae1c923ce87ad36598b788747e8edcd33c8db492e8bc9"
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200,
+      "bytes": 837,
+      "sha256": "af5833f0a7da3508a20f8c3f29a8a63961322184666819de0ba1e8e08c5d8815"
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200,
+      "bytes": 2500,
+      "sha256": "e7315ea9b6896d5d3ccf60052bb0509814f8fb1401196fc214e96617ddfa9bd5"
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200,
+      "bytes": 5502,
+      "sha256": "b1ba1723bf253d62b0aa1c3c0603d0d025010642158b0e746ae1fd6f7500deeb"
+    }
+  ],
+  "dependencySource": "Actual browser response bodies from this supplementary run; not inferred hashes for earlier matrix responses.",
+  "cdnEvidenceValidityMinutes": 60
+}

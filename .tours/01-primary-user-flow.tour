@@ -5,7 +5,7 @@
   "steps": [
     {
       "file": "demo/graph-rail/main.js",
-      "line": 81,
+      "line": 83,
       "symbol": "async function runPipeline",
       "title": "Activity arrives",
       "description": "**The person:** an analyst typing in a shared workspace. **The job:** a company they mentioned should be offered for follow-up — not researched behind their back.\n\nThis loop is the demo's stand-in for a real activity stream: four fixture sentences, one at a time. In a real host, each iteration is one debounced burst of typing.\n\nRun it: `npm run dev`, then open the printed URL."
@@ -54,7 +54,7 @@
     },
     {
       "file": "demo/graph-rail/main.js",
-      "line": 93,
+      "line": 95,
       "symbol": "session.observe([entityRef(e)], undefined",
       "title": "What the user sees first: a dim, uncounted node",
       "description": "The entity is drawn with `undefined` as its count — the rail renders that as \"unknown — not measured\". Noticing something is not evidence about it, and the picture says so."
@@ -68,14 +68,14 @@
     },
     {
       "file": "demo/graph-rail/main.js",
-      "line": 63,
+      "line": 65,
       "symbol": "confirm.addEventListener",
       "title": "The human decides — Confirm",
       "description": "Only this click mutates the graph, and only into one faint `traversal` edge: a recorded hop, still not a measured count."
     },
     {
       "file": "demo/graph-rail/main.js",
-      "line": 68,
+      "line": 70,
       "symbol": "dismiss.addEventListener",
       "title": "The human decides — Dismiss",
       "description": "Records the dismissal and changes the graph not at all. That record is what makes the same company stop coming back — the last gate in tour 2."

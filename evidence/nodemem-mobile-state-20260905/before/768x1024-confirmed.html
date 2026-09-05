@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="en" class="dark"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="NodeMem notices entities in an activity stream and draws nothing until a human confirms. Watch the pipeline and the graph side by side.">
+    <meta name="theme-color" content="#0b0e12">
+    <!-- Every module on this page is fetched from esm.sh; open the socket during head parse. -->
+    <link rel="preconnect" href="https://esm.sh" crossorigin="">
+    <!-- Inline empty icon: without it every load logs a 404 for /favicon.ico. -->
+    <link rel="icon" href="data:,">
+    <title>NodeMem — live graph rail</title>
+    <style>
+      :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+      body { margin: 0; background: #0b0e12; color: #dfe5ea; touch-action: manipulation; }
+      main { width: min(1240px, calc(100% - 32px)); margin: 24px auto; }
+      h1 { font-size: 22px; letter-spacing: -0.02em; margin: 0 0 2px; }
+      p.sub { margin: 0 0 14px; color: #8b949d; line-height: 1.45; font-size: 13px; max-width: 980px; }
+      .sub a { color: #9fc5ff; display: inline-block; padding: 8px 0; }
+      .state:focus-visible, #suggestions:focus-visible { outline: 2px solid #9fc5ff; outline-offset: 3px; border-radius: 4px; }
+      #layout { display: grid; grid-template-columns: 380px 1fr; gap: 14px; align-items: start; }
+      section h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: #7f8992; margin: 0 0 6px; }
+      #log { border: 1px solid #1d242c; border-radius: 10px; background: #0e1319; padding: 10px 12px; font-size: 12.5px; line-height: 1.55; min-height: 120px; max-height: 260px; overflow-y: auto; }
+      /* #55606a was 2.9:1 on #0e1319 (axe color-contrast, serious). #7f8992 is
+         the palette's existing muted token and measures 5.24:1. */
+      #log .k { color: #7f8992; margin-right: 6px; }
+      #suggestions { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+      .suggestion { border: 1px solid #2a323b; border-radius: 10px; background: #131922; padding: 10px 12px; font-size: 12.5px; line-height: 1.45; }
+      .suggestion .why { color: #8b949d; display: block; margin-top: 2px; }
+      .suggestion .row { margin-top: 8px; display: flex; gap: 8px; }
+      .suggestion button { border: 1px solid #2a323b; border-radius: 8px; background: #10151c; color: #c8d2da; padding: 5px 12px; cursor: pointer; font-size: 12px; }
+      .suggestion button:hover { border-color: #4b5865; }
+      .suggestion .state { color: #7f8992; font-size: 12px; margin-top: 8px; }
+      #boot-error { border-color: #5c3033; background: #1a1214; margin-bottom: 14px; max-width: 980px; }
+      /* min-height reserves the box NodeGraph will fill. Without it the stage is
+         0px until sigma mounts and then jumps to 620, and everything after it
+         moves — measured CLS 0.339 on Lighthouse's 412px mobile preset. */
+      #stage { border: 1px solid #1d242c; border-radius: 12px; overflow: hidden; background: #0e1319; min-height: 620px; }
+      /* NodeGraph's "fit" chip ships at 27x18. It sets no inline height, so one
+         rule here lifts it to the 24px minimum hit target. */
+      #stage button { min-height: 24px; }
+      #caption { margin: 10px 2px 0; color: #7f8992; font-size: 12.5px; line-height: 1.5; max-width: 980px; }
+      /* Below 768 the two-column grid pinned the rail at 380px and squeezed the
+         graph — the point of the page — to 114px, pushing 149px off-screen at
+         375. One column, graph first, and thumb-sized controls. */
+      @media (max-width: 767px) {
+        #layout { grid-template-columns: 1fr; }
+        /* Graph above the rail on one column. The rail GROWS as the pipeline
+           runs — a suggestion card appended is a card's worth of push — so
+           anything under it moves. Measured at 412: rail first CLS 0.303 (three
+           shifts, all the graph column); graph first, with the stage height
+           reserved above, 0.0xx. The stage is fixed-height, so it pushes nothing. */
+        #layout > div:first-child { order: 2; }
+        #log { max-height: 180px; }
+        .suggestion button, #stage button { min-height: 44px; padding: 5px 16px; }
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@19.2.0",
+          "react/jsx-runtime": "https://esm.sh/react@19.2.0/jsx-runtime",
+          "react-dom/client": "https://esm.sh/react-dom@19.2.0/client",
+          "graphology": "https://esm.sh/graphology@0.26.0",
+          "graphology-layout-forceatlas2": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+          "graphology-layout-forceatlas2/worker.js": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+          "sigma": "https://esm.sh/sigma@3.0.3",
+          "@sigma/node-border": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>NodeMem — live graph rail</h1>
+      <p class="sub">
+        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not
+        re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act
+        explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.
+        <br><a href="#suggestions">Review suggestions</a>
+      </p>
+      <div class="suggestion" id="boot-error" data-testid="boot-error" role="alert" hidden="">
+        <strong>The graph rail could not start.</strong>
+        <span class="why" id="boot-reason"></span>
+        <span class="why">
+          This page loads React, graphology and sigma from <code>esm.sh</code> at run time. When
+          that CDN is blocked or unreachable, the module below never executes, so no pipeline log,
+          no suggestions and no graph can appear — whatever the caption says.
+        </span>
+        <div class="row">
+          <button type="button" id="boot-retry" data-testid="boot-retry">Retry</button>
+        </div>
+        <span class="why">
+          Still blocked? The same pipeline — same classifier, same fixtures — runs in the terminal
+          with no CDN and no install: <code>node demo/runNodeMemDemo.mjs</code>
+        </span>
+      </div>
+      <div id="layout">
+        <div>
+          <section>
+            <h2>Activity stream → pipeline</h2>
+            <!-- Rows append asynchronously as the pipeline runs; without a live
+                 region a screen-reader user hears none of it. -->
+            <div id="log" role="log" aria-live="polite" aria-relevant="additions">
+              
+            <div><span class="k">noticed</span>CardioNova (company) — unknown count, present and dim; noticing is never evidence</div><div><span class="k">suggested</span>CardioNova ↔ funding — waiting for a human; no edge drawn</div><div><span class="k">noticed</span>Glia Therapeutics (person) — unknown count, present and dim; noticing is never evidence</div><div><span class="k">suggested</span>Glia Therapeutics ↔ funding — waiting for a human; no edge drawn</div><div><span class="k">noticed</span>Meridian Capital (company) — unknown count, present and dim; noticing is never evidence</div><div><span class="k">suggested</span>Meridian Capital ↔ product_news — waiting for a human; no edge drawn</div><div><span class="k">ignored</span>event 4: "lunch tomorrow, nothing noteworthy — just personal errands.…" — below the noteworthy bar</div><div><span class="k">confirmed</span>CardioNova ↔ funding — traversal edge drawn (a confirmed hop, still not a measured count)</div></div>
+          </section>
+          <section style="margin-top:14px">
+            <h2>Suggestions (no edge until you confirm)</h2>
+            <div id="suggestions" tabindex="-1" role="group" aria-label="Suggestions"><div class="suggestion resolved" data-testid="suggestion"><strong>CardioNova ↔ funding</strong><span class="why">noticed together in one event (start_research_job, score 0.90) — a suggestion, not an edge</span><div class="state" tabindex="-1">confirmed — drawn as faint traversal history</div></div><div class="suggestion" data-testid="suggestion"><strong>Glia Therapeutics ↔ funding</strong><span class="why">noticed together in one event (start_research_job, score 1.00) — a suggestion, not an edge</span><div class="row"><button data-testid="confirm-suggestion">Confirm</button><button data-testid="dismiss-suggestion">Dismiss</button></div></div><div class="suggestion" data-testid="suggestion"><strong>Meridian Capital ↔ product_news</strong><span class="why">noticed together in one event (start_research_job, score 0.72) — a suggestion, not an edge</span><div class="row"><button data-testid="confirm-suggestion">Confirm</button><button data-testid="dismiss-suggestion">Dismiss</button></div></div></div>
+          </section>
+        </div>
+        <div>
+          <!-- sigma paints into <canvas>, which carries no text, so the surface
+               needs a name. NOT role="img": NodeGraph renders a "fit" button and
+               type filters inside this box, and img makes its children
+               presentational — axe flagged exactly that (nested-interactive,
+               serious). role="figure" names the graphic and keeps the controls
+               reachable. The name points at the activity stream, which narrates
+               the same events as text. -->
+          <div id="stage" role="figure" aria-label="Graph of entities NodeMem noticed. Every node is dim and uncounted; an edge appears only when a person confirms a suggestion. The activity stream to the left narrates the same events as text.">
+            <div id="root"><section data-testid="nodegraph" style="border: 1px solid rgb(42, 46, 51); border-radius: 8px; background: rgb(20, 22, 25); color: rgb(226, 230, 233); padding: 16px; font-family: ui-sans-serif, system-ui, sans-serif;"><header style="margin-bottom: 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;"><h3 style="margin: 0px; font-size: 14px; font-weight: 600;">Relationship graph</h3><p style="margin: 0px; font-size: 12px; color: rgb(154, 164, 173);">3 entities · 0 of 0 relationships shown</p></header><div data-testid="edge-type-filters" style="margin-bottom: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px;"><button type="button" data-testid="nodegraph-fit" style="border: 1px solid rgb(42, 46, 51); border-radius: 6px; background: transparent; color: rgb(154, 164, 173); padding: 2px 8px; font-size: 11px; cursor: pointer;">fit</button></div><div style="position: relative; border-radius: 6px; border: 1px solid rgb(42, 46, 51); height: 348px; width: 100%; background-image: radial-gradient(rgba(226, 230, 233, 0.07) 1px, transparent 1px); background-size: 22px 22px;"><div data-testid="nodegraph-canvas" style="position: absolute; inset: 0px;"><canvas class="sigma-edges" width="306px" height="348px" style="position: absolute; width: 306px; height: 348px;"></canvas><canvas class="sigma-edgeLabels" width="306px" height="348px" style="position: absolute; width: 306px; height: 348px;"></canvas><canvas class="sigma-nodes" width="306px" height="348px" style="position: absolute; width: 306px; height: 348px;"></canvas><canvas class="sigma-labels" width="306px" height="348px" style="position: absolute; width: 306px; height: 348px;"></canvas><canvas class="sigma-hovers" width="306px" height="348px" style="position: absolute; width: 306px; height: 348px;"></canvas><canvas class="sigma-hoverNodes" width="306px" height="348px" style="position: absolute; width: 306px; height: 348px;"></canvas><canvas class="sigma-mouse" width="306px" height="348px" style="position: absolute; touch-action: none; user-select: none; width: 306px; height: 348px;"></canvas></div><canvas data-testid="cinematic-layer" width="306" style="pointer-events: none; position: absolute; inset: 0px; z-index: 10; height: 100%; width: 100%;" height="326"></canvas></div></section></div>
+          </div>
+          <p id="caption">
+            Every entity NodeMem notices lands with no count — the rail says
+            "unknown — not measured", present and dim, because noticing is never evidence.
+            A suggestion draws nothing; only a human clicking Confirm draws an edge, and even
+            then it is faint traversal history (a confirmed hop, still not a measured count).
+            <code>assertEdge</code> is never called: NodeMem has no versioned curated source,
+            so nothing here is entitled to an assertion badge.
+          </p>
+        </div>
+      </div>
+    </main>
+    <script type="module" id="rail-module" src="./main.js"></script>
+    <script>
+      // Everything a user sees on this page is rendered by that module, and the
+      // module's imports resolve through the importmap to esm.sh. If any of those
+      // fetches fails the module body never executes — so the code that reports
+      // the failure cannot live inside it. It lives here, in the one script that
+      // always runs. The watchdog covers the silent variants too: a hang, an
+      // importmap miss, or a throw during evaluation all leave __graphRail unset.
+      (function () {
+        var shown = false;
+        function fail(reason) {
+          if (shown || window.__graphRail) return;
+          shown = true;
+          document.getElementById("boot-reason").textContent = reason;
+          document.getElementById("boot-error").hidden = false;
+          document.getElementById("stage").hidden = true;
+          document.getElementById("caption").hidden = true;
+          var status = document.getElementById("boot-status");
+          if (status) status.remove();
+        }
+        document.getElementById("rail-module").addEventListener("error", function () {
+          fail("A module it needs could not be downloaded.");
+        });
+        setTimeout(function () {
+          fail("It did not finish loading within 8 seconds.");
+        }, 8000);
+        document.getElementById("boot-retry").addEventListener("click", function () {
+          location.reload();
+        });
+      })();
+    </script>
+  
+
+</body></html>

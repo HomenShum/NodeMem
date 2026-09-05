@@ -1,0 +1,71 @@
+{
+  "nodes": [
+    {
+      "id": "[\"company\",\"CardioNova\"]",
+      "label": "CardioNova",
+      "type": "company",
+      "visits": 1
+    },
+    {
+      "id": "[\"person\",\"Glia Therapeutics\"]",
+      "label": "Glia Therapeutics",
+      "type": "person",
+      "visits": 1
+    },
+    {
+      "id": "[\"company\",\"Meridian Capital\"]",
+      "label": "Meridian Capital",
+      "type": "company",
+      "visits": 1
+    }
+  ],
+  "edges": [],
+  "ready": true,
+  "resolved": [],
+  "active": {
+    "tag": "BUTTON",
+    "id": "",
+    "className": "",
+    "text": "Confirm"
+  },
+  "overflow": 0,
+  "labels": {
+    "Glia Therapeutics": {
+      "text": "Glia Therapeutics",
+      "left": 208.6214244365692,
+      "right": 310.6106822490692,
+      "top": 82.33333312443845,
+      "bottom": 95.33333312443845,
+      "width": 562,
+      "height": 326,
+      "frame": 70
+    },
+    "Meridian Capital": {
+      "text": "Meridian Capital",
+      "left": 290.5802882029273,
+      "right": 387.4557764841773,
+      "top": 158.7275194638604,
+      "bottom": 171.7275194638604,
+      "width": 562,
+      "height": 326,
+      "frame": 70
+    },
+    "CardioNova": {
+      "text": "CardioNova",
+      "left": 371.3785755634308,
+      "right": 441.0426380634308,
+      "top": 232.33333354222825,
+      "bottom": 242.33333354222825,
+      "width": 562,
+      "height": 326,
+      "frame": 70
+    }
+  },
+  "labelFrame": 70,
+  "logRows": 7,
+  "scrollY": 126,
+  "width": 1024,
+  "height": 768,
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true
+}

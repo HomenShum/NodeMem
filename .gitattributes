@@ -1,0 +1,3 @@
+# Keep executable source portable and captured evidence byte-exact.
+* text=auto eol=lf
+/evidence/** -text

@@ -1,0 +1,67 @@
+{
+  "nodes": [],
+  "edges": [],
+  "ready": false,
+  "resolved": [],
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "overflow": 0,
+  "labels": {},
+  "labelFrame": 0,
+  "logRows": 0,
+  "scrollY": 0,
+  "width": 1024,
+  "height": 768,
+  "geometry": {
+    "stage": {
+      "x": 410,
+      "y": 142.53125,
+      "right": 1008,
+      "bottom": 642.53125,
+      "width": 598,
+      "height": 500,
+      "pageY": 142.53125
+    },
+    "renderer": null,
+    "canvas": null,
+    "caption": {
+      "x": 412,
+      "y": 652.53125,
+      "right": 1006,
+      "bottom": 747.28125,
+      "width": 594,
+      "height": 94.75,
+      "pageY": 652.53125
+    },
+    "bootStatus": {
+      "x": 427,
+      "y": 159.53125,
+      "right": 991,
+      "bottom": 178.90625,
+      "width": 564,
+      "height": 19.375,
+      "pageY": 159.53125
+    }
+  },
+  "startup": {
+    "count": 1,
+    "text": "loadingfetching React, graphology and sigma from esm.sh…",
+    "hitVisible": true
+  },
+  "cls": {
+    "supported": true,
+    "maxSession": 0,
+    "allShiftValue": 0,
+    "entries": [],
+    "dropped": 0
+  },
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true,
+  "axe": {
+    "violations": []
+  }
+}

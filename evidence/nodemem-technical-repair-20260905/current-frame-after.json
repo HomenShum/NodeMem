@@ -1,0 +1,51 @@
+{
+  "scenario": "Real graph label frame is cleared before the next render",
+  "at": "2026-09-05T01:34:35.485Z",
+  "sourceSha256": "abc829daf1b5ca9bacce975bf24812497b2d86f0046f657a2037b5a32f641758",
+  "browser": "151.0.7922.34",
+  "observation": {
+    "expected": [
+      "CardioNova",
+      "Glia Therapeutics",
+      "Meridian Capital"
+    ],
+    "before": {
+      "Glia Therapeutics": {
+        "text": "Glia Therapeutics",
+        "left": 97.00000163912773,
+        "right": 198.98925945162773,
+        "top": 90.17900443166077,
+        "bottom": 103.17900443166077,
+        "width": 322,
+        "height": 326,
+        "frame": 66
+      },
+      "Meridian Capital": {
+        "text": "Meridian Capital",
+        "left": 170.78859745996448,
+        "right": 267.6640857412145,
+        "top": 158.8108567517874,
+        "bottom": 171.8108567517874,
+        "width": 322,
+        "height": 326,
+        "frame": 66
+      },
+      "CardioNova": {
+        "text": "CardioNova",
+        "left": 242.99999836087227,
+        "right": 312.66406086087227,
+        "top": 224.4876622350059,
+        "bottom": 234.4876622350059,
+        "width": 322,
+        "height": 326,
+        "frame": 66
+      }
+    },
+    "after": {},
+    "frameBefore": 66,
+    "frameAfter": 67,
+    "priorFrameComplete": true,
+    "staleFrameWouldCertify": false
+  },
+  "passed": true
+}

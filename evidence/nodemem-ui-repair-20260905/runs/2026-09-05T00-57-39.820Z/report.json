@@ -1,0 +1,4953 @@
+{
+  "proof": "E6B-NODEMEM-REPAIR-01",
+  "startedAt": "2026-09-05T00:57:39.822Z",
+  "sourceBefore": {
+    "demo/graph-rail/index.html": "b7d822ff586fe116ee74ed20e74131c35ca48f13745ce589faf8b553b3857892",
+    "demo/graph-rail/main.js": "a0e9f743b03d6cbd1263909f9dede4a26b65a7e1c4cf34386e94492d828c1e41",
+    "demo/nodeMemDemoCore.mjs": "98f2c0a05758c995e5b0d91b6310e3948f9673ce95fc1cae3f469d52ba319bac",
+    "vendor/nodegraph-live/NodeGraph.js": "ab295d13e3fa254122ba9f4ad65a67bd2dc167dd3b544ac682f8e3d873dde86b",
+    "vendor/nodegraph-live/graph-model.js": "f599d5677230abb22134ccc6554c19b53161c92170a764d15a3f33b9ff8a3d6b",
+    "vendor/nodegraph-live/session.js": "18fdd651e1f5cb7c2bf791309de0a22010f5dd836630abedec9b9de7f54e1282",
+    "vendor/nodegraph-live/index.js": "3617688e70d3583ed7295795c19597b20e7f300d0ca18004a0d639d2ee1e8969",
+    "vendor/nodegraph-live/react.js": "c548be84f505f0b5cf2f45b9531c35768370a7a32620d4b3e0151a45a39fa6ff",
+    "scripts/serve.mjs": "e5d966fa69c0f66e7532fcbf5edad3e0e21c3d91de507d6db36d9821366a499d",
+    "scripts/verify-ui-repair.mjs": "cf8aed6d242247a6bb9de9a6e2aeeb16b78506a64493d22f38cc9a795deca050",
+    "package.json": "01bca2b5807baa1b4d569d5000d5591aeb00b8ca41045750d8ee7a66cdb5db86",
+    "package-lock.json": "97319336b1e5e425074b0630e065acc57b66d53898a7fcb6c150ed908db7df3a",
+    ".gitattributes": "97d8ad3e1814df1165aeeee5d3d1a19ac547c0da20f76adb7fb0b0e878ac46ff"
+  },
+  "node": "v22.22.2",
+  "playwright": "1.62.1",
+  "axe": "4.12.1",
+  "checks": [
+    {
+      "name": "360x800-loading reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "360x800-loading has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "360x800-noticed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "360x800-noticed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800 noticed all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 213.0000006556511,
+          "right": 282.6640631556511,
+          "width": 292,
+          "y": 220.81823920407842
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 96.99999934434891,
+          "right": 198.9892571568489,
+          "width": 292,
+          "y": 113.84842746258828
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 155.3149619686342,
+          "right": 252.1904502498842,
+          "width": 292,
+          "y": 168.30754176675256
+        }
+      }
+    },
+    {
+      "name": "360x800 passive notice has zero edges and unmeasured nodes",
+      "passed": true
+    },
+    {
+      "name": "360x800 reset lifetime is disclosed",
+      "passed": true
+    },
+    {
+      "name": "360x800 decision link is in initial viewport",
+      "passed": true,
+      "detail": {
+        "x": 16,
+        "y": 150.21875,
+        "width": 111.875,
+        "height": 34.84375
+      }
+    },
+    {
+      "name": "360x800 keyboard decision link focuses suggestions",
+      "passed": true
+    },
+    {
+      "name": "360x800 next Tab reaches Confirm",
+      "passed": true
+    },
+    {
+      "name": "360x800-focus reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "360x800-confirmed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "360x800-confirmed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800 confirm has one traversal, readable status and retained focus",
+      "passed": true
+    },
+    {
+      "name": "360x800 confirmed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800 focus advances to next remaining Confirm",
+      "passed": true
+    },
+    {
+      "name": "360x800-dismissed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "360x800-dismissed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800 dismissal preserves graph and focuses readable outcome",
+      "passed": true
+    },
+    {
+      "name": "360x800 dismissed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800 outcome focus outline clears preceding explanation",
+      "passed": true,
+      "detail": 8
+    },
+    {
+      "name": "360x800-fit reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "360x800-fit has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800 after keyboard Fit all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 199.62418012169198,
+          "right": 269.288242621692,
+          "width": 292,
+          "y": 233.81487849133154
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 96.99999934434891,
+          "right": 198.9892571568489,
+          "width": 292,
+          "y": 122.8517881753351
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 124.6682967304891,
+          "right": 221.5437850117391,
+          "width": 292,
+          "y": 170.59025334011343
+        },
+        "funding": {
+          "text": "funding",
+          "left": 213.0000006556511,
+          "right": 259.4667975306511,
+          "width": 292,
+          "y": 215.83810936564953
+        }
+      }
+    },
+    {
+      "name": "360x800-error reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "360x800-error has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "360x800 CDN failure is explicit without false graph",
+      "passed": true
+    },
+    {
+      "name": "360x800-retry reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "360x800-retry has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800 keyboard retry recovers fresh passive fixture",
+      "passed": true
+    },
+    {
+      "name": "390x844-loading reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "390x844-loading has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "390x844-noticed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "390x844-noticed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844 noticed all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 242.99999836087227,
+          "right": 312.66406086087227,
+          "width": 322,
+          "y": 234.62309763622346
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 97.00000163912773,
+          "right": 198.98925945162773,
+          "width": 322,
+          "y": 100.04356903044324
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 170.51332685719998,
+          "right": 267.38881513845,
+          "width": 322,
+          "y": 168.541282572965
+        }
+      }
+    },
+    {
+      "name": "390x844 passive notice has zero edges and unmeasured nodes",
+      "passed": true
+    },
+    {
+      "name": "390x844 reset lifetime is disclosed",
+      "passed": true
+    },
+    {
+      "name": "390x844 decision link is in initial viewport",
+      "passed": true,
+      "detail": {
+        "x": 16,
+        "y": 150.21875,
+        "width": 111.875,
+        "height": 34.84375
+      }
+    },
+    {
+      "name": "390x844 keyboard decision link focuses suggestions",
+      "passed": true
+    },
+    {
+      "name": "390x844 next Tab reaches Confirm",
+      "passed": true
+    },
+    {
+      "name": "390x844-focus reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "390x844-confirmed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "390x844-confirmed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844 confirm has one traversal, readable status and retained focus",
+      "passed": true
+    },
+    {
+      "name": "390x844 confirmed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844 focus advances to next remaining Confirm",
+      "passed": true
+    },
+    {
+      "name": "390x844-dismissed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "390x844-dismissed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844 dismissal preserves graph and focuses readable outcome",
+      "passed": true
+    },
+    {
+      "name": "390x844 dismissed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844 outcome focus outline clears preceding explanation",
+      "passed": true,
+      "detail": 8
+    },
+    {
+      "name": "390x844-fit reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "390x844-fit has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844 after keyboard Fit all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 226.16533006484227,
+          "right": 295.82939256484224,
+          "width": 322,
+          "y": 248.0204777534494
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 97.00000163912773,
+          "right": 198.98925945162773,
+          "width": 322,
+          "y": 108.64618891321729
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 131.8880642719877,
+          "right": 228.7635525532377,
+          "width": 322,
+          "y": 168.59156394064544
+        },
+        "funding": {
+          "text": "funding",
+          "left": 242.99999836087227,
+          "right": 289.46679523587227,
+          "width": 322,
+          "y": 225.43615981973784
+        }
+      }
+    },
+    {
+      "name": "390x844-error reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "390x844-error has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "390x844 CDN failure is explicit without false graph",
+      "passed": true
+    },
+    {
+      "name": "390x844-retry reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "390x844-retry has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844 keyboard retry recovers fresh passive fixture",
+      "passed": true
+    },
+    {
+      "name": "768x1024-loading reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "768x1024-loading has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "768x1024-noticed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "768x1024-noticed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "768x1024 noticed all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 227.00000068545341,
+          "right": 296.6640631854534,
+          "width": 306,
+          "y": 227.2631250577966
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 96.99999931454659,
+          "right": 198.98925712704659,
+          "width": 306,
+          "y": 107.40354160887007
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 162.40225268844668,
+          "right": 259.27774096969665,
+          "width": 306,
+          "y": 168.41198646791327
+        }
+      }
+    },
+    {
+      "name": "768x1024 passive notice has zero edges and unmeasured nodes",
+      "passed": true
+    },
+    {
+      "name": "768x1024 reset lifetime is disclosed",
+      "passed": true
+    },
+    {
+      "name": "768x1024 decision link is in initial viewport",
+      "passed": true,
+      "detail": {
+        "x": 16,
+        "y": 112.53125,
+        "width": 111.875,
+        "height": 34.84375
+      }
+    },
+    {
+      "name": "768x1024 keyboard decision link focuses suggestions",
+      "passed": true
+    },
+    {
+      "name": "768x1024 next Tab reaches Confirm",
+      "passed": true
+    },
+    {
+      "name": "768x1024-focus reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "768x1024-confirmed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "768x1024-confirmed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024 confirm has one traversal, readable status and retained focus",
+      "passed": true
+    },
+    {
+      "name": "768x1024 confirmed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024 focus advances to next remaining Confirm",
+      "passed": true
+    },
+    {
+      "name": "768x1024-dismissed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "768x1024-dismissed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024 dismissal preserves graph and focuses readable outcome",
+      "passed": true
+    },
+    {
+      "name": "768x1024 dismissed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024 outcome focus outline clears preceding explanation",
+      "passed": true,
+      "detail": 8
+    },
+    {
+      "name": "768x1024-fit reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "768x1024-fit has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024 after keyboard Fit all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 212.01340724836683,
+          "right": 281.67746974836683,
+          "width": 306,
+          "y": 240.3904126215881
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 96.99999931454659,
+          "right": 198.98925712704659,
+          "width": 306,
+          "y": 116.27625404507859
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 128.18276119708736,
+          "right": 225.05824947833736,
+          "width": 306,
+          "y": 169.58929895475066
+        },
+        "funding": {
+          "text": "funding",
+          "left": 227.00000068545341,
+          "right": 273.4667975604534,
+          "width": 306,
+          "y": 220.2642996547359
+        }
+      }
+    },
+    {
+      "name": "768x1024-error reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "768x1024-error has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "768x1024 CDN failure is explicit without false graph",
+      "passed": true
+    },
+    {
+      "name": "768x1024-retry reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "768x1024-retry has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "768x1024 keyboard retry recovers fresh passive fixture",
+      "passed": true
+    },
+    {
+      "name": "1024x768-loading reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1024x768-loading has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1024x768-noticed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1024x768-noticed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1024x768 noticed all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 371.3830223977566,
+          "right": 441.0470848977566,
+          "width": 562,
+          "y": 242.33333442940094
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 208.61697760224342,
+          "right": 310.6062354147434,
+          "width": 562,
+          "y": 92.33333223726574
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 290.57819296184,
+          "right": 387.45368124309,
+          "width": 562,
+          "y": 168.7483078701401
+        }
+      }
+    },
+    {
+      "name": "1024x768 passive notice has zero edges and unmeasured nodes",
+      "passed": true
+    },
+    {
+      "name": "1024x768 reset lifetime is disclosed",
+      "passed": true
+    },
+    {
+      "name": "1024x768 decision link is in initial viewport",
+      "passed": true,
+      "detail": {
+        "x": 16,
+        "y": 93.6875,
+        "width": 111.875,
+        "height": 34.84375
+      }
+    },
+    {
+      "name": "1024x768 keyboard decision link focuses suggestions",
+      "passed": true
+    },
+    {
+      "name": "1024x768 next Tab reaches Confirm",
+      "passed": true
+    },
+    {
+      "name": "1024x768-focus reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1024x768-confirmed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1024x768-confirmed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1024x768 confirm has one traversal, readable status and retained focus",
+      "passed": true
+    },
+    {
+      "name": "1024x768 confirmed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1024x768 focus advances to next remaining Confirm",
+      "passed": true
+    },
+    {
+      "name": "1024x768-dismissed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1024x768-dismissed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1024x768 dismissal preserves graph and focuses readable outcome",
+      "passed": true
+    },
+    {
+      "name": "1024x768 dismissed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1024x768 outcome focus outline clears preceding explanation",
+      "passed": true,
+      "detail": 8
+    },
+    {
+      "name": "1024x768-fit reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1024x768-fit has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1024x768 after keyboard Fit all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 359.8080673883962,
+          "right": 429.4721298883962,
+          "width": 562,
+          "y": 264.33333464516807
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 199.4309819340706,
+          "right": 301.4202397465706,
+          "width": 562,
+          "y": 92.3333320214986
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 247.23986599282446,
+          "right": 344.11535427407443,
+          "width": 562,
+          "y": 163.28424724302096
+        },
+        "funding": {
+          "text": "funding",
+          "left": 380.5690180659294,
+          "right": 427.0358149409294,
+          "width": 562,
+          "y": 236.22920311763428
+        }
+      }
+    },
+    {
+      "name": "1024x768-error reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1024x768-error has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1024x768 CDN failure is explicit without false graph",
+      "passed": true
+    },
+    {
+      "name": "1024x768-retry reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1024x768-retry has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1024x768 keyboard retry recovers fresh passive fixture",
+      "passed": true
+    },
+    {
+      "name": "1440x960-loading reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1440x960-loading has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1440x960-noticed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1440x960-noticed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1440x960 noticed all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 495.38002932071686,
+          "right": 565.0440918207169,
+          "width": 810,
+          "y": 242.33333483539164
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 332.61997067928314,
+          "right": 434.60922849178314,
+          "width": 810,
+          "y": 92.33333183127505
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 414.5848428240962,
+          "right": 511.4603311053462,
+          "width": 810,
+          "y": 168.7280220742086
+        }
+      }
+    },
+    {
+      "name": "1440x960 passive notice has zero edges and unmeasured nodes",
+      "passed": true
+    },
+    {
+      "name": "1440x960 reset lifetime is disclosed",
+      "passed": true
+    },
+    {
+      "name": "1440x960 decision link is in initial viewport",
+      "passed": true,
+      "detail": {
+        "x": 100,
+        "y": 93.6875,
+        "width": 111.875,
+        "height": 34.84375
+      }
+    },
+    {
+      "name": "1440x960 keyboard decision link focuses suggestions",
+      "passed": true
+    },
+    {
+      "name": "1440x960 next Tab reaches Confirm",
+      "passed": true
+    },
+    {
+      "name": "1440x960-focus reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1440x960-confirmed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1440x960-confirmed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1440x960 confirm has one traversal, readable status and retained focus",
+      "passed": true
+    },
+    {
+      "name": "1440x960 confirmed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1440x960 focus advances to next remaining Confirm",
+      "passed": true
+    },
+    {
+      "name": "1440x960-dismissed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1440x960-dismissed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1440x960 dismissal preserves graph and focuses readable outcome",
+      "passed": true
+    },
+    {
+      "name": "1440x960 dismissed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1440x960 outcome focus outline clears preceding explanation",
+      "passed": true,
+      "detail": 8
+    },
+    {
+      "name": "1440x960-fit reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1440x960-fit has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1440x960 after keyboard Fit all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 483.7838992633185,
+          "right": 553.4479617633185,
+          "width": 810,
+          "y": 264.33333320930836
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 323.3956393003464,
+          "right": 425.3848971128464,
+          "width": 810,
+          "y": 92.33333345735826
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 370.89672677182523,
+          "right": 467.77221505307523,
+          "width": 810,
+          "y": 163.52331755192114
+        },
+        "funding": {
+          "text": "funding",
+          "left": 504.6043606996536,
+          "right": 551.0711575746536,
+          "width": 810,
+          "y": 236.27436611835438
+        }
+      }
+    },
+    {
+      "name": "1440x960-error reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1440x960-error has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1440x960 CDN failure is explicit without false graph",
+      "passed": true
+    },
+    {
+      "name": "1440x960-retry reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1440x960-retry has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1440x960 keyboard retry recovers fresh passive fixture",
+      "passed": true
+    },
+    {
+      "name": "1920x1080-loading reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1920x1080-loading has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1920x1080-noticed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1920x1080-noticed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1920x1080 noticed all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 495.387802362442,
+          "right": 565.051864862442,
+          "width": 810,
+          "y": 242.3333335895463
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 332.612197637558,
+          "right": 434.601455450058,
+          "width": 810,
+          "y": 92.33333307712039
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 414.6060161749902,
+          "right": 511.4815044562402,
+          "width": 810,
+          "y": 168.73426699493177
+        }
+      }
+    },
+    {
+      "name": "1920x1080 passive notice has zero edges and unmeasured nodes",
+      "passed": true
+    },
+    {
+      "name": "1920x1080 reset lifetime is disclosed",
+      "passed": true
+    },
+    {
+      "name": "1920x1080 decision link is in initial viewport",
+      "passed": true,
+      "detail": {
+        "x": 340,
+        "y": 93.6875,
+        "width": 111.875,
+        "height": 34.84375
+      }
+    },
+    {
+      "name": "1920x1080 keyboard decision link focuses suggestions",
+      "passed": true
+    },
+    {
+      "name": "1920x1080 next Tab reaches Confirm",
+      "passed": true
+    },
+    {
+      "name": "1920x1080-focus reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1920x1080-confirmed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1920x1080-confirmed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1920x1080 confirm has one traversal, readable status and retained focus",
+      "passed": true
+    },
+    {
+      "name": "1920x1080 confirmed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1920x1080 focus advances to next remaining Confirm",
+      "passed": true
+    },
+    {
+      "name": "1920x1080-dismissed reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1920x1080-dismissed has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1920x1080 dismissal preserves graph and focuses readable outcome",
+      "passed": true
+    },
+    {
+      "name": "1920x1080 dismissed contrast passes",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1920x1080 outcome focus outline clears preceding explanation",
+      "passed": true,
+      "detail": 8
+    },
+    {
+      "name": "1920x1080-fit reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1920x1080-fit has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1920x1080 after keyboard Fit all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 484.16080958368366,
+          "right": 553.8248720836837,
+          "width": 810,
+          "y": 264.3333323399269
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 323.0437341481447,
+          "right": 425.0329919606447,
+          "width": 810,
+          "y": 92.33333432673975
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 372.55571500200165,
+          "right": 469.43120328325165,
+          "width": 810,
+          "y": 162.3613329514638
+        },
+        "funding": {
+          "text": "funding",
+          "left": 504.9562658518553,
+          "right": 551.4230627268553,
+          "width": 810,
+          "y": 236.05752140236433
+        }
+      }
+    },
+    {
+      "name": "1920x1080-error reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1920x1080-error has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1920x1080 CDN failure is explicit without false graph",
+      "passed": true
+    },
+    {
+      "name": "1920x1080-retry reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "1920x1080-retry has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "1920x1080 keyboard retry recovers fresh passive fixture",
+      "passed": true
+    },
+    {
+      "name": "reflow-320 reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "reflow-320 has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "320px reflow all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 173.00000149011612,
+          "right": 242.66406399011612,
+          "width": 252,
+          "y": 202.36172184825364
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 96.99999850988388,
+          "right": 198.98925632238388,
+          "width": 252,
+          "y": 132.30494481841302
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 135.2652451169871,
+          "right": 232.1407333982371,
+          "width": 252,
+          "y": 167.9610201923084
+        }
+      }
+    },
+    {
+      "name": "reflow-320-fit reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "reflow-320-fit has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "320px keyboard Fit all fixture labels drawn within canvas",
+      "passed": true,
+      "detail": {
+        "CardioNova": {
+          "text": "CardioNova",
+          "left": 173.00000149011612,
+          "right": 242.66406399011612,
+          "width": 252,
+          "y": 202.36172184825364
+        },
+        "Glia Therapeutics": {
+          "text": "Glia Therapeutics",
+          "left": 96.99999850988388,
+          "right": 198.98925632238388,
+          "width": 252,
+          "y": 132.30494481841302
+        },
+        "Meridian Capital": {
+          "text": "Meridian Capital",
+          "left": 135.2652451169871,
+          "right": 232.1407333982371,
+          "width": 252,
+          "y": 167.9610201923084
+        }
+      }
+    },
+    {
+      "name": "200% DOM text enlargement retains decision route",
+      "passed": true
+    },
+    {
+      "name": "text-200pct-390 reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "text-200pct-390 has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "rapid double-confirm creates one edge",
+      "passed": true
+    },
+    {
+      "name": "all-resolved reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "all-resolved has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "60-second resolved state does not accumulate",
+      "passed": true,
+      "detail": [
+        {
+          "elapsed": 0,
+          "nodes": 4,
+          "edges": 1,
+          "rows": 10,
+          "resolved": 3
+        },
+        {
+          "elapsed": 15,
+          "nodes": 4,
+          "edges": 1,
+          "rows": 10,
+          "resolved": 3
+        },
+        {
+          "elapsed": 30,
+          "nodes": 4,
+          "edges": 1,
+          "rows": 10,
+          "resolved": 3
+        },
+        {
+          "elapsed": 45,
+          "nodes": 4,
+          "edges": 1,
+          "rows": 10,
+          "resolved": 3
+        },
+        {
+          "elapsed": 60,
+          "nodes": 4,
+          "edges": 1,
+          "rows": 10,
+          "resolved": 3
+        }
+      ]
+    },
+    {
+      "name": "reload-reset reflows without horizontal document overflow",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "reload-reset has no new axe violations beyond the existing log-focus disagreement",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "reload resets exactly as disclosed",
+      "passed": true
+    },
+    {
+      "name": "existing Chromium log Tab/Home/End behavior remains working",
+      "passed": true,
+      "detail": {
+        "logReached": true,
+        "end": 11,
+        "home": 0,
+        "note": "Manual behavior, not a claim that the existing axe portability flag is fixed."
+      }
+    },
+    {
+      "name": "source unchanged throughout proof",
+      "passed": true
+    }
+  ],
+  "cells": [
+    {
+      "name": "360x800-loading",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "360x800-noticed",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800-focus",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "360x800-confirmed",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800-dismissed",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800-fit",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "360x800-error",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "360x800-retry",
+      "width": 360,
+      "height": 800,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844-loading",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "390x844-noticed",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844-focus",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "390x844-confirmed",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844-dismissed",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844-fit",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "390x844-error",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "390x844-retry",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024-loading",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "768x1024-noticed",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "768x1024-focus",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "768x1024-confirmed",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024-dismissed",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024-fit",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "768x1024-error",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "768x1024-retry",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1024x768-loading",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1024x768-noticed",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1024x768-focus",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1024x768-confirmed",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1024x768-dismissed",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1024x768-fit",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1024x768-error",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1024x768-retry",
+      "width": 1024,
+      "height": 768,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1440x960-loading",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1440x960-noticed",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1440x960-focus",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1440x960-confirmed",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1440x960-dismissed",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1440x960-fit",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1440x960-error",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1440x960-retry",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1920x1080-loading",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1920x1080-noticed",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1920x1080-focus",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1920x1080-confirmed",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1920x1080-dismissed",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1920x1080-fit",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1920x1080-error",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "1920x1080-retry",
+      "width": 1920,
+      "height": 1080,
+      "overflow": 0,
+      "violations": []
+    },
+    {
+      "name": "reflow-320",
+      "width": 320,
+      "height": 800,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "reflow-320-fit",
+      "width": 320,
+      "height": 800,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "text-200pct-390",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "all-resolved",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": [
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#log"
+              ],
+              "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "reload-reset",
+      "width": 1440,
+      "height": 960,
+      "overflow": 0,
+      "violations": []
+    }
+  ],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x6f7c001be200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x6f7c001bdc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x6f7c001be800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x6f7c001be200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    }
+  ],
+  "network": [
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/react.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/client",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/react-dom.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@%5E0.27.0?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react-dom@19.2.0/es2022/client.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/scheduler@0.27.0/es2022/scheduler.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/events.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology@0.26.0/es2022/graphology.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/node/async_hooks.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/jsx-runtime",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0?deps=sigma@3.0.3",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/worker.js",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/react@19.2.0/es2022/jsx-runtime.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.5.2/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/colors-beb06eb2.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/data-11df7124.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/index-fad77a13.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/inherits-d1a1e29b.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/dist/normalization-be445518.esm.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/settings.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/types.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/sigma.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/rendering.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/sigma@3.0.3/es2022/utils.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/@sigma/node-border@3.0.0/X-ZHNpZ21hQDMuMC4z/es2022/node-border.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/getters?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@%5E2.1.0/is-graph?target=es2022",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/graphology-layout-forceatlas2.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-layout-forceatlas2@0.10.1/es2022/worker.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/is-graph.mjs",
+      "status": 200
+    },
+    {
+      "url": "https://esm.sh/graphology-utils@2.5.2/es2022/getters.mjs",
+      "status": 200
+    }
+  ],
+  "sustained": [
+    {
+      "elapsed": 0,
+      "nodes": 4,
+      "edges": 1,
+      "rows": 10,
+      "resolved": 3
+    },
+    {
+      "elapsed": 15,
+      "nodes": 4,
+      "edges": 1,
+      "rows": 10,
+      "resolved": 3
+    },
+    {
+      "elapsed": 30,
+      "nodes": 4,
+      "edges": 1,
+      "rows": 10,
+      "resolved": 3
+    },
+    {
+      "elapsed": 45,
+      "nodes": 4,
+      "edges": 1,
+      "rows": 10,
+      "resolved": 3
+    },
+    {
+      "elapsed": 60,
+      "nodes": 4,
+      "edges": 1,
+      "rows": 10,
+      "resolved": 3
+    }
+  ],
+  "fullProductReadiness": "OPEN",
+  "browser": "151.0.7922.34",
+  "route": "/demo/graph-rail/index.html",
+  "sourceAfter": {
+    "demo/graph-rail/index.html": "b7d822ff586fe116ee74ed20e74131c35ca48f13745ce589faf8b553b3857892",
+    "demo/graph-rail/main.js": "a0e9f743b03d6cbd1263909f9dede4a26b65a7e1c4cf34386e94492d828c1e41",
+    "demo/nodeMemDemoCore.mjs": "98f2c0a05758c995e5b0d91b6310e3948f9673ce95fc1cae3f469d52ba319bac",
+    "vendor/nodegraph-live/NodeGraph.js": "ab295d13e3fa254122ba9f4ad65a67bd2dc167dd3b544ac682f8e3d873dde86b",
+    "vendor/nodegraph-live/graph-model.js": "f599d5677230abb22134ccc6554c19b53161c92170a764d15a3f33b9ff8a3d6b",
+    "vendor/nodegraph-live/session.js": "18fdd651e1f5cb7c2bf791309de0a22010f5dd836630abedec9b9de7f54e1282",
+    "vendor/nodegraph-live/index.js": "3617688e70d3583ed7295795c19597b20e7f300d0ca18004a0d639d2ee1e8969",
+    "vendor/nodegraph-live/react.js": "c548be84f505f0b5cf2f45b9531c35768370a7a32620d4b3e0151a45a39fa6ff",
+    "scripts/serve.mjs": "e5d966fa69c0f66e7532fcbf5edad3e0e21c3d91de507d6db36d9821366a499d",
+    "scripts/verify-ui-repair.mjs": "cf8aed6d242247a6bb9de9a6e2aeeb16b78506a64493d22f38cc9a795deca050",
+    "package.json": "01bca2b5807baa1b4d569d5000d5591aeb00b8ca41045750d8ee7a66cdb5db86",
+    "package-lock.json": "97319336b1e5e425074b0630e065acc57b66d53898a7fcb6c150ed908db7df3a",
+    ".gitattributes": "97d8ad3e1814df1165aeeee5d3d1a19ac547c0da20f76adb7fb0b0e878ac46ff"
+  },
+  "finishedAt": "2026-09-05T00:59:40.209Z",
+  "passed": true,
+  "limitations": [
+    "Fixed fixture only; no provider, persistent user data or production claim.",
+    "Viewport and DOM text enlargement are not physical devices or actual browser zoom.",
+    "Whole-dimension and human usability grades remain open.",
+    "The existing axe log-focus flag is reported separately from demonstrated Chromium keyboard access."
+  ]
+}

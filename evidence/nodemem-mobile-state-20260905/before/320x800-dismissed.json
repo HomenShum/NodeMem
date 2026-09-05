@@ -1,0 +1,99 @@
+{
+  "width": 320,
+  "height": 800,
+  "scrollY": 946,
+  "stage": {
+    "x": 16,
+    "y": -728.09375,
+    "width": 288,
+    "height": 622,
+    "bottom": -106.09375,
+    "pageY": 217.90625
+  },
+  "renderer": {
+    "x": 17,
+    "y": -727.09375,
+    "width": 286,
+    "height": 483,
+    "bottom": -244.09375,
+    "pageY": 218.90625
+  },
+  "canvas": {
+    "x": 35,
+    "y": -610.09375,
+    "width": 252,
+    "height": 348,
+    "bottom": -262.09375,
+    "pageY": 335.90625
+  },
+  "caption": {
+    "x": 18,
+    "y": -96.09375,
+    "width": 284,
+    "height": 170.75,
+    "bottom": 74.65625,
+    "pageY": 849.90625
+  },
+  "status": null,
+  "log": {
+    "x": 16,
+    "y": 111.65625,
+    "width": 288,
+    "height": 202,
+    "bottom": 313.65625,
+    "pageY": 1057.65625
+  },
+  "suggestions": {
+    "x": 16,
+    "y": 367.65625,
+    "width": 288,
+    "height": 408.28125,
+    "bottom": 775.9375,
+    "pageY": 1313.65625
+  },
+  "ready": true,
+  "active": {
+    "tag": "DIV",
+    "id": "",
+    "className": "state",
+    "text": "dismissed — nothing changed"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "[\"company\",\"CardioNova\"]",
+        "label": "CardioNova",
+        "type": "company",
+        "visits": 2
+      },
+      {
+        "id": "[\"person\",\"Glia Therapeutics\"]",
+        "label": "Glia Therapeutics",
+        "type": "person",
+        "visits": 1
+      },
+      {
+        "id": "[\"company\",\"Meridian Capital\"]",
+        "label": "Meridian Capital",
+        "type": "company",
+        "visits": 1
+      },
+      {
+        "id": "[\"facet\",\"funding\"]",
+        "label": "funding",
+        "type": "facet",
+        "visits": 1
+      }
+    ],
+    "edges": [
+      {
+        "source": "[\"company\",\"CardioNova\"]",
+        "target": "[\"facet\",\"funding\"]",
+        "weight": 1,
+        "type": "traversal"
+      }
+    ],
+    "turns": 4
+  },
+  "overflow": 0
+}

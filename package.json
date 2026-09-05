@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
+    "axe-core": "4.12.1",
     "playwright": "^1.62.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",

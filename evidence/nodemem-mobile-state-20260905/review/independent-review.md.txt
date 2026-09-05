@@ -1,0 +1,61 @@
+# VERIFIED WITH CAVEATS — NODEMEM-MOBILE-STATE-02
+
+**Builder. Re your request:** “now execute,” including visual UI, responsiveness, interaction standards and grades for each repository — the NodeMem startup/space repair has passed fresh independent review of the frozen staged candidate. A developer opening this fixed demo on a phone now sees honest loading feedback immediately. The graph fills its stable reservation, and the existing keyboard route still reaches explicit confirmation, dismissal and recovery.
+
+The reviewed candidate is **tree `ecb0e2f65799ad2b55cd07609122c8fe3a85e17b`**, based on `10ed013a9f2dd4729a0959bb6077a7bb8bb716c5`, with full index digest `eb8984ca58390808df9e9b97d7310eef1bdfb84dd433c0db78046370d0bff72d`. The exact 479 staged paths contain six authored files and 473 portable proof files. The [structured verdict](E6c_NODEMEM_MOBILE_JUDGE.json) binds the sources, independent results and artifact hashes. No source, index or ref was edited in the original repository; no commit, push or deployment was performed by this judge.
+
+| Claim | Independently observed |
+| --- | --- |
+| Candidate and custody are exact | All 479 staged working files equal their raw Git blobs; all 13 render bindings match; 472 manifest artifacts plus the separately hashed portable receipt account for all 473 new proof files. |
+| Existing behavior was preserved | The original unchanged harness passes **199 checks / 53 captures** against both the preserved before page and repaired page in a fresh isolated consumer. |
+| Final browser proof reproduces | **350/350 checks, 61 state captures**, seven widths, 14 clean startup comparisons; source hashes unchanged throughout. |
+| The named startup defect is repaired | A separate before/after knockout reproduces the old hidden status at 320/390. The new single status is inside the initial viewport, with `role=status`; successful imports and failed imports remove it. |
+| Geometry and decisions remain correct | **103 independent assertions / 27 captures** verify the 500px outer stage, 498px renderer, filled canvas, exact 122px caption translation, natural keyboard Confirm/Dismiss/Fit/Retry and unchanged desktop neighbors. |
+| Label evidence is current | The recorder is byte-identical to the prior reviewed version. Clearing the actual label canvas empties the observation; a real keyboard Fit draws fresh in-bounds labels. No accumulated historical labels certify a cleared frame. |
+| Normal developer commands work | Fresh `npm ci` succeeds; `npm run check` passes secret scan, typecheck, **84 tests in 8 files and 13 pipeline gates**; native `npm run capture` passes **12 checks**. |
+| Existing work remains preserved | All **678 unchanged original working files**, all seven refs, the preserved original index and bundle, all five restored generated outputs, and all **838 intermediate files / 247,149,284 bytes** match custody. |
+| Citation repair is narrow | Exactly eight line references changed in three documents. The cited before/after snippets are identical, hashes match, and no prose, scope or promotion claim changed. |
+
+## Boundary proof
+
+The [genuine pre-edit boundary](<D:/VSCode Projects/cafecorner_nodebench/nodebench_ai4/NodeMem/evidence/nodemem-mobile-state-20260905/before/change-boundary.png>) and its state contract name A, startup/stage, and B, caption/decision flow. Their recorded source matches the preserved base; the capture script draws actual 3px DOM overlays. The parent viewed that boundary before implementation. I also inspected it and captured the [matching annotated after](E6c-nodemem-mobile-independent-judge/after-change-boundary.png) at the same 390×844 route, theme and fixed inputs.
+
+The only runtime delta is the declared owned HTML: move the existing loading element into the stage, reserve 500px, fill it with the existing renderer, and make the figure description direction-neutral. The memory library, vendor graph code, fixtures, import map, package/lock and decision authority are unchanged. Actual rendered pixels were inspected at 320, 360, 390, 768, 1024, 1440 and 1920 widths, plus focused outcomes, failure, text enlargement and the annotated boundaries.
+
+The independent comparison checks exact header DOM and document coordinates, every populated activity-log child and attribute, caption content, suggestion DOM and desktop log/decision geometry. Mobile focus naturally scrolls 122px less after the shorter stage; this is the declared geometry change, not header drift.
+
+## Cause, fix and knockout
+
+The old page put one truthful loading message in the activity column below a 622px reservation. The renderer used less height, so the initial mobile viewport showed an unexplained blank area. The old harness checked status presence without requiring first-viewport visibility. The repair moves that same status into the stage and connects the existing renderer to its reserved height; the new checks observe visibility, hit testing, state transitions and real geometry.
+
+The independent baseline replay proves the prior failure at 320 and 390 without modifying the source. The repaired page then passes that exact visibility requirement. Natural keyboard actions preserve one explicit traversal on confirmation, no graph mutation on dismissal, readable focused outcomes, error recovery and reload semantics. The existing burst and 60-second sustained checks also reproduce.
+
+Clean startup CLS is identical before and after at every tested width: **320/360/390 = 0; 768 = 0.0266512235; 1024 = 0.0241538510; 1440 = 0.0107600962; 1920 = 0.0053800481**. Every clean entry has `hadRecentInput=false`; measurements occur before screenshots, axe injection, resizing or input. The earlier screenshot-heavy run is retained and does not establish this comparison. This is a local lab result, not field performance or a Lighthouse score.
+
+## Retained judge failures and adjudication
+
+The first independent probe had eight failures caused by its own comparison assumptions: viewport-relative header positions after a legitimate shorter focus scroll, and indentation whitespace left by the moved loading child. Raw failed [results](E6c-nodemem-mobile-independent-judge/adversarial/report.json), pixels and the initial script remain. No application code changed. The final probe compares document coordinates, exact populated child nodes/attributes and unaffected content; the same real scenarios pass **103/103**.
+
+An extra broad initial assertion also compared every working file to Git's raw representation. Fifty-nine untouched historical files retain their original CRLF bytes while Git stores LF. This does not contradict the narrower candidate claim: all 479 staged working files and 13 rendering inputs are exact, and all 678 unchanged old working hashes match custody. The [differences](E6c-nodemem-mobile-independent-judge/working-crlf-differences.json) and initial result remain. A redundant read-only comparison was stopped after the replacement complete custody audit passed; no preservation result depends on it.
+
+All-path Git whitespace validation still exits 2 with **159 raw captured-DOM findings**; authored paths pass. Captured evidence was not reformatted or discarded. The original worker citation failure and intermediate runs are also intact.
+
+The supplemental inventory preserves all **1,113 independent judge files**. Actual result reports, command logs, binding receipts and reviewed screenshots have hashes; other newly captured raw files carry sizes and explicitly null hashes. Optional bulk hashing stalled on raw HTML reads and was stopped. This bookkeeping limit does not affect the complete, separately verified **473 candidate proof artifact** bindings or the reproduced tests and browser observations.
+
+## Scoped grading
+
+| Criterion | Prior observed rating | This observed slice | Remaining scope |
+| --- | ---: | ---: | --- |
+| V2, spacing and grid | 3 | **4** | Broader hierarchy and information density remain separate. |
+| V8, state polish | 3 | **4** | Fixed loading, populated, outcome, error and retry cells only. |
+| R3, canvas and panel adaptation | 3 | **4** | Fixed fixture, seven emulated widths and DOM enlargement. |
+| I2, honest feedback and status | 3 | **4** | Initial imports and demonstrated explicit decisions/recovery. |
+| P4, long-operation feedback | 3 | **4** | Demonstrated import wait; durable jobs are not certified. |
+
+These remain **OBSERVED_PARTIAL**, with incomplete criterion coverage. All eight full dimension scores and the overall score/grade remain **null / OPEN**. No other criterion is promoted. The existing 4.5 dimension target and criterion minimum of 4 are unchanged.
+
+## Residual risk and next handoff
+
+The graph-first order and dense explanation still put inline decisions below the first mobile viewport; the preserved Review suggestions link is the direct route. This bounded repair does not certify overall mobile usability. Actual browser zoom, physical devices, other browsers, screen readers, motion and fresh-human comprehension remain unverified. The existing axe log-focus portability flag remains distinct from observed Chromium Tab/Home/End access. CDN dependencies and the fixed in-memory demo are unchanged. No provider, host activation, durable integration, deployment or production claim follows.
+
+The exact reviewed staged tree is suitable for the parent's normal local commit/integration step. The next broader acceptance work remains the existing repo readiness and UI grading queue; this verdict does not mark NodeMem or the portfolio fully ready.

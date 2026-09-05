@@ -158,6 +158,9 @@ export function NodeGraph({ nodes, edges, visits, dark = false, height = 480, ki
             renderLabels: true,
             // At a few thousand nodes every label is noise and a per-frame cost.
             labelRenderedSizeThreshold: labelThreshold(graph.order),
+            // The compact fixed demo still needs each entity name; Sigma's
+            // default 100px label grid suppresses nearby names after fitting.
+            labelGridCellSize: 16,
             labelFont: "ui-sans-serif, system-ui, sans-serif",
             labelSize: 13,
             labelWeight: "600",
@@ -168,9 +171,9 @@ export function NodeGraph({ nodes, edges, visits, dark = false, height = 480, ki
             edgeLabelSize: 10,
             edgeLabelColor: { color: dark ? "#9aa4ad" : "#5a626a" },
             edgeLabelFont: "ui-sans-serif, system-ui, sans-serif",
-            // Room between the graph's bounding box and the frame, so nodes and
-            // labels never kiss the border.
-            stagePadding: 44,
+            // Fit includes room for the demo's right-side entity labels. The
+            // prior 44px fit cropped CardioNova by 35px at narrow widths.
+            stagePadding: 88,
             defaultNodeColor: dark ? "#7f868c" : "#697077",
             // Ringed nodes: light disc, kind-coloured border. graph-model supplies
             // borderColor per kind and a card-toned fill, so the ring carries the
