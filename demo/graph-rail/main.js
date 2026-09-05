@@ -58,7 +58,9 @@ function renderSuggestion(s) {
     const state = document.createElement("div");
     state.className = "state";
     state.textContent = label;
+    state.tabIndex = -1;
     card.appendChild(state);
+    state.focus();
   };
   confirm.addEventListener("click", () => {
     session.observe([s.a, s.b], undefined, { eventId: `confirmed:${s.id}` });

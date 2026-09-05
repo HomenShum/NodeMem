@@ -1,0 +1,421 @@
+{
+  "root": "D:\\ProjectRecovery\\nodemem-canonical-consumer-20260904",
+  "origin": "http://127.0.0.1:54191",
+  "route": "/demo/graph-rail/index.html",
+  "browser": "151.0.7922.34",
+  "at": "2026-09-05T00:36:37.034Z",
+  "cells": [
+    {
+      "name": "360x800",
+      "state": {
+        "labels": {
+          "CardioNova": {
+            "text": "CardioNova",
+            "x": 257.0000025033951,
+            "y": 261.3962629079223,
+            "left": 257.0000025033951,
+            "right": 326.6640650033951,
+            "width": 292,
+            "font": "600 13px ui-sans-serif, system-ui, sans-serif"
+          }
+        },
+        "stage": {
+          "x": 16,
+          "y": 145.375,
+          "width": 328,
+          "height": 622,
+          "top": 145.375,
+          "right": 344,
+          "bottom": 767.375,
+          "left": 16
+        },
+        "suggestions": {
+          "x": 16,
+          "y": 1205.375,
+          "width": 328,
+          "height": 407.125,
+          "top": 1205.375,
+          "right": 344,
+          "bottom": 1612.5,
+          "left": 16
+        },
+        "snapshot": {
+          "nodes": [
+            {
+              "id": "[\"company\",\"CardioNova\"]",
+              "label": "CardioNova",
+              "type": "company",
+              "visits": 1
+            },
+            {
+              "id": "[\"person\",\"Glia Therapeutics\"]",
+              "label": "Glia Therapeutics",
+              "type": "person",
+              "visits": 1
+            },
+            {
+              "id": "[\"company\",\"Meridian Capital\"]",
+              "label": "Meridian Capital",
+              "type": "company",
+              "visits": 1
+            }
+          ],
+          "edges": [],
+          "turns": 3
+        }
+      },
+      "errors": []
+    },
+    {
+      "name": "390x844",
+      "state": {
+        "labels": {
+          "CardioNova": {
+            "text": "CardioNova",
+            "x": 286.9999967813492,
+            "y": 275.23226326134926,
+            "left": 286.9999967813492,
+            "right": 356.6640592813492,
+            "width": 322,
+            "font": "600 13px ui-sans-serif, system-ui, sans-serif"
+          }
+        },
+        "stage": {
+          "x": 16,
+          "y": 145.375,
+          "width": 358,
+          "height": 622,
+          "top": 145.375,
+          "right": 374,
+          "bottom": 767.375,
+          "left": 16
+        },
+        "suggestions": {
+          "x": 16,
+          "y": 1205.375,
+          "width": 358,
+          "height": 407.125,
+          "top": 1205.375,
+          "right": 374,
+          "bottom": 1612.5,
+          "left": 16
+        },
+        "snapshot": {
+          "nodes": [
+            {
+              "id": "[\"company\",\"CardioNova\"]",
+              "label": "CardioNova",
+              "type": "company",
+              "visits": 1
+            },
+            {
+              "id": "[\"person\",\"Glia Therapeutics\"]",
+              "label": "Glia Therapeutics",
+              "type": "person",
+              "visits": 1
+            },
+            {
+              "id": "[\"company\",\"Meridian Capital\"]",
+              "label": "Meridian Capital",
+              "type": "company",
+              "visits": 1
+            }
+          ],
+          "edges": [],
+          "turns": 3
+        }
+      },
+      "errors": []
+    },
+    {
+      "name": "768x1024",
+      "state": {
+        "labels": {
+          "CardioNova": {
+            "text": "CardioNova",
+            "x": 271.00000262260437,
+            "y": 267.84747852739133,
+            "left": 271.00000262260437,
+            "right": 340.66406512260437,
+            "width": 306,
+            "font": "600 13px ui-sans-serif, system-ui, sans-serif"
+          }
+        },
+        "stage": {
+          "x": 410,
+          "y": 107.6875,
+          "width": 342,
+          "height": 622,
+          "top": 107.6875,
+          "right": 752,
+          "bottom": 729.6875,
+          "left": 410
+        },
+        "suggestions": {
+          "x": 16,
+          "y": 449.6875,
+          "width": 380,
+          "height": 353.125,
+          "top": 449.6875,
+          "right": 396,
+          "bottom": 802.8125,
+          "left": 16
+        },
+        "snapshot": {
+          "nodes": [
+            {
+              "id": "[\"company\",\"CardioNova\"]",
+              "label": "CardioNova",
+              "type": "company",
+              "visits": 1
+            },
+            {
+              "id": "[\"person\",\"Glia Therapeutics\"]",
+              "label": "Glia Therapeutics",
+              "type": "person",
+              "visits": 1
+            },
+            {
+              "id": "[\"company\",\"Meridian Capital\"]",
+              "label": "Meridian Capital",
+              "type": "company",
+              "visits": 1
+            }
+          ],
+          "edges": [],
+          "turns": 3
+        }
+      },
+      "errors": []
+    },
+    {
+      "name": "1024x768",
+      "state": {
+        "labels": {
+          "CardioNova": {
+            "text": "CardioNova",
+            "x": 419.04374048113823,
+            "y": 286.33332926665776,
+            "left": 419.04374048113823,
+            "right": 488.70780298113823,
+            "width": 562,
+            "font": "600 13px ui-sans-serif, system-ui, sans-serif"
+          }
+        },
+        "stage": {
+          "x": 410,
+          "y": 107.6875,
+          "width": 598,
+          "height": 622,
+          "top": 107.6875,
+          "right": 1008,
+          "bottom": 729.6875,
+          "left": 410
+        },
+        "suggestions": {
+          "x": 16,
+          "y": 449.6875,
+          "width": 380,
+          "height": 353.125,
+          "top": 449.6875,
+          "right": 396,
+          "bottom": 802.8125,
+          "left": 16
+        },
+        "snapshot": {
+          "nodes": [
+            {
+              "id": "[\"company\",\"CardioNova\"]",
+              "label": "CardioNova",
+              "type": "company",
+              "visits": 1
+            },
+            {
+              "id": "[\"person\",\"Glia Therapeutics\"]",
+              "label": "Glia Therapeutics",
+              "type": "person",
+              "visits": 1
+            },
+            {
+              "id": "[\"company\",\"Meridian Capital\"]",
+              "label": "Meridian Capital",
+              "type": "company",
+              "visits": 1
+            }
+          ],
+          "edges": [],
+          "turns": 3
+        }
+      },
+      "errors": []
+    },
+    {
+      "name": "1440x960",
+      "state": {
+        "labels": {
+          "CardioNova": {
+            "text": "CardioNova",
+            "x": 543.0889075398445,
+            "y": 286.3333376926893,
+            "left": 543.0889075398445,
+            "right": 612.7529700398445,
+            "width": 810,
+            "font": "600 13px ui-sans-serif, system-ui, sans-serif"
+          }
+        },
+        "stage": {
+          "x": 494,
+          "y": 107.6875,
+          "width": 846,
+          "height": 622,
+          "top": 107.6875,
+          "right": 1340,
+          "bottom": 729.6875,
+          "left": 494
+        },
+        "suggestions": {
+          "x": 100,
+          "y": 449.6875,
+          "width": 380,
+          "height": 353.125,
+          "top": 449.6875,
+          "right": 480,
+          "bottom": 802.8125,
+          "left": 100
+        },
+        "snapshot": {
+          "nodes": [
+            {
+              "id": "[\"company\",\"CardioNova\"]",
+              "label": "CardioNova",
+              "type": "company",
+              "visits": 1
+            },
+            {
+              "id": "[\"person\",\"Glia Therapeutics\"]",
+              "label": "Glia Therapeutics",
+              "type": "person",
+              "visits": 1
+            },
+            {
+              "id": "[\"company\",\"Meridian Capital\"]",
+              "label": "Meridian Capital",
+              "type": "company",
+              "visits": 1
+            }
+          ],
+          "edges": [],
+          "turns": 3
+        }
+      },
+      "errors": []
+    },
+    {
+      "name": "1920x1080",
+      "state": {
+        "labels": {
+          "CardioNova": {
+            "text": "CardioNova",
+            "x": 543.0933130681515,
+            "y": 286.33333620027963,
+            "left": 543.0933130681515,
+            "right": 612.7573755681515,
+            "width": 810,
+            "font": "600 13px ui-sans-serif, system-ui, sans-serif"
+          }
+        },
+        "stage": {
+          "x": 734,
+          "y": 107.6875,
+          "width": 846,
+          "height": 622,
+          "top": 107.6875,
+          "right": 1580,
+          "bottom": 729.6875,
+          "left": 734
+        },
+        "suggestions": {
+          "x": 340,
+          "y": 449.6875,
+          "width": 380,
+          "height": 353.125,
+          "top": 449.6875,
+          "right": 720,
+          "bottom": 802.8125,
+          "left": 340
+        },
+        "snapshot": {
+          "nodes": [
+            {
+              "id": "[\"company\",\"CardioNova\"]",
+              "label": "CardioNova",
+              "type": "company",
+              "visits": 1
+            },
+            {
+              "id": "[\"person\",\"Glia Therapeutics\"]",
+              "label": "Glia Therapeutics",
+              "type": "person",
+              "visits": 1
+            },
+            {
+              "id": "[\"company\",\"Meridian Capital\"]",
+              "label": "Meridian Capital",
+              "type": "company",
+              "visits": 1
+            }
+          ],
+          "edges": [],
+          "turns": 3
+        }
+      },
+      "errors": []
+    }
+  ],
+  "regions": [
+    {
+      "label": "CHANGE A · Session / decisions",
+      "selector": ".sub",
+      "rect": {
+        "x": 16,
+        "y": 56,
+        "width": 358,
+        "height": 75.375,
+        "top": 56,
+        "right": 374,
+        "bottom": 131.375,
+        "left": 16
+      }
+    },
+    {
+      "label": "CHANGE B · Graph framing",
+      "selector": "#stage",
+      "rect": {
+        "x": 16,
+        "y": 145.375,
+        "width": 358,
+        "height": 622,
+        "top": 145.375,
+        "right": 374,
+        "bottom": 767.375,
+        "left": 16
+      }
+    },
+    {
+      "label": "CHANGE C · Outcome / focus",
+      "selector": "#suggestions",
+      "rect": {
+        "x": 16,
+        "y": 1205.375,
+        "width": 358,
+        "height": 407.125,
+        "top": 1205.375,
+        "right": 374,
+        "bottom": 1612.5,
+        "left": 16
+      }
+    }
+  ],
+  "confirmFocus": "BODY",
+  "dismissFocus": "BODY"
+}

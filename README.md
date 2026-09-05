@@ -208,6 +208,8 @@ npm run demo
 
 ### Live graph rail
 
+Read [the current developer handoff](HANDOFF.md) for the local demo's verified scope and open UI grades. After installing dependencies, `node scripts/verify-ui-repair.mjs` exercises the actual decision, keyboard, narrow-layout, CDN-retry and reload journey and writes a new evidence directory. It uses the pinned axe-core development dependency for resolved-state contrast checks.
+
 The zero-dependency demo's pipeline (same classifier, same store, same fixtures —
 imported from `demo/nodeMemDemoCore.mjs`, not re-implemented) rendered live by
 [NodeGraph Live](https://github.com/HomenShum/NodeGraph) (vendored in

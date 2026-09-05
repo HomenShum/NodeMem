@@ -19,6 +19,8 @@
       main { width: min(1240px, calc(100% - 32px)); margin: 24px auto; }
       h1 { font-size: 22px; letter-spacing: -0.02em; margin: 0 0 2px; }
       p.sub { margin: 0 0 14px; color: #8b949d; line-height: 1.45; font-size: 13px; max-width: 980px; }
+      .sub a { color: #9fc5ff; display: inline-block; padding: 8px 0; }
+      .state:focus-visible, #suggestions:focus-visible { outline: 2px solid #9fc5ff; outline-offset: 3px; border-radius: 4px; }
       #layout { display: grid; grid-template-columns: 380px 1fr; gap: 14px; align-items: start; }
       section h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: #7f8992; margin: 0 0 6px; }
       #log { border: 1px solid #1d242c; border-radius: 10px; background: #0e1319; padding: 10px 12px; font-size: 12.5px; line-height: 1.55; min-height: 120px; max-height: 260px; overflow-y: auto; }
@@ -31,8 +33,7 @@
       .suggestion .row { margin-top: 8px; display: flex; gap: 8px; }
       .suggestion button { border: 1px solid #2a323b; border-radius: 8px; background: #10151c; color: #c8d2da; padding: 5px 12px; cursor: pointer; font-size: 12px; }
       .suggestion button:hover { border-color: #4b5865; }
-      .suggestion.resolved { opacity: 0.55; }
-      .suggestion .state { color: #7f8992; font-size: 12px; }
+      .suggestion .state { color: #7f8992; font-size: 12px; margin-top: 8px; }
       #boot-error { border-color: #5c3033; background: #1a1214; margin-bottom: 14px; max-width: 980px; }
       /* min-height reserves the box NodeGraph will fill. Without it the stage is
          0px until sigma mounts and then jumps to 620, and everything after it
@@ -78,7 +79,8 @@
       <p class="sub">
         The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not
         re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act
-        explicitly.
+        explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.
+        <br /><a href="#suggestions">Review suggestions</a>
       </p>
       <div class="suggestion" id="boot-error" data-testid="boot-error" role="alert" hidden>
         <strong>The graph rail could not start.</strong>
@@ -108,7 +110,7 @@
           </section>
           <section style="margin-top:14px">
             <h2>Suggestions (no edge until you confirm)</h2>
-            <div id="suggestions"></div>
+            <div id="suggestions" tabindex="-1" role="group" aria-label="Suggestions"></div>
           </section>
         </div>
         <div>
