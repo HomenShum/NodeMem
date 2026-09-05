@@ -2,7 +2,7 @@
 
 Read this file first, then the README and the [current mobile state boundary](evidence/nodemem-mobile-state-20260905/before/change-boundary.md). A developer evaluating passive memory should be able to inspect a suggestion, choose whether to act, and understand what the demo remembers. NodeMem notices activity and offers suggestions; explicit confirmation alone draws a traversal edge. This demo does not create a measured assertion, launch a job, or persist its decisions across reloads.
 
-The September 5, 2026 fixed-fixture UI repair was independently verified with caveats and committed locally as `da9ca34d17514e93cb5f5f694fd46398271f01f5`, based on canonical main `831180554062736cb4e9a79eddbade5ee2ef31e1` on `codex/portfolio-readiness-20260904`. The prior divergent adoption branch remains preserved. The development-dependency and current-frame recorder follow-up was then reviewed and committed as `10ed013a9f2dd4729a0959bb6077a7bb8bb716c5`. The mobile startup/space repair below is a separate candidate awaiting its fresh judge. None is a release or full product-readiness claim.
+The September 5, 2026 fixed-fixture UI repair was independently verified with caveats and committed locally as `da9ca34d17514e93cb5f5f694fd46398271f01f5`, based on canonical main `831180554062736cb4e9a79eddbade5ee2ef31e1` on `codex/portfolio-readiness-20260904`. The prior divergent adoption branch remains preserved. The development-dependency and current-frame recorder follow-up was then reviewed and committed as `10ed013a9f2dd4729a0959bb6077a7bb8bb716c5`. The mobile startup/space repair below passed its fresh independent judge and is committed as `a40d0e509ebc4d824cb29db82669c11b775dc5c0`. None is a release or full product-readiness claim.
 
 ## Reproduce locally
 
@@ -35,13 +35,13 @@ The inherited development-only PostCSS and Nano ID advisories are addressed by c
 
 The [technical receipt](evidence/nodemem-technical-repair-20260905/README.md) links the before/after regression, audit and its source-bound browser evidence: **199 checks, 53 captures**, plus the standard **81 tests and 13 pipeline gates**. Application UI, runtime, vendor source and earlier evidence bytes were unchanged in that follow-up. Its reviewed commit is the baseline for the current mobile candidate. The prior reduced-motion capture disagreement is still open; no motion-stability grade is inferred.
 
-## Mobile startup and space candidate
+## Reviewed mobile startup and space repair
 
 The existing loading message now appears inside the graph reservation on the first mobile screen. The page reserves 500px and makes the existing renderer/canvas fill it; the former 622px outer stage left 139–201px unused for these fixed inputs. The graph stays first, and the caption/lower mobile rail move up by 122px. The direct review link, natural keyboard route, outcome focus, provenance and memory/edge meanings remain intact. Error still removes the graph/loading state and exposes the existing Retry and terminal fallback.
 
 The [mobile proof](evidence/nodemem-mobile-state-20260905/README.md) preserves genuine pre-edit annotated states, the unchanged 199-check regression before and after the page repair, and the final seven-width scenario. The clean startup comparison performs no input, resizing, screenshots or axe injection until measurement finishes. Its worst before/after CLS is the same 0.0267, within 0.1; all three phone widths measure zero. This is local fixed-fixture startup evidence, not field performance. The DOM text enlargement check also requires a non-collapsed canvas; actual browser zoom remains untested.
 
-The standard check initially caught shifted HTML citations; only those reference numbers were corrected in the walkthrough, promotion history and debug tour. No test threshold or promotion statement was changed. The new page/script/docs and portable evidence await a fresh independent judge before commit/push. Full mobile usability still requires the remaining density, accessibility, motion, device and human observations below.
+The standard check initially caught shifted HTML citations; only those reference numbers were corrected in the walkthrough, promotion history and debug tour. No test threshold or promotion statement was changed. The [independent review](evidence/nodemem-mobile-state-20260905/review/README.md) verifies the exact committed application and all473 mobile proof artifacts. Shared integration proceeds through PR4; its current hosting and release status must be checked separately. Full mobile usability still requires the remaining density, accessibility, motion, device and human observations below.
 
 ## Acceptance limits
 
