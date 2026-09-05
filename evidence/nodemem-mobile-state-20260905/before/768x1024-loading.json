@@ -1,0 +1,55 @@
+{
+  "width": 768,
+  "height": 1024,
+  "scrollY": 0,
+  "stage": {
+    "x": 410,
+    "y": 161.375,
+    "width": 342,
+    "height": 622,
+    "bottom": 783.375,
+    "pageY": 161.375
+  },
+  "renderer": null,
+  "canvas": null,
+  "caption": {
+    "x": 412,
+    "y": 793.375,
+    "width": 338,
+    "height": 151,
+    "bottom": 944.375,
+    "pageY": 793.375
+  },
+  "status": {
+    "x": 29,
+    "y": 195.375,
+    "width": 354,
+    "height": 19.375,
+    "bottom": 214.75,
+    "pageY": 195.375
+  },
+  "log": {
+    "x": 16,
+    "y": 184.375,
+    "width": 380,
+    "height": 142,
+    "bottom": 326.375,
+    "pageY": 184.375
+  },
+  "suggestions": {
+    "x": 16,
+    "y": 363.375,
+    "width": 380,
+    "height": 0,
+    "bottom": 363.375,
+    "pageY": 363.375
+  },
+  "ready": false,
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "overflow": 0
+}

@@ -1,0 +1,206 @@
+{
+  "name": "startup-before-1920x1080",
+  "baseline": true,
+  "loading": {
+    "nodes": [],
+    "edges": [],
+    "ready": false,
+    "resolved": [],
+    "active": {
+      "tag": "BODY",
+      "id": "",
+      "className": "",
+      "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+    },
+    "overflow": 0,
+    "labels": {},
+    "labelFrame": 0,
+    "logRows": 1,
+    "scrollY": 0,
+    "width": 1920,
+    "height": 1080,
+    "geometry": {
+      "stage": {
+        "x": 734,
+        "y": 142.53125,
+        "right": 1580,
+        "bottom": 764.53125,
+        "width": 846,
+        "height": 622,
+        "pageY": 142.53125
+      },
+      "renderer": null,
+      "canvas": null,
+      "caption": {
+        "x": 736,
+        "y": 774.53125,
+        "right": 1578,
+        "bottom": 831.78125,
+        "width": 842,
+        "height": 57.25,
+        "pageY": 774.53125
+      },
+      "bootStatus": {
+        "x": 353,
+        "y": 176.53125,
+        "right": 707,
+        "bottom": 195.90625,
+        "width": 354,
+        "height": 19.375,
+        "pageY": 176.53125
+      }
+    },
+    "startup": {
+      "count": 1,
+      "text": "loadingfetching React, graphology and sigma from esm.sh…",
+      "hitVisible": true
+    },
+    "cls": {
+      "supported": true,
+      "maxSession": 0,
+      "allShiftValue": 0,
+      "entries": [],
+      "dropped": 0
+    },
+    "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+    "stageVisible": true
+  },
+  "noticed": {
+    "nodes": [
+      {
+        "id": "[\"company\",\"CardioNova\"]",
+        "label": "CardioNova",
+        "type": "company",
+        "visits": 1
+      },
+      {
+        "id": "[\"person\",\"Glia Therapeutics\"]",
+        "label": "Glia Therapeutics",
+        "type": "person",
+        "visits": 1
+      },
+      {
+        "id": "[\"company\",\"Meridian Capital\"]",
+        "label": "Meridian Capital",
+        "type": "company",
+        "visits": 1
+      }
+    ],
+    "edges": [],
+    "ready": true,
+    "resolved": [],
+    "active": {
+      "tag": "BODY",
+      "id": "",
+      "className": "",
+      "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+    },
+    "overflow": 0,
+    "labels": {
+      "Glia Therapeutics": {
+        "text": "Glia Therapeutics",
+        "left": 332.6745207756758,
+        "right": 434.6637785881758,
+        "top": 82.33333224070253,
+        "bottom": 95.33333224070253,
+        "width": 810,
+        "height": 326,
+        "frame": 70
+      },
+      "Meridian Capital": {
+        "text": "Meridian Capital",
+        "left": 414.4792217076272,
+        "right": 511.3547099888772,
+        "top": 158.62839732082662,
+        "bottom": 171.62839732082662,
+        "width": 810,
+        "height": 326,
+        "frame": 70
+      },
+      "CardioNova": {
+        "text": "CardioNova",
+        "left": 495.3254792243242,
+        "right": 564.9895417243242,
+        "top": 232.33333442596413,
+        "bottom": 242.33333442596413,
+        "width": 810,
+        "height": 326,
+        "frame": 70
+      }
+    },
+    "labelFrame": 70,
+    "logRows": 7,
+    "scrollY": 0,
+    "width": 1920,
+    "height": 1080,
+    "geometry": {
+      "stage": {
+        "x": 734,
+        "y": 142.53125,
+        "right": 1580,
+        "bottom": 764.53125,
+        "width": 846,
+        "height": 622,
+        "pageY": 142.53125
+      },
+      "renderer": {
+        "x": 735,
+        "y": 143.53125,
+        "right": 1579,
+        "bottom": 564.53125,
+        "width": 844,
+        "height": 421,
+        "pageY": 143.53125
+      },
+      "canvas": {
+        "x": 753,
+        "y": 220.53125,
+        "right": 1563,
+        "bottom": 546.53125,
+        "width": 810,
+        "height": 326,
+        "pageY": 220.53125
+      },
+      "caption": {
+        "x": 736,
+        "y": 774.53125,
+        "right": 1578,
+        "bottom": 831.78125,
+        "width": 842,
+        "height": 57.25,
+        "pageY": 774.53125
+      },
+      "bootStatus": null
+    },
+    "startup": {
+      "count": 0,
+      "hitVisible": false
+    },
+    "cls": {
+      "supported": true,
+      "maxSession": 0.0053800480846514925,
+      "allShiftValue": 0.0053800480846514925,
+      "entries": [
+        {
+          "startTime": 588.6000000238419,
+          "value": 0.0009687761220421811,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 889.7999999523163,
+          "value": 0.003350867754147377,
+          "hadRecentInput": false
+        },
+        {
+          "startTime": 1190,
+          "value": 0.0010604042084619342,
+          "hadRecentInput": false
+        }
+      ],
+      "dropped": 0
+    },
+    "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+    "stageVisible": true
+  },
+  "protocol": "No input, resize, screenshots or axe until both measurements finish; baseline replays the exact preserved before HTML with unchanged runtime/vendor files."
+}

@@ -21,21 +21,40 @@ const sources = ["demo/graph-rail/index.html", "demo/graph-rail/main.js", "demo/
   "scripts/serve.mjs", "scripts/verify-ui-repair.mjs", "package.json", "package-lock.json", ".gitattributes"];
 const hash = b => createHash("sha256").update(b).digest("hex");
 const sourceHashes = async () => Object.fromEntries(await Promise.all(sources.map(async f => [f, hash(await readFile(path.join(root, f)))])));
-const out = path.resolve(process.argv[2] ?? path.join(root, "evidence/nodemem-ui-repair-20260905/runs", new Date().toISOString().replaceAll(":", "-")));
+const out = path.resolve(process.argv[2] ?? path.join(root, "evidence/nodemem-mobile-state-20260905/runs", new Date().toISOString().replaceAll(":", "-")));
 await mkdir(path.dirname(out), { recursive: true });
 await mkdir(out, { recursive: false });
-const report = { proof: "E6B-NODEMEM-REPAIR-01", startedAt: new Date().toISOString(), sourceBefore: await sourceHashes(),
+const report = { proof: "NODEMEM-MOBILE-STATE-02", startedAt: new Date().toISOString(), sourceBefore: await sourceHashes(),
   node: process.version, playwright: require("playwright/package.json").version, axe: require("axe-core/package.json").version,
   checks: [], cells: [], console: [], network: [], sustained: [], fullProductReadiness: "OPEN" };
+const baselineHtml = await readFile(path.join(root, "evidence/nodemem-mobile-state-20260905/before/source-index.html"));
+report.baselineHtmlSha256 = hash(baselineHtml);
+report.cleanStartup = [];
 const check = (name, passed, detail) => { report.checks.push({ name, passed, detail }); console.log((passed ? "PASS " : "FAIL ") + name); };
 let browser, server, origin;
 const state = page => page.evaluate(() => {
   const graph = window.__graphRail?.session.getSnapshot();
+  const rect = selector => {
+    const e = document.querySelector(selector); if (!e?.getClientRects().length) return null;
+    const r = e.getBoundingClientRect();
+    return { x: r.x, y: r.y, right: r.right, bottom: r.bottom, width: r.width, height: r.height, pageY: r.y + scrollY };
+  };
+  const shifts = window.__layoutShifts ?? [];
+  let start = 0, last = 0, sum = 0, maxSession = 0;
+  for (const entry of shifts.filter(e => !e.hadRecentInput)) {
+    if (!sum || entry.startTime - last >= 1000 || entry.startTime - start >= 5000) { start = entry.startTime; sum = 0; }
+    sum += entry.value; last = entry.startTime; maxSession = Math.max(maxSession, sum);
+  }
+  const boot = document.querySelector("#boot-status"), bootRect = rect("#boot-status");
+  const hit = bootRect && document.elementFromPoint(bootRect.x + Math.min(10, bootRect.width / 2), bootRect.y + bootRect.height / 2);
   return { nodes: graph?.nodes ?? [], edges: graph?.edges ?? [], ready: !!window.__graphRail?.pipelineDone,
     resolved: [...document.querySelectorAll(".suggestion.resolved")].map(e => e.innerText),
     active: { tag: document.activeElement.tagName, id: document.activeElement.id, className: document.activeElement.className, text: document.activeElement.textContent.slice(0, 180) },
     overflow: document.documentElement.scrollWidth - innerWidth, labels: window.__labelDraws, labelFrame: window.__labelFrameId,
     logRows: document.querySelector("#log").children.length, scrollY, width: innerWidth, height: innerHeight,
+    geometry: { stage: rect("#stage"), renderer: rect('[data-testid="nodegraph"]'), canvas: rect('[data-testid="nodegraph-canvas"]'), caption: rect("#caption"), bootStatus: bootRect },
+    startup: { count: document.querySelectorAll("#boot-status").length, text: boot?.textContent, hitVisible: !!(boot && hit && boot.contains(hit)) },
+    cls: { supported: window.__layoutShiftSupported, maxSession, allShiftValue: shifts.reduce((n, e) => n + e.value, 0), entries: shifts, dropped: window.__layoutShiftsDropped },
     disclosure: document.querySelector(".sub").innerText, stageVisible: !!document.querySelector("#stage").getClientRects().length };
 });
 async function capture(page, name, axe = true) {
@@ -60,6 +79,14 @@ async function capture(page, name, axe = true) {
 async function context(viewport) {
   const c = await browser.newContext({ viewport });
   await c.addInitScript(() => {
+    window.__layoutShifts = []; window.__layoutShiftsDropped = 0;
+    window.__layoutShiftSupported = PerformanceObserver.supportedEntryTypes.includes("layout-shift");
+    if (window.__layoutShiftSupported) new PerformanceObserver(list => {
+      for (const entry of list.getEntries()) {
+        if (window.__layoutShifts.length < 200) window.__layoutShifts.push({ startTime: entry.startTime, value: entry.value, hadRecentInput: entry.hadRecentInput });
+        else window.__layoutShiftsDropped++;
+      }
+    }).observe({ type: "layout-shift", buffered: true });
     window.__labelDraws = {};
     window.__labelFrameId = 0;
     const clear = CanvasRenderingContext2D.prototype.clearRect;
@@ -99,38 +126,91 @@ function labelsFit(label, s) {
     const d = s.labels[text]; return d && d.frame === s.labelFrame && d.left >= 0 && d.right <= d.width + 0.5 && d.top >= 0 && d.bottom <= d.height + 0.5;
   }), s.labels);
 }
+function stageContract(name, s) {
+  const { stage, renderer, canvas } = s.geometry;
+  check(name + " fills the stable stage without a blank strip or collapsed canvas", !!stage && !!renderer && !!canvas
+    && Math.abs(stage.height - 500) <= 0.5 && Math.abs(renderer.height - (stage.height - 2)) <= 0.5
+    && renderer.y >= stage.y && renderer.bottom <= stage.bottom && canvas.height >= 200
+    && canvas.x >= stage.x && canvas.right <= stage.right + 0.5 && canvas.bottom <= stage.bottom,
+    s.geometry);
+}
+async function cleanStartup(width, height, baseline) {
+  // Full-page captures can resize the browser internally. Measure startup in a
+  // separate fixed viewport before any screenshot, axe injection or user input.
+  const c = await context({ width, height }), p = await c.newPage();
+  const name = `startup-${baseline ? "before" : "after"}-${width}x${height}`;
+  if (baseline) await p.route(origin + DEMO_PATH, r => r.fulfill({ contentType: "text/html", body: baselineHtml }));
+  let release; const gate = new Promise(r => { release = r; });
+  await p.route("**/demo/graph-rail/main.js", async route => { const response = await route.fetch(); await gate; await route.fulfill({ response }); });
+  await p.goto(origin + DEMO_PATH, { waitUntil: "commit" });
+  await p.locator("#boot-status").waitFor();
+  const loading = await state(p); release(); await ready(p);
+  const noticed = await state(p);
+  const result = { name, baseline, loading, noticed, protocol: "No input, resize, screenshots or axe until both measurements finish; baseline replays the exact preserved before HTML with unchanged runtime/vendor files." };
+  await writeFile(path.join(out, name + ".json"), JSON.stringify(result, null, 2) + "\n");
+  await p.screenshot({ path: path.join(out, name + "-viewport.png") });
+  report.cleanStartup.push(result);
+  check(name + " records unconfounded startup CLS", noticed.cls.supported && noticed.cls.dropped === 0
+    && noticed.cls.entries.every(entry => !entry.hadRecentInput), noticed.cls);
+  check(name + " clean startup CLS is at most 0.1", noticed.cls.maxSession <= 0.1 && noticed.cls.allShiftValue <= 0.1, noticed.cls);
+  if (!baseline) {
+    stageContract(name, noticed);
+    const status = loading.geometry.bootStatus;
+    check(name + " loading is initially visible and its reserved stage stays stable", loading.startup.hitVisible
+      && status.y >= 0 && status.bottom <= height && status.x >= 0 && status.right <= width
+      && Math.abs(loading.geometry.stage.height - noticed.geometry.stage.height) <= 0.5
+      && Math.abs(loading.geometry.caption.pageY - noticed.geometry.caption.pageY) <= 0.5, { loading: loading.geometry, noticed: noticed.geometry });
+  }
+  await c.close();
+  return result;
+}
 try {
   ({ server, origin } = await serveRepo());
   browser = await chromium.launch(); report.browser = browser.version(); report.route = DEMO_PATH;
-  for (const [width, height] of [[360,800],[390,844],[768,1024],[1024,768],[1440,960],[1920,1080]]) {
+  for (const [width, height] of [[320,800],[360,800],[390,844],[768,1024],[1024,768],[1440,960],[1920,1080]]) {
+    const cleanBefore = await cleanStartup(width, height, true), cleanAfter = await cleanStartup(width, height, false);
+    check(width + " clean startup has no new CLS failure", cleanAfter.noticed.cls.maxSession <= 0.1,
+      { before: cleanBefore.noticed.cls.maxSession, after: cleanAfter.noticed.cls.maxSession });
     const name = width + "x" + height, c = await context({ width, height }), p = await c.newPage();
     let release; const gate = new Promise(r => { release = r; });
     await p.route("**/demo/graph-rail/main.js", async route => { const response = await route.fetch(); await gate; await route.fulfill({ response }); });
     await p.goto(origin + DEMO_PATH, { waitUntil: "commit" });
     await p.locator("#boot-status").waitFor();
-    await capture(p, name + "-loading");
+    const loading = await capture(p, name + "-loading");
+    const loadingBox = loading.geometry.bootStatus;
+    check(name + " initial loading is one honest visible status without scrolling", loading.scrollY === 0 && loading.startup.count === 1
+      && /fetching React, graphology and sigma from esm.sh/.test(loading.startup.text) && loading.startup.hitVisible
+      && loadingBox.y >= 0 && loadingBox.bottom <= height && loadingBox.x >= 0 && loadingBox.right <= width,
+      { startup: loading.startup, box: loadingBox });
     release(); await ready(p); await p.unroute("**/demo/graph-rail/main.js");
     const initial = await capture(p, name + "-noticed"); labelsFit(name + " noticed", initial);
+    stageContract(name + " noticed", initial);
+    check(name + " loading-to-noticed keeps stage and caption positions", Math.abs(loading.geometry.stage.height - initial.geometry.stage.height) <= 0.5
+      && Math.abs(loading.geometry.caption.pageY - initial.geometry.caption.pageY) <= 0.5 && initial.startup.count === 0,
+      { loading: loading.geometry, noticed: initial.geometry });
+    check(name + " observed loading transition CLS is at most 0.1", initial.cls.supported && initial.cls.dropped === 0 && initial.cls.maxSession <= 0.1, initial.cls);
     check(name + " passive notice has zero edges and unmeasured nodes", initial.nodes.length === 3 && initial.edges.length === 0 && initial.nodes.every(n => n.count === undefined));
     check(name + " reset lifetime is disclosed", /fixed demo inputs/i.test(initial.disclosure) && /until you reload/i.test(initial.disclosure));
     const jump = p.getByRole("link", { name: "Review suggestions" });
     const jumpBox = await jump.boundingBox();
     check(name + " decision link is in initial viewport", jumpBox.y >= 0 && jumpBox.y + jumpBox.height <= height, jumpBox);
-    await jump.focus(); await p.keyboard.press("Enter");
+    await p.keyboard.press("Tab");
+    check(name + " natural first Tab reaches the review link", await jump.evaluate(e => e === document.activeElement));
+    await p.keyboard.press("Enter");
     check(name + " keyboard decision link focuses suggestions", (await state(p)).active.id === "suggestions");
     await p.keyboard.press("Tab");
     check(name + " next Tab reaches Confirm", await p.getByTestId("confirm-suggestion").first().evaluate(e => e === document.activeElement));
     await capture(p, name + "-focus", false);
     await p.keyboard.press("Enter");
     await p.waitForFunction(() => document.querySelectorAll(".resolved").length === 1);
-    const confirmed = await capture(p, name + "-confirmed");
+    const confirmed = await capture(p, name + "-confirmed"); stageContract(name + " confirmed", confirmed);
     check(name + " confirm has one traversal, readable status and retained focus", confirmed.edges.length === 1 && confirmed.edges.every(e => String(e.type).includes("traversal")) && confirmed.active.className === "state" && confirmed.active.text.startsWith("confirmed"));
     check(name + " confirmed contrast passes", !confirmed.axe.violations.some(v => v.id === "color-contrast"), confirmed.axe.violations);
     await p.keyboard.press("Tab");
     check(name + " focus advances to next remaining Confirm", await p.getByTestId("confirm-suggestion").first().evaluate(e => e === document.activeElement));
     await p.keyboard.press("Tab"); await p.keyboard.press("Space");
     await p.waitForFunction(() => document.querySelectorAll(".resolved").length === 2);
-    const dismissed = await capture(p, name + "-dismissed");
+    const dismissed = await capture(p, name + "-dismissed"); stageContract(name + " dismissed", dismissed);
     check(name + " dismissal preserves graph and focuses readable outcome", JSON.stringify(dismissed.nodes) === JSON.stringify(confirmed.nodes) && JSON.stringify(dismissed.edges) === JSON.stringify(confirmed.edges) && dismissed.active.className === "state" && dismissed.active.text.startsWith("dismissed"));
     check(name + " dismissed contrast passes", !dismissed.axe.violations.some(v => v.id === "color-contrast"), dismissed.axe.violations);
     const clearFocus = await p.locator(".state:focus").evaluate(e => e.getBoundingClientRect().top - e.previousElementSibling.getBoundingClientRect().bottom);
@@ -142,9 +222,12 @@ try {
     await f.route("**esm.sh**", r => r.abort()); await f.goto(origin + DEMO_PATH);
     await f.getByTestId("boot-error").waitFor({ state: "visible", timeout: 12000 });
     const error = await capture(f, name + "-error");
+    const retryBox = await f.getByTestId("boot-retry").boundingBox();
+    check(name + " error removes loading and keeps Retry in the initial viewport", error.startup.count === 0 && retryBox.y >= 0 && retryBox.y + retryBox.height <= height, retryBox);
     check(name + " CDN failure is explicit without false graph", !error.ready && !error.stageVisible && await f.getByTestId("boot-retry").isVisible() && !(await f.locator("#caption").isVisible()));
     await f.unroute("**esm.sh**"); await f.getByTestId("boot-retry").focus(); await f.keyboard.press("Enter"); await ready(f);
-    const retried = await capture(f, name + "-retry"); check(name + " keyboard retry recovers fresh passive fixture", retried.ready && retried.nodes.length === 3 && retried.edges.length === 0);
+    const retried = await capture(f, name + "-retry"); stageContract(name + " retry", retried); check(name + " keyboard retry recovers fresh passive fixture", retried.ready && retried.nodes.length === 3 && retried.edges.length === 0);
+    check(name + " observed retry CLS is at most 0.1", retried.cls.supported && retried.cls.dropped === 0 && retried.cls.maxSession <= 0.1, retried.cls);
     await recovery.close();
   }
   const c = await context({ width: 320, height: 800 }), p = await c.newPage();
@@ -171,7 +254,9 @@ try {
   });
   await p.getByRole("link", { name: "Review suggestions" }).click(); await p.keyboard.press("Tab");
   check("200% DOM text enlargement retains decision route", await p.getByTestId("confirm-suggestion").first().evaluate(e => document.activeElement === e));
-  await capture(p, "text-200pct-390"); await c.close();
+  const enlarged = await capture(p, "text-200pct-390"); stageContract("200% DOM text", enlarged);
+  await p.getByTestId("nodegraph-fit").focus(); await p.keyboard.press("Enter"); await p.waitForTimeout(300);
+  labelsFit("200% DOM text current-frame Fit", await state(p)); await c.close();
   const stress = await context({ width: 1440, height: 960 }), s = await stress.newPage();
   await s.goto(origin + DEMO_PATH); await ready(s);
   await s.getByTestId("confirm-suggestion").first().dblclick();

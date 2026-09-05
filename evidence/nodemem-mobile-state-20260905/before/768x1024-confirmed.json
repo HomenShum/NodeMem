@@ -1,0 +1,99 @@
+{
+  "width": 768,
+  "height": 1024,
+  "scrollY": 0,
+  "stage": {
+    "x": 410,
+    "y": 161.375,
+    "width": 342,
+    "height": 622,
+    "bottom": 783.375,
+    "pageY": 161.375
+  },
+  "renderer": {
+    "x": 411,
+    "y": 162.375,
+    "width": 340,
+    "height": 463,
+    "bottom": 625.375,
+    "pageY": 162.375
+  },
+  "canvas": {
+    "x": 429,
+    "y": 259.375,
+    "width": 306,
+    "height": 348,
+    "bottom": 607.375,
+    "pageY": 259.375
+  },
+  "caption": {
+    "x": 412,
+    "y": 793.375,
+    "width": 338,
+    "height": 151,
+    "bottom": 944.375,
+    "pageY": 793.375
+  },
+  "status": null,
+  "log": {
+    "x": 16,
+    "y": 184.375,
+    "width": 380,
+    "height": 282,
+    "bottom": 466.375,
+    "pageY": 184.375
+  },
+  "suggestions": {
+    "x": 16,
+    "y": 503.375,
+    "width": 380,
+    "height": 344.515625,
+    "bottom": 847.890625,
+    "pageY": 503.375
+  },
+  "ready": true,
+  "active": {
+    "tag": "DIV",
+    "id": "",
+    "className": "state",
+    "text": "confirmed — drawn as faint traversal history"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "[\"company\",\"CardioNova\"]",
+        "label": "CardioNova",
+        "type": "company",
+        "visits": 2
+      },
+      {
+        "id": "[\"person\",\"Glia Therapeutics\"]",
+        "label": "Glia Therapeutics",
+        "type": "person",
+        "visits": 1
+      },
+      {
+        "id": "[\"company\",\"Meridian Capital\"]",
+        "label": "Meridian Capital",
+        "type": "company",
+        "visits": 1
+      },
+      {
+        "id": "[\"facet\",\"funding\"]",
+        "label": "funding",
+        "type": "facet",
+        "visits": 1
+      }
+    ],
+    "edges": [
+      {
+        "source": "[\"company\",\"CardioNova\"]",
+        "target": "[\"facet\",\"funding\"]",
+        "weight": 1,
+        "type": "traversal"
+      }
+    ],
+    "turns": 4
+  },
+  "overflow": 0
+}

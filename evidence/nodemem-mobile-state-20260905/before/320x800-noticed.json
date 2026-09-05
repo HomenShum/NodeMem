@@ -1,0 +1,86 @@
+{
+  "width": 320,
+  "height": 800,
+  "scrollY": 0,
+  "stage": {
+    "x": 16,
+    "y": 217.90625,
+    "width": 288,
+    "height": 622,
+    "bottom": 839.90625,
+    "pageY": 217.90625
+  },
+  "renderer": {
+    "x": 17,
+    "y": 218.90625,
+    "width": 286,
+    "height": 461,
+    "bottom": 679.90625,
+    "pageY": 218.90625
+  },
+  "canvas": {
+    "x": 35,
+    "y": 335.90625,
+    "width": 252,
+    "height": 326,
+    "bottom": 661.90625,
+    "pageY": 335.90625
+  },
+  "caption": {
+    "x": 18,
+    "y": 849.90625,
+    "width": 284,
+    "height": 170.75,
+    "bottom": 1020.65625,
+    "pageY": 849.90625
+  },
+  "status": null,
+  "log": {
+    "x": 16,
+    "y": 1057.65625,
+    "width": 288,
+    "height": 202,
+    "bottom": 1259.65625,
+    "pageY": 1057.65625
+  },
+  "suggestions": {
+    "x": 16,
+    "y": 1313.65625,
+    "width": 288,
+    "height": 461.5,
+    "bottom": 1775.15625,
+    "pageY": 1313.65625
+  },
+  "ready": true,
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "[\"company\",\"CardioNova\"]",
+        "label": "CardioNova",
+        "type": "company",
+        "visits": 1
+      },
+      {
+        "id": "[\"person\",\"Glia Therapeutics\"]",
+        "label": "Glia Therapeutics",
+        "type": "person",
+        "visits": 1
+      },
+      {
+        "id": "[\"company\",\"Meridian Capital\"]",
+        "label": "Meridian Capital",
+        "type": "company",
+        "visits": 1
+      }
+    ],
+    "edges": [],
+    "turns": 3
+  },
+  "overflow": 0
+}

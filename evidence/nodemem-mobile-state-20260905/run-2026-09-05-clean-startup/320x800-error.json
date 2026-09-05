@@ -1,0 +1,48 @@
+{
+  "nodes": [],
+  "edges": [],
+  "ready": false,
+  "resolved": [],
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "overflow": 0,
+  "labels": {},
+  "labelFrame": 0,
+  "logRows": 0,
+  "scrollY": 0,
+  "width": 320,
+  "height": 800,
+  "geometry": {
+    "stage": null,
+    "renderer": null,
+    "canvas": null,
+    "caption": null,
+    "bootStatus": null
+  },
+  "startup": {
+    "count": 0,
+    "hitVisible": false
+  },
+  "cls": {
+    "supported": true,
+    "maxSession": 0.29997226318359377,
+    "allShiftValue": 0.29997226318359377,
+    "entries": [
+      {
+        "startTime": 37.5,
+        "value": 0.29997226318359377,
+        "hadRecentInput": false
+      }
+    ],
+    "dropped": 0
+  },
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": false,
+  "axe": {
+    "violations": []
+  }
+}

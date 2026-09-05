@@ -237,7 +237,7 @@ all, on purpose.
 ## Step 8 — Failure and recovery: the reporter cannot live inside the thing that failed
 
 **File:** `demo/graph-rail/index.html`
-**Symbol:** the classic `<script>` (`demo/graph-rail/index.html:143`) and the alert panel `data-testid="boot-error"` (`demo/graph-rail/index.html:85`)
+**Symbol:** the classic `<script>` (`demo/graph-rail/index.html:146`) and the alert panel `data-testid="boot-error"` (`demo/graph-rail/index.html:89`)
 **Called by:** the browser, always — it is not a module
 **Calls next:** nothing; it hides the graph and shows a named cause
 

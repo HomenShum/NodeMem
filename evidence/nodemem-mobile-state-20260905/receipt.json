@@ -1,0 +1,2000 @@
+{
+  "schema": "portfolio.nodemem-mobile-state/v1",
+  "proof": "NODEMEM-MOBILE-STATE-02",
+  "at": "2026-09-05T03:16:08.235241+00:00",
+  "status": "STAGED_WORKER_VERIFIED_AWAITING_FRESH_JUDGE",
+  "request": "Make each repository ready for actual handoff, including visible UI state, responsiveness and interaction proof.",
+  "base": "10ed013a9f2dd4729a0959bb6077a7bb8bb716c5",
+  "sourceFiles": {
+    ".tours/03-debug-and-recovery.tour": {
+      "sha256": "a6c7826337af2b69039c1621170d0729c62ada06be21fefb012f9cc784463e10",
+      "gitBlob": "7e2ee2c28d5480b1c4ed5f327f37efb498dc86d3"
+    },
+    "HANDOFF.md": {
+      "sha256": "72342d6ad9db0f651317e354d11f1bec1d1f7392fe7d38568a30a2fcc22e4af5",
+      "gitBlob": "74aa8b4cca4ce4624b16b67dd43d2e0518316d7b"
+    },
+    "demo/graph-rail/index.html": {
+      "sha256": "72134f4932afc718f9a1f65f2419a4ddf3c679fec918d96a7c25996c899afd5d",
+      "gitBlob": "ab975bc31f50dd4cafc6ec7c3d87eab68b56e177"
+    },
+    "docs/START_HERE.md": {
+      "sha256": "3e490ae97ed81026b0bf2040072c404cc8d5187c15ef625e7059afb3da2bcd1d",
+      "gitBlob": "f4d676c3caea7841bf70caf18cf37c3c62bc53a6"
+    },
+    "promotion/PROMOTION_LOG.md": {
+      "sha256": "eee8ee482bbced3c8f9fafe16104f4c13319219d9f10cc4ae249f2f15471ed5d",
+      "gitBlob": "322fcf6786549137472741f2cc9928726e9d080a"
+    },
+    "scripts/verify-ui-repair.mjs": {
+      "sha256": "70cc07d9835ebc75a5dbc4d600ec0f9b11f4339441492a15f09f76bd9a0ce6ff",
+      "gitBlob": "2813a630d16025a2b43ed3d907d672b33cd17f0a"
+    }
+  },
+  "renderSourceHashes": {
+    "demo/graph-rail/index.html": "72134f4932afc718f9a1f65f2419a4ddf3c679fec918d96a7c25996c899afd5d",
+    "demo/graph-rail/main.js": "a0e9f743b03d6cbd1263909f9dede4a26b65a7e1c4cf34386e94492d828c1e41",
+    "demo/nodeMemDemoCore.mjs": "98f2c0a05758c995e5b0d91b6310e3948f9673ce95fc1cae3f469d52ba319bac",
+    "vendor/nodegraph-live/NodeGraph.js": "ab295d13e3fa254122ba9f4ad65a67bd2dc167dd3b544ac682f8e3d873dde86b",
+    "vendor/nodegraph-live/graph-model.js": "f599d5677230abb22134ccc6554c19b53161c92170a764d15a3f33b9ff8a3d6b",
+    "vendor/nodegraph-live/session.js": "18fdd651e1f5cb7c2bf791309de0a22010f5dd836630abedec9b9de7f54e1282",
+    "vendor/nodegraph-live/index.js": "3617688e70d3583ed7295795c19597b20e7f300d0ca18004a0d639d2ee1e8969",
+    "vendor/nodegraph-live/react.js": "c548be84f505f0b5cf2f45b9531c35768370a7a32620d4b3e0151a45a39fa6ff",
+    "scripts/serve.mjs": "e5d966fa69c0f66e7532fcbf5edad3e0e21c3d91de507d6db36d9821366a499d",
+    "scripts/verify-ui-repair.mjs": "70cc07d9835ebc75a5dbc4d600ec0f9b11f4339441492a15f09f76bd9a0ce6ff",
+    "package.json": "01bca2b5807baa1b4d569d5000d5591aeb00b8ca41045750d8ee7a66cdb5db86",
+    "package-lock.json": "c05c3592fd9a8374d449dba891b8cd4623ecc9c4fff2d6208bc9505b99ff673a",
+    ".gitattributes": "97d8ad3e1814df1165aeeee5d3d1a19ac547c0da20f76adb7fb0b0e878ac46ff"
+  },
+  "beforeSourceHash": "b7d822ff586fe116ee74ed20e74131c35ca48f13745ce589faf8b553b3857892",
+  "browser": "151.0.7922.34",
+  "node": "v22.22.2",
+  "checks": {
+    "browser": 350,
+    "capturedStates": 61,
+    "cleanStartupComparisons": 14,
+    "standardTests": 84,
+    "standardTestFiles": 8,
+    "pipelineGates": 13,
+    "nativeCapture": 12
+  },
+  "cleanStartupCls": {
+    "320": {
+      "before": 0,
+      "after": 0
+    },
+    "360": {
+      "before": 0,
+      "after": 0
+    },
+    "390": {
+      "before": 0,
+      "after": 0
+    },
+    "768": {
+      "before": 0.02665122350056966,
+      "after": 0.02665122350056966
+    },
+    "1024": {
+      "before": 0.024153850972652435,
+      "after": 0.024153850972652435
+    },
+    "1440": {
+      "before": 0.010760096169302983,
+      "after": 0.010760096169302983
+    },
+    "1920": {
+      "before": 0.0053800480846514925,
+      "after": 0.0053800480846514925
+    }
+  },
+  "beforeStagePx": 622,
+  "afterStagePx": 500,
+  "filledRendererPx": 498,
+  "preservation": {
+    "originalTrackedFiles": 684,
+    "unchangedOldFiles": 678,
+    "originalRefsUnchanged": 7,
+    "restoredGeneratedOutputs": 5
+  },
+  "limits": [
+    "Fresh independent judge pending; no commit or push.",
+    "All whole-product/dimension grades remain OPEN/null. Fixed dark fixture in the recorded Chromium only.",
+    "The visible startup/space defects are worker-repaired candidates for V2/V8/R3/I2/P4 review; hierarchy, progressive disclosure and density were not repaired or regraded.",
+    "Existing axe/manual log-focus disagreement, motion, actual browser zoom, screen readers, physical devices, constrained platforms and fresh-human usability remain separate.",
+    "Viewport emulation and DOM text enlargement are not physical touch or actual browser zoom.",
+    "Clean startup CLS is local lab observation, not field p75 or a Lighthouse run. Screenshot-heavy shift entries remain recorded but do not establish the clean comparison.",
+    "No provider/model calls, host hooks, durable integration, deployment or production proof.",
+    "React/graphology/Sigma still use the unchanged pinned import map and external CDN. Network status is recorded for this run; no indefinite CDN availability claim."
+  ],
+  "artifacts": {
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-confirmed-viewport.png": {
+      "sha256": "dcc04b264727386c8e16e865223f32c229ffc2ba2e58dbadb31b68ed5c310c0c",
+      "bytes": 114821
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-confirmed.ax.txt": {
+      "sha256": "ad1ff03b040a9b859219a575dc0cfb78ddae94a4532f4c39190f9b4b4b1b7a2a",
+      "bytes": 2782
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-confirmed.html": {
+      "sha256": "cfb847302460406d60fe1630c5cb41885eb6a30d7aa849f188eee3ef2268a0de",
+      "bytes": 14601
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-confirmed.json": {
+      "sha256": "ba3da916e0943f7ae0231950cf63b5ffd1e02c5ba2f54ceb1dc1d46cacb52056",
+      "bytes": 1899
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-confirmed.png": {
+      "sha256": "be69270263bade67a7bb39f38fdfd9f10a1c6ebe20371490ba0ec0e8fa7c68cc",
+      "bytes": 113433
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-dismissed-viewport.png": {
+      "sha256": "809a35170c5430aa1c6928db94ddaa06cfdc91643d65888a468d01ba7a53cae0",
+      "bytes": 115552
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-dismissed.ax.txt": {
+      "sha256": "4a375380e347d6c1605ecd1c392178122493e1fbb7d84a019f4fcffbf64f4b30",
+      "bytes": 2855
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-dismissed.html": {
+      "sha256": "7f4f91c5d13644de99331f38ba3e87b6494be094d666a3cd14fcfaa5e85f4036",
+      "bytes": 14672
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-dismissed.json": {
+      "sha256": "390a32fb180c57140bb90eeefad77d790562e569f84f54bd93c615508398a03e",
+      "bytes": 1879
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-dismissed.png": {
+      "sha256": "66d1488a2e74e39d9183351174c55f61d8f2c5c8e3129443b62c12861627cf9d",
+      "bytes": 115612
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-error-viewport.png": {
+      "sha256": "0150ee508cbd2f949e685d6fef6de8a96e17728291d64e370b2d77211cc7edb0",
+      "bytes": 40329
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-error.html": {
+      "sha256": "e0ae15833a8d27c5023e9704550b180006e61485ee0a89c451d4504b4dc1dc68",
+      "bytes": 10016
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-error.json": {
+      "sha256": "5e95502dc37041e250b5c29af7bed929d9d23eb81047e4d9e64c069fa598db07",
+      "bytes": 733
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-error.png": {
+      "sha256": "0150ee508cbd2f949e685d6fef6de8a96e17728291d64e370b2d77211cc7edb0",
+      "bytes": 40329
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-loading-boundary.png": {
+      "sha256": "4957ae338d016e449c3e6b657e5494b80ec110b3c46462a7daa5ae4fee76bced",
+      "bytes": 41892
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-loading-viewport.png": {
+      "sha256": "1cf0f4b3c51832740a4799b7dbdf4d11e6dd5a00592171df8bdb7c3178f59e70",
+      "bytes": 39547
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-loading.ax.txt": {
+      "sha256": "b53503e8b032ac6e8f6529a6fef4c4c674d4cee8f39180fadbe2ae268f772a26",
+      "bytes": 1314
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-loading.html": {
+      "sha256": "d2c156a7816091f429147f288bc8127bdd586ab2be56130cd8500d89624626c9",
+      "bytes": 10073
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-loading.json": {
+      "sha256": "5ee02d432c275eaaa0e7e11aefae3fa6497e0a1c1fc28492d5f2a59908f70cb9",
+      "bytes": 1098
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-loading.png": {
+      "sha256": "1cf0f4b3c51832740a4799b7dbdf4d11e6dd5a00592171df8bdb7c3178f59e70",
+      "bytes": 39547
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-noticed-boundary.png": {
+      "sha256": "f674a98e214b899082991fac0b3797e21499faa8083d754fef64e63c9b8596c3",
+      "bytes": 107506
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-noticed-viewport.png": {
+      "sha256": "651327ba3ee02183fd3875e137a637dabda36686db49b25689595eb552c9a66f",
+      "bytes": 105031
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-noticed.ax.txt": {
+      "sha256": "de2260c255962057673fcdb0a4655ce50509609061506c2b5aab191019930475",
+      "bytes": 2593
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-noticed.html": {
+      "sha256": "bc654447ed409c5119b91b79bbb175bdbcada5e3405e1fca501e2237dc99d8b3",
+      "bytes": 14188
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-noticed.json": {
+      "sha256": "0727b048e61fa4043e7e293d7c5dc470ffa3117b3570783d1138f5eef51d38dd",
+      "bytes": 1738
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-noticed.png": {
+      "sha256": "14030487a98b7e12bb36d10d0f51df282268b07a88d1a7249ec431420a011927",
+      "bytes": 105131
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-retry-viewport.png": {
+      "sha256": "60baad855e49dea4a4e022870d226a0e0c7ad23f277acab23c5807c60a7e1593",
+      "bytes": 104854
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-retry.ax.txt": {
+      "sha256": "de2260c255962057673fcdb0a4655ce50509609061506c2b5aab191019930475",
+      "bytes": 2593
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-retry.html": {
+      "sha256": "bc654447ed409c5119b91b79bbb175bdbcada5e3405e1fca501e2237dc99d8b3",
+      "bytes": 14188
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-retry.json": {
+      "sha256": "0727b048e61fa4043e7e293d7c5dc470ffa3117b3570783d1138f5eef51d38dd",
+      "bytes": 1738
+    },
+    "evidence/nodemem-mobile-state-20260905/before/1440x960-retry.png": {
+      "sha256": "decebaf04258f56d87a0b7973353e7ab7673c5d77570ad974154dee84502008f",
+      "bytes": 104940
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-confirmed-viewport.png": {
+      "sha256": "af200f1874d4434fb30a39dbfd9f29dfcebf1d8890d8e8b675f4d0127bdeabab",
+      "bytes": 45038
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-confirmed.ax.txt": {
+      "sha256": "ad1ff03b040a9b859219a575dc0cfb78ddae94a4532f4c39190f9b4b4b1b7a2a",
+      "bytes": 2782
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-confirmed.html": {
+      "sha256": "b03d9d31e4183e0069e7882d94ed5a050c0a258c89dc8b9b020e158f94c27699",
+      "bytes": 14601
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-confirmed.json": {
+      "sha256": "658008c5b40e14c6ab4799bd61261b9a1948362eb7b677097a1cbbd1dff71cd6",
+      "bytes": 1902
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-confirmed.png": {
+      "sha256": "5b64a32bd2e8a087be1ccf74fbcf30885353229cd4e3ab466c3f0b5373fcbce8",
+      "bytes": 86607
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-dismissed-viewport.png": {
+      "sha256": "f15fccc260589a606a6382df738929415fb024b5db72d564e741deecfa1ebabf",
+      "bytes": 47839
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-dismissed.ax.txt": {
+      "sha256": "4a375380e347d6c1605ecd1c392178122493e1fbb7d84a019f4fcffbf64f4b30",
+      "bytes": 2855
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-dismissed.html": {
+      "sha256": "8784a8c1f9a96119e5f960f82a7bfca4816926be27da72c7bc2336b9319028fd",
+      "bytes": 14672
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-dismissed.json": {
+      "sha256": "94df08ea87d97bf9524f0e79956ed30aa31a4d5f0b3877c3046cfbb6a291eefb",
+      "bytes": 1882
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-dismissed.png": {
+      "sha256": "e6ac4c74a6a9273596459c87b9b954797dfec38aa6a1a0eb433ae0fc9d30c4e8",
+      "bytes": 88880
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-error-viewport.png": {
+      "sha256": "6c82d0fb341413b49d83144f1ddd4220c2ae73260d1039b4adb63a55326260c0",
+      "bytes": 35239
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-error.html": {
+      "sha256": "e0ae15833a8d27c5023e9704550b180006e61485ee0a89c451d4504b4dc1dc68",
+      "bytes": 10016
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-error.json": {
+      "sha256": "b752363de6357de53d26309b30164a1e8a7b52e250a659c112ef37ca9702e82d",
+      "bytes": 551
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-error.png": {
+      "sha256": "6c82d0fb341413b49d83144f1ddd4220c2ae73260d1039b4adb63a55326260c0",
+      "bytes": 35239
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-loading-boundary.png": {
+      "sha256": "88763fde4e4e5607b5b3251ada0f3a4adda109e4a907b6de0a3f2f769080a079",
+      "bytes": 38635
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-loading-viewport.png": {
+      "sha256": "55bedfeb199f0e3c914e106eb26ac5318fcf7a2a2ae3c25dcb6d6dd1310b456f",
+      "bytes": 15510
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-loading.ax.txt": {
+      "sha256": "b53503e8b032ac6e8f6529a6fef4c4c674d4cee8f39180fadbe2ae268f772a26",
+      "bytes": 1314
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-loading.html": {
+      "sha256": "d2c156a7816091f429147f288bc8127bdd586ab2be56130cd8500d89624626c9",
+      "bytes": 10073
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-loading.json": {
+      "sha256": "81597a36e774410fb9773b9222cc49034d12589a628907f32cc0eb36f4dc9a6e",
+      "bytes": 1102
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-loading.png": {
+      "sha256": "f27b3fc4a5de6aefc72049e6b1442053adc0b39ce6634ba22d9579a7d4a292f7",
+      "bytes": 36526
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-noticed-boundary.png": {
+      "sha256": "b635050b8707e00e5a65c1a67aa69d70890737dbbbe3e452f93768527d50633b",
+      "bytes": 83264
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-noticed-viewport.png": {
+      "sha256": "1c08c28673c17f7297b80bc89b0a9cfb306a2fe3f88167d6b5b31153b37256ec",
+      "bytes": 26663
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-noticed.ax.txt": {
+      "sha256": "de2260c255962057673fcdb0a4655ce50509609061506c2b5aab191019930475",
+      "bytes": 2593
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-noticed.html": {
+      "sha256": "3fd7a4b871b0d2c0a86136e1a4fb5bb175239a47d3dd43c56c97d273c68c1652",
+      "bytes": 14188
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-noticed.json": {
+      "sha256": "9aeaf3dcefb75e048fc822e2634373b9f289a3598949a913734c12e0f09f08d9",
+      "bytes": 1737
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-noticed.png": {
+      "sha256": "284869720cad460900c6773ea8d9690f19cc5680db989ab215030eb87f4352c5",
+      "bytes": 81408
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-retry-viewport.png": {
+      "sha256": "309f157ebba40d50edde5deb06c436e7c069f196e33f82dbbfe17229d35aed6c",
+      "bytes": 26742
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-retry.ax.txt": {
+      "sha256": "de2260c255962057673fcdb0a4655ce50509609061506c2b5aab191019930475",
+      "bytes": 2593
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-retry.html": {
+      "sha256": "3fd7a4b871b0d2c0a86136e1a4fb5bb175239a47d3dd43c56c97d273c68c1652",
+      "bytes": 14188
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-retry.json": {
+      "sha256": "1875340ed7a202e20cdf65652fe1e5492aacb3b854a2948d2682a8921c2c49fa",
+      "bytes": 1737
+    },
+    "evidence/nodemem-mobile-state-20260905/before/320x800-retry.png": {
+      "sha256": "5e48638ff1c995579b893d0e546b0872087b7506fd6efe6b2457dd99d73ddc54",
+      "bytes": 81487
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-confirmed-viewport.png": {
+      "sha256": "f13cfa0a1034eeb59c09c63c122d0dc9f41ad12b771f066b49757a50dde58e47",
+      "bytes": 57438
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-confirmed.ax.txt": {
+      "sha256": "ad1ff03b040a9b859219a575dc0cfb78ddae94a4532f4c39190f9b4b4b1b7a2a",
+      "bytes": 2782
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-confirmed.html": {
+      "sha256": "cfe692630be8c1c41eae3057200bcd87707ad6a5a153d4b7182ba3020fdeb918",
+      "bytes": 14281
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-confirmed.json": {
+      "sha256": "3084820832b9b08252f0b044f0bfbdc8ff8fa7452a93b50762e5b093af55b5bd",
+      "bytes": 1879
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-confirmed.png": {
+      "sha256": "55fe38983aad748032de7f7480c8241c96b320ed1e3e0d19e9ea0dfb42efb12f",
+      "bytes": 90533
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-dismissed-viewport.png": {
+      "sha256": "fbc78b2a16b1cca678508c882c105e17f6794884a3edd18cdf3e38f47f4fc86c",
+      "bytes": 57513
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-dismissed.ax.txt": {
+      "sha256": "4a375380e347d6c1605ecd1c392178122493e1fbb7d84a019f4fcffbf64f4b30",
+      "bytes": 2855
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-dismissed.html": {
+      "sha256": "da864de5fae5859180112fa4443c1d65ac89e8864ae84522ebf1e424eadd8953",
+      "bytes": 14672
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-dismissed.json": {
+      "sha256": "e00cb07736555f729832b667ffef8d237972590f2b8836fcea043ad6446b269d",
+      "bytes": 1861
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-dismissed.png": {
+      "sha256": "1ec7bb7969357c7f8c214a0926ccd64cd9d4b0836c87f2b3e0fe5a1578adb555",
+      "bytes": 91710
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-error-viewport.png": {
+      "sha256": "45c6a89f20e280f69c797372948a0187c17005ad4655ea45de45295d2257666c",
+      "bytes": 34426
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-error.html": {
+      "sha256": "e0ae15833a8d27c5023e9704550b180006e61485ee0a89c451d4504b4dc1dc68",
+      "bytes": 10016
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-error.json": {
+      "sha256": "7578d2e9372b1bde8edb921c3a497573bd97f81255e5277ebb4762efe75180d9",
+      "bytes": 545
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-error.png": {
+      "sha256": "45c6a89f20e280f69c797372948a0187c17005ad4655ea45de45295d2257666c",
+      "bytes": 34426
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-loading-boundary.png": {
+      "sha256": "18ee376826a24bc1597f9d86eab8d703f6a5a0b82e4349b7c9dda00c245c114d",
+      "bytes": 38082
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-loading-viewport.png": {
+      "sha256": "3b01f01ea125f975ad2d1848bb375945d7cbbba66c98db4b754003cbf992c415",
+      "bytes": 17814
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-loading.ax.txt": {
+      "sha256": "b53503e8b032ac6e8f6529a6fef4c4c674d4cee8f39180fadbe2ae268f772a26",
+      "bytes": 1314
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-loading.html": {
+      "sha256": "d2c156a7816091f429147f288bc8127bdd586ab2be56130cd8500d89624626c9",
+      "bytes": 10073
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-loading.json": {
+      "sha256": "e86ae6283cda4f7c87c1060ef620dea6094d8c6e1f8660d345bfd286b81b6c05",
+      "bytes": 1083
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-loading.png": {
+      "sha256": "1bbb5ab156c69661ccf978e4753d1dfb37590a350acc3a541c74e6376fe19df2",
+      "bytes": 36097
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-noticed-boundary.png": {
+      "sha256": "da71af54c4b7ab3b5682cb661c1aa5c281ed8918b89d52ffdfe60e473005cfcf",
+      "bytes": 85480
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-noticed-viewport.png": {
+      "sha256": "f8ec6d18fd025c4ca18f0ad4d59ef4819203e27dd8c6488929473fe66823789e",
+      "bytes": 29220
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-noticed.ax.txt": {
+      "sha256": "de2260c255962057673fcdb0a4655ce50509609061506c2b5aab191019930475",
+      "bytes": 2593
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-noticed.html": {
+      "sha256": "61d12c4a0db9542e4c980bccdcd9d653d4e6569004830e7e29f990a1db9fb05b",
+      "bytes": 14188
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-noticed.json": {
+      "sha256": "56e3773da7ee122d82417b280b2d3d88daa807b948eb890e5926283d6bdf750f",
+      "bytes": 1717
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-noticed.png": {
+      "sha256": "8be245b727f5f3b3e400c27e13dae4b1d52f139c0efe01562352838e9fe0864e",
+      "bytes": 83813
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-retry-viewport.png": {
+      "sha256": "5a2f0cdb7d1f760fd421aafb642cfae35893730387a3808190ad9db3695514fd",
+      "bytes": 29162
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-retry.ax.txt": {
+      "sha256": "de2260c255962057673fcdb0a4655ce50509609061506c2b5aab191019930475",
+      "bytes": 2593
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-retry.html": {
+      "sha256": "61d12c4a0db9542e4c980bccdcd9d653d4e6569004830e7e29f990a1db9fb05b",
+      "bytes": 14188
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-retry.json": {
+      "sha256": "c044f65e95d77c9238d09d1091fc623ef7abce405aec6d02896ac2e06cb137b9",
+      "bytes": 1717
+    },
+    "evidence/nodemem-mobile-state-20260905/before/390x844-retry.png": {
+      "sha256": "346f7e6e38fa5c21a40e490f5593f648d671e12707ecaf2c6119a5f578c5b123",
+      "bytes": 83736
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-confirmed-viewport.png": {
+      "sha256": "84017545d46ba973335a504b4fa5d2600163fa1783fa8be5cbe241e0b61cbc03",
+      "bytes": 110475
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-confirmed.ax.txt": {
+      "sha256": "3fe0144fa13bc02f1ac31813ac785f0bc5e8448e3d1fc3cfc9eebe48c0f2dd7b",
+      "bytes": 2697
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-confirmed.html": {
+      "sha256": "ddfaa7cef3115faea14307ae87ba6d84dd4e80cfb7dc377ab68ab11eb2cb59fc",
+      "bytes": 14281
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-confirmed.json": {
+      "sha256": "6d59ba1d18e8bf5f77194657da13857142a0bc3f27442a25c49df17b283d7f5c",
+      "bytes": 1861
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-confirmed.png": {
+      "sha256": "4657adf402dad46b8d486d0630a17272c6f1ea2ab7bf6ee60d06f80512a528f6",
+      "bytes": 109780
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-dismissed-viewport.png": {
+      "sha256": "2652b77cae2ad38da3ee1853bf311a5e6577f28475f9ea7971705db68895fe0e",
+      "bytes": 111397
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-dismissed.ax.txt": {
+      "sha256": "4a375380e347d6c1605ecd1c392178122493e1fbb7d84a019f4fcffbf64f4b30",
+      "bytes": 2855
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-dismissed.html": {
+      "sha256": "7bbb01acfe1f4f4fb65b58bad70afec5483bfd82566c727b29d53673ee3ba67f",
+      "bytes": 14672
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-dismissed.json": {
+      "sha256": "d53155998064437cb01be549b4cf445125b4d095181019df9bfa9b274e1e788e",
+      "bytes": 1842
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-dismissed.png": {
+      "sha256": "cebdfa92fbfdc0c166519a5d1a6ae8471bab1838e9b2329ddbbfbf8e81b117fd",
+      "bytes": 111302
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-error-viewport.png": {
+      "sha256": "a70bbbaced28a829e6170b7db58f5a820f03525c211c18d42aaa63b948dfee41",
+      "bytes": 38978
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-error.html": {
+      "sha256": "e0ae15833a8d27c5023e9704550b180006e61485ee0a89c451d4504b4dc1dc68",
+      "bytes": 10016
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-error.json": {
+      "sha256": "e12bdea8453f4cd4814010c1922d500cf9f4608d5d75505e9746e03f6ba8b43c",
+      "bytes": 719
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-error.png": {
+      "sha256": "a70bbbaced28a829e6170b7db58f5a820f03525c211c18d42aaa63b948dfee41",
+      "bytes": 38978
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-loading-boundary.png": {
+      "sha256": "0e54caebae57ad8fc3763979b873555049718d180947097dad7c7d08ac423343",
+      "bytes": 44241
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-loading-viewport.png": {
+      "sha256": "5ab20b8c651d2c1491e1cb23b04d9c98023e954c229ae34eb16f655989001ca5",
+      "bytes": 41951
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-loading.ax.txt": {
+      "sha256": "b53503e8b032ac6e8f6529a6fef4c4c674d4cee8f39180fadbe2ae268f772a26",
+      "bytes": 1314
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-loading.html": {
+      "sha256": "d2c156a7816091f429147f288bc8127bdd586ab2be56130cd8500d89624626c9",
+      "bytes": 10073
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-loading.json": {
+      "sha256": "48a535d2b4a0d6a63c20aad5d82141220994f9cdc9e2ea874f69717a4b1159ac",
+      "bytes": 1062
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-loading.png": {
+      "sha256": "5ab20b8c651d2c1491e1cb23b04d9c98023e954c229ae34eb16f655989001ca5",
+      "bytes": 41951
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-noticed-boundary.png": {
+      "sha256": "47fcdd7eb514cb2c3f43e1778aee368de3cfe3772bca25db9d7276ead3ce091d",
+      "bytes": 104269
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-noticed-viewport.png": {
+      "sha256": "83f879af93f545e5c6c6b2365b6ba96326794173d6d70ef12a1b0ef4f50f852c",
+      "bytes": 102185
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-noticed.ax.txt": {
+      "sha256": "de2260c255962057673fcdb0a4655ce50509609061506c2b5aab191019930475",
+      "bytes": 2593
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-noticed.html": {
+      "sha256": "b89e753f6e82a014ef687b5924d90ff98b9392822139e7b4f05c9cb7ba4ff747",
+      "bytes": 14188
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-noticed.json": {
+      "sha256": "9593da615d095aec07878bc2fccc077e16b2c6d6288753806ab48d8ededd2062",
+      "bytes": 1696
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-noticed.png": {
+      "sha256": "441daa2a93783050d77b47d5c9dc16212e442a91f5e8e98d9e7d5093a884c8f7",
+      "bytes": 102198
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-retry-viewport.png": {
+      "sha256": "1d3a99c4237d382a9c316d68bc7865f83bd6db5595583d89ebd2791e0f73c11a",
+      "bytes": 102186
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-retry.ax.txt": {
+      "sha256": "de2260c255962057673fcdb0a4655ce50509609061506c2b5aab191019930475",
+      "bytes": 2593
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-retry.html": {
+      "sha256": "b89e753f6e82a014ef687b5924d90ff98b9392822139e7b4f05c9cb7ba4ff747",
+      "bytes": 14188
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-retry.json": {
+      "sha256": "9593da615d095aec07878bc2fccc077e16b2c6d6288753806ab48d8ededd2062",
+      "bytes": 1696
+    },
+    "evidence/nodemem-mobile-state-20260905/before/768x1024-retry.png": {
+      "sha256": "60088ef8ff4d5cbc7e9a99d34618c92b618662b0b733f4e0e1abd835ae461c70",
+      "bytes": 102214
+    },
+    "evidence/nodemem-mobile-state-20260905/before/change-boundary.md": {
+      "sha256": "e252279c08ea3d8812506f077ab0792bc9b52a070b580912a1b1360fb9e473aa",
+      "bytes": 4206
+    },
+    "evidence/nodemem-mobile-state-20260905/before/change-boundary.png": {
+      "sha256": "da71af54c4b7ab3b5682cb661c1aa5c281ed8918b89d52ffdfe60e473005cfcf",
+      "bytes": 85480
+    },
+    "evidence/nodemem-mobile-state-20260905/before/report.json": {
+      "sha256": "137461678d84bce9ee490a8aa5a30a9bde1d15e38650bc7a10f064a24c7f201b",
+      "bytes": 46842
+    },
+    "evidence/nodemem-mobile-state-20260905/before/source-index.html": {
+      "sha256": "b7d822ff586fe116ee74ed20e74131c35ca48f13745ce589faf8b553b3857892",
+      "bytes": 10148
+    },
+    "evidence/nodemem-mobile-state-20260905/README.md": {
+      "sha256": "18cca73e2189d97db9fc8d2e2ce193afc896a4c7f6a683be8c955d3b9282c127",
+      "bytes": 4865
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-confirmed-viewport.png": {
+      "sha256": "a9db8ae5411c2571b8e4814b18c522da08aa43e64fbbc96beb684acc9003145a",
+      "bytes": 102293
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-confirmed.ax.txt": {
+      "sha256": "f614a27290535e37c0feaf404fe8629717e681c0c292c5b33e21ab496eaf9dcd",
+      "bytes": 2770
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-confirmed.html": {
+      "sha256": "54adc2bf6f411b9f03ff51d0fc34a5bbfccf2c60adaafbe723308fafeaab0dd9",
+      "bytes": 1732900
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-confirmed.json": {
+      "sha256": "9705d02254273b8261abb31a8a33ad60b97adeddc428d5517c4aeffcb9c0772d",
+      "bytes": 4106
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-confirmed.png": {
+      "sha256": "fe3df7f56da56deaae52d6dd95bab34b3ace2d0ef1a7a86f6aeab0c41795dcb1",
+      "bytes": 112489
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-dismissed-viewport.png": {
+      "sha256": "b11ce105fe37c6aefab527ff39d21ed26f0ffad40e2f12f54ce4096c362bf49a",
+      "bytes": 100376
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-dismissed.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-dismissed.html": {
+      "sha256": "060377683f3ae319048c04a82a181f4d6f476fe88d6922b07f320f1e8f1eb117",
+      "bytes": 2305610
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-dismissed.json": {
+      "sha256": "c6c8c90c6a078b643eb0fca1adcc78b1ae8ad4f0e08e44e4e06d8344ade87b0d",
+      "bytes": 4497
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-dismissed.png": {
+      "sha256": "3f52f48715700dbb335fd6d335e5f71190119b34bf14d7933add43948e901a77",
+      "bytes": 109521
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-error-viewport.png": {
+      "sha256": "917ab9104e1240a8381f2435afa5ded32bf8e5390b65f9e3f3e80e412b67950d",
+      "bytes": 37941
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-error.html": {
+      "sha256": "bf53ab71d2c652ce829c49fadc377fb53e69a8e415109f567945491b44b7bfd6",
+      "bytes": 583037
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-error.json": {
+      "sha256": "740271f48b3e7d520daf35a5ee2876f34909014752e98f3620a899073d47feb7",
+      "bytes": 1285
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-error.png": {
+      "sha256": "917ab9104e1240a8381f2435afa5ded32bf8e5390b65f9e3f3e80e412b67950d",
+      "bytes": 37941
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-fit-viewport.png": {
+      "sha256": "ba2ba93403989fd46a026cf5516b13cec46dc0760d225fb1c354e1c17a3ac1d7",
+      "bytes": 98222
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-fit.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-fit.html": {
+      "sha256": "c481c7db238264c95a5634aff7406f54fe25866eff3a699d2c58a6e356b28a0f",
+      "bytes": 2878249
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-fit.json": {
+      "sha256": "a3f0db2077e3e35837e0b909998b26bf0ceaa0c67148a982b42056ad54a4cd05",
+      "bytes": 4473
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-fit.png": {
+      "sha256": "577e21dcd0d9d32825b4ac4f9dcfba3eeb149da2e0f43b27def6752a50f99c8b",
+      "bytes": 106716
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-focus-viewport.png": {
+      "sha256": "a8ec148176eb469c74aaac8aa23c534e74a5de9ef6839d9fba0be37bb6a58a55",
+      "bytes": 90418
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-focus.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-focus.html": {
+      "sha256": "617321be9e6f8fe8c2991aa1d62e1a706fc21bf914c1d9421d208a87740427e0",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-focus.json": {
+      "sha256": "4431cb2ed2b35a42d0385bafa16a8b76ed7ac6c1b60cff744258ca9890d68473",
+      "bytes": 3256
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-focus.png": {
+      "sha256": "4dc5c59100e15771656de5bcdb48a283ec77532f3eb8e7135071b69063354e03",
+      "bytes": 102330
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-loading-viewport.png": {
+      "sha256": "8f8564151b99f4d82c6b0ce77bfc7e3750269b328481fcee6cb2a46a7b10ec12",
+      "bytes": 38872
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-loading.ax.txt": {
+      "sha256": "3ae107497cdef6bc530432a0f57caed1221621031a1107b72c01aa4951656771",
+      "bytes": 1316
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-loading.html": {
+      "sha256": "8e672ae93c39927cb7685347ed694f0a380c0bba60e00806f22dbd9dfa84e380",
+      "bytes": 583108
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-loading.json": {
+      "sha256": "c2b42e4570ba6437ff65722a02c53ae3533967a7a5d5bff14cc4449f744f790e",
+      "bytes": 1677
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-loading.png": {
+      "sha256": "2b6a7d24ab6f8ef8eabb558e3096504d2f9f1e8b84eb922380d843cb38116cf5",
+      "bytes": 38887
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-noticed-viewport.png": {
+      "sha256": "08a9d23934079bfcdc93ad7aa8f5fda1ddd4caa94531c8f1d996add306e265a5",
+      "bytes": 97092
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-noticed.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-noticed.html": {
+      "sha256": "617321be9e6f8fe8c2991aa1d62e1a706fc21bf914c1d9421d208a87740427e0",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-noticed.json": {
+      "sha256": "bcd8a45c6ddc91324bf48f151142f2a8c262575329b8b72f81746973b349d1cd",
+      "bytes": 3474
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-noticed.png": {
+      "sha256": "e308914b40d1ff2d03abda79b8fc257a2c11e1afc70349dbd5e2d2aae063e51a",
+      "bytes": 101663
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-retry-viewport.png": {
+      "sha256": "586c10137e312ac30c082482d01069ef110f1846b2e0b06a8835f0e853e7f414",
+      "bytes": 97070
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-retry.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-retry.html": {
+      "sha256": "800034eb8066bc976ff4e9af3a41fa3dcb94eea64c5eb38cf0ffb0ceb76716f1",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-retry.json": {
+      "sha256": "64cb5fd7de0438837ea0cd944dfe306d49b20f9e30a06503e0e8877f2905af4e",
+      "bytes": 3370
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1024x768-retry.png": {
+      "sha256": "f98e6d99a0d2edc605e7e4e895f9447ff041912b98738f932b95855313c3fadc",
+      "bytes": 101599
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-confirmed-viewport.png": {
+      "sha256": "82eb60df215956be0633fa22ebb1c0a81b32e855857016008f6ed374df97b9dd",
+      "bytes": 115397
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-confirmed.ax.txt": {
+      "sha256": "f614a27290535e37c0feaf404fe8629717e681c0c292c5b33e21ab496eaf9dcd",
+      "bytes": 2770
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-confirmed.html": {
+      "sha256": "8699cf44ae24fe22be3728e61429b61a5d6130b0a26a5fc750c91581a5ac3107",
+      "bytes": 1732900
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-confirmed.json": {
+      "sha256": "f403f37d324b05234b77d78f32122d32d9955e3b5d7f87ae0af10f9ba31aef26",
+      "bytes": 4340
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-confirmed.png": {
+      "sha256": "99f3fbf8d45ea11fd420c8ab9263be0290972c1d94d63d41188794c4ef954d51",
+      "bytes": 115572
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-dismissed-viewport.png": {
+      "sha256": "5df0ba268fc2d02b60d126506052bc406eeccb35c36d2c8f3f0077e34e23d831",
+      "bytes": 111468
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-dismissed.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-dismissed.html": {
+      "sha256": "7fb7e35ba9c63590b385e934b203c68739ed56be4615542be4565b8d6f046684",
+      "bytes": 2305610
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-dismissed.json": {
+      "sha256": "2c09ad9bb625baab34a8338e07b4b090f745911d481f68626ba7458423e5dc14",
+      "bytes": 4618
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-dismissed.png": {
+      "sha256": "9ed0ca5724072420576f0ca814e83544d764f76ad3dad83ada697c25bd16b7d1",
+      "bytes": 112165
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-error-viewport.png": {
+      "sha256": "0150ee508cbd2f949e685d6fef6de8a96e17728291d64e370b2d77211cc7edb0",
+      "bytes": 40329
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-error.html": {
+      "sha256": "bf53ab71d2c652ce829c49fadc377fb53e69a8e415109f567945491b44b7bfd6",
+      "bytes": 583037
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-error.json": {
+      "sha256": "a5b35102cc54390738609e6c0a7d4be5203dd483895021b810abca9c0f5df7b3",
+      "bytes": 1301
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-error.png": {
+      "sha256": "0150ee508cbd2f949e685d6fef6de8a96e17728291d64e370b2d77211cc7edb0",
+      "bytes": 40329
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-fit-viewport.png": {
+      "sha256": "3aa6c9ba1e4773818f56fb5ccd77844d6a0cd68d117cfaeda37adda0c9440db5",
+      "bytes": 109441
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-fit.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-fit.html": {
+      "sha256": "903a2cf64d10536361bfe651996962257db146cd6f599e4bb9ba9d9fee76af0c",
+      "bytes": 2878249
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-fit.json": {
+      "sha256": "86f02607653a4ec20bc090e14e28138884161198cecd174bb03d9b251a9c7ba1",
+      "bytes": 4592
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-fit.png": {
+      "sha256": "a5c2528857a9034cae84c664061edcbe159d0aa865701b71e6afa3a752bab501",
+      "bytes": 109541
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-focus-viewport.png": {
+      "sha256": "3fcb7971d38359f53da23bdd0f7842a10855841eca2998d27f65a4b8de46e65e",
+      "bytes": 105336
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-focus.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-focus.html": {
+      "sha256": "a1e6f74ba177b5f4fb7e4327bd3f340ca80fdd942a5deb26f183007999bd7893",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-focus.json": {
+      "sha256": "4d9cc17a61fb3dcef09954cf7effebae5ffe0e2863aabf9dda6369d21ebd009d",
+      "bytes": 3133
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-focus.png": {
+      "sha256": "792e565c0861842d7f5a8e8b66e659fe949219d9b984f4ce8d1dab4165f2efbd",
+      "bytes": 105392
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-loading-viewport.png": {
+      "sha256": "f68bf57c6e58e9d0dc1e36f37aa86511c2bfdc40e0efada4992295b6ce157fdf",
+      "bytes": 39877
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-loading.ax.txt": {
+      "sha256": "3ae107497cdef6bc530432a0f57caed1221621031a1107b72c01aa4951656771",
+      "bytes": 1316
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-loading.html": {
+      "sha256": "8e672ae93c39927cb7685347ed694f0a380c0bba60e00806f22dbd9dfa84e380",
+      "bytes": 583108
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-loading.json": {
+      "sha256": "f0de75ab5b25258b4350eb42c600819f804e055042f0196ea5fcb6de58bc6944",
+      "bytes": 1678
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-loading.png": {
+      "sha256": "f68bf57c6e58e9d0dc1e36f37aa86511c2bfdc40e0efada4992295b6ce157fdf",
+      "bytes": 39877
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-noticed-viewport.png": {
+      "sha256": "c03b9c20059adbb0d358b9fdcd12422f0e49688307e98900a99e8a54348f6144",
+      "bytes": 104721
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-noticed.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-noticed.html": {
+      "sha256": "a1e6f74ba177b5f4fb7e4327bd3f340ca80fdd942a5deb26f183007999bd7893",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-noticed.json": {
+      "sha256": "40bd2dca1b955495db9f7a16d7a6ea3d021d37291421aea30b6e501915ee981c",
+      "bytes": 3350
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-noticed.png": {
+      "sha256": "1df38c532e51ad11ec7bdb73afcac0050f1ec006d998e608230f40761b60420f",
+      "bytes": 104806
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-retry-viewport.png": {
+      "sha256": "0ce37ab2280b39314c0a8548792174f8ab87ae9d0e216cb686e41f4cd53021c4",
+      "bytes": 104661
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-retry.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-retry.html": {
+      "sha256": "80dfc3894e921ef26d2405937d4a729345901e3d2a6d61d08e0eb50ae0aed9b5",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-retry.json": {
+      "sha256": "622d19ec3c2efe959993a29ca9c8065fc8009c481725ef3e71661a32b79ef143",
+      "bytes": 3371
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1440x960-retry.png": {
+      "sha256": "75f35702d02f46e4ca8186693e866bfb7ebbc05cab09107aeedb6b8449bfb1de",
+      "bytes": 104717
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-confirmed-viewport.png": {
+      "sha256": "ec0384569f2d486965748728c835b73efc84c8edf38db1362e9e7fe561d103f0",
+      "bytes": 119706
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-confirmed.ax.txt": {
+      "sha256": "f614a27290535e37c0feaf404fe8629717e681c0c292c5b33e21ab496eaf9dcd",
+      "bytes": 2770
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-confirmed.html": {
+      "sha256": "8699cf44ae24fe22be3728e61429b61a5d6130b0a26a5fc750c91581a5ac3107",
+      "bytes": 1732900
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-confirmed.json": {
+      "sha256": "202b6349041cd61301e11aae37bcca93519b221afd9fd40161a673b0323e451c",
+      "bytes": 4247
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-confirmed.png": {
+      "sha256": "67aeecc88b6a4081aa0f85172d72d60536e9369041eaa04b233fed4c392c223b",
+      "bytes": 120273
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-dismissed-viewport.png": {
+      "sha256": "8b1f3ffb70b55d13794fd8a26fbf48da3118bc2ff3cb8ceb603f28763ed495b1",
+      "bytes": 116076
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-dismissed.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-dismissed.html": {
+      "sha256": "7fb7e35ba9c63590b385e934b203c68739ed56be4615542be4565b8d6f046684",
+      "bytes": 2305610
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-dismissed.json": {
+      "sha256": "0008a7da2ee5c14ff32e69ae13d1fa3ecdb3892a8ddfcc1e5a7c5443d85b7760",
+      "bytes": 4512
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-dismissed.png": {
+      "sha256": "85ab3042059fdacfdbeeafe67d5c6489c2e01bb5f75acd16d84c30931eb0ac86",
+      "bytes": 116605
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-error-viewport.png": {
+      "sha256": "19a1c09258fa3d2cf6bfe00ed585933306ed75dd192f86e0da57f38b32d0cb87",
+      "bytes": 43175
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-error.html": {
+      "sha256": "bf53ab71d2c652ce829c49fadc377fb53e69a8e415109f567945491b44b7bfd6",
+      "bytes": 583037
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-error.json": {
+      "sha256": "85c159eb1ca70b08c26ab7d0afca61881ed4301980fe403e0b84b6059947f281",
+      "bytes": 1305
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-error.png": {
+      "sha256": "19a1c09258fa3d2cf6bfe00ed585933306ed75dd192f86e0da57f38b32d0cb87",
+      "bytes": 43175
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-fit-viewport.png": {
+      "sha256": "a237446786e58f2d0768733ca8d4331d74db29eecc390388c7957293b5b60624",
+      "bytes": 114005
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-fit.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-fit.html": {
+      "sha256": "903a2cf64d10536361bfe651996962257db146cd6f599e4bb9ba9d9fee76af0c",
+      "bytes": 2878249
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-fit.json": {
+      "sha256": "d6c07236b88c7c651618610c4b7950786cb1086d99747f0388009a029aae1cbe",
+      "bytes": 4628
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-fit.png": {
+      "sha256": "d0c7d1bdbf20d9803ed24d0e714fe478612916909e9f2a43068ac8e1cb15ca16",
+      "bytes": 113991
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-focus-viewport.png": {
+      "sha256": "08b504e1e62c69907cbca0baccbb33bf4ab702864d67057b9f0a03f0e1e6ae63",
+      "bytes": 109999
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-focus.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-focus.html": {
+      "sha256": "a1e6f74ba177b5f4fb7e4327bd3f340ca80fdd942a5deb26f183007999bd7893",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-focus.json": {
+      "sha256": "949f2398f1a0a3a396938decbe49886ca78795110cb850c1c0927a254c240c24",
+      "bytes": 3146
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-focus.png": {
+      "sha256": "828199dff4aa9f4392bf042b6f503fe7ba998bbfb4b9830647dc724569d357fa",
+      "bytes": 110052
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-loading-viewport.png": {
+      "sha256": "b2f4b076d59d9c9bce94e3e3d8ca5553ee5393f8d98f8d85cd446578ecd6a274",
+      "bytes": 42330
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-loading.ax.txt": {
+      "sha256": "3ae107497cdef6bc530432a0f57caed1221621031a1107b72c01aa4951656771",
+      "bytes": 1316
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-loading.html": {
+      "sha256": "8e672ae93c39927cb7685347ed694f0a380c0bba60e00806f22dbd9dfa84e380",
+      "bytes": 583108
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-loading.json": {
+      "sha256": "1e4ff676306b060d64aa345dc6af2c5aee12dce3129b4c548b40b61017a00fd9",
+      "bytes": 1679
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-loading.png": {
+      "sha256": "b2f4b076d59d9c9bce94e3e3d8ca5553ee5393f8d98f8d85cd446578ecd6a274",
+      "bytes": 42330
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-noticed-viewport.png": {
+      "sha256": "fcd6af53275c3c38a8a77f2ffec89d2d0616de08e4e591633ba4d3ea5b619867",
+      "bytes": 109348
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-noticed.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-noticed.html": {
+      "sha256": "a1e6f74ba177b5f4fb7e4327bd3f340ca80fdd942a5deb26f183007999bd7893",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-noticed.json": {
+      "sha256": "b044113871f2d157c41713467909e5771c3e7c3f4a7a5cd6ebddeeb7f3b353c4",
+      "bytes": 3363
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-noticed.png": {
+      "sha256": "0ebf72f4e7699063b79fe626c7aa19d705f861484de916447b1ec9ee0a1d8466",
+      "bytes": 109434
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-retry-viewport.png": {
+      "sha256": "25f58d3a4931c08b5d5315d515f144b379ea156966deeee579fa1608565e0a4f",
+      "bytes": 109298
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-retry.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-retry.html": {
+      "sha256": "80dfc3894e921ef26d2405937d4a729345901e3d2a6d61d08e0eb50ae0aed9b5",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-retry.json": {
+      "sha256": "2edb06f6266d454cd4704d90c9d26a747ae9c9f9a135599ddd98f03e58191d3a",
+      "bytes": 3350
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/1920x1080-retry.png": {
+      "sha256": "524ab4193db93813dba9733466ccc05eebb82ce1bd2d71d44643b0b1d190aabf",
+      "bytes": 109336
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-confirmed-viewport.png": {
+      "sha256": "315bd7d29021345901c1da2a65765acfd3e7f802e55053a5d656060057162146",
+      "bytes": 45074
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-confirmed.ax.txt": {
+      "sha256": "f614a27290535e37c0feaf404fe8629717e681c0c292c5b33e21ab496eaf9dcd",
+      "bytes": 2770
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-confirmed.html": {
+      "sha256": "b70b5f63bd3cc4d0681067e5b6cbb973ab3fd5a0910a378e78e951a462d93219",
+      "bytes": 1732900
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-confirmed.json": {
+      "sha256": "a2aa50845727925a6e785567b6c1594b02a57d4c0325d3b2782175328329f9c0",
+      "bytes": 3723
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-confirmed.png": {
+      "sha256": "6852881facdd0c2e8039f7a059cd1c6eccfd2857df614482120c91b998ed32ba",
+      "bytes": 87861
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-dismissed-viewport.png": {
+      "sha256": "e9a23434306d280494390b35f57a16d2a14db51cb85cc2c34e427027abeff2b8",
+      "bytes": 47841
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-dismissed.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-dismissed.html": {
+      "sha256": "9515e279af7befe0031cb0c6b9b22c1d3ac141dbe5cb3dc7b122e055f434a55d",
+      "bytes": 2305610
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-dismissed.json": {
+      "sha256": "94324e4c729274fd5bec2ff960fd5cc9cfc44775edbc0468f5b9e8a6eeb1db97",
+      "bytes": 4107
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-dismissed.png": {
+      "sha256": "213f5695be14b4fff0c21c646e85043c9a133710066776abe5b94d64395c20d9",
+      "bytes": 85828
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-error-viewport.png": {
+      "sha256": "eb9786a64a2bbdcb315ac5d80ce18f78ae3323f72d5b569e83ab30f89d745486",
+      "bytes": 35214
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-error.html": {
+      "sha256": "bf53ab71d2c652ce829c49fadc377fb53e69a8e415109f567945491b44b7bfd6",
+      "bytes": 583037
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-error.json": {
+      "sha256": "95a88e884b62459188b785e1d81215a84418882c6c952757d45c0a55381cc9ab",
+      "bytes": 1289
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-error.png": {
+      "sha256": "eb9786a64a2bbdcb315ac5d80ce18f78ae3323f72d5b569e83ab30f89d745486",
+      "bytes": 35214
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-fit-viewport.png": {
+      "sha256": "728164dfa24f1b1feb98c63666c37fa6331a2e2cf259f08c8e4a54267cb98a6b",
+      "bytes": 34838
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-fit.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-fit.html": {
+      "sha256": "1234a8bb83442de194dba5555139b5d563dd988686a8e923cdc4041e8ee3b632",
+      "bytes": 2878249
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-fit.json": {
+      "sha256": "7b6e583b923a04d0fac14afec73144a0471323108042c1d63b7e37b98222a362",
+      "bytes": 4079
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-fit.png": {
+      "sha256": "cc4dbaa344521cd94cce1de0224ccea3a20b9b174edddfb05fcd0825b1bc0193",
+      "bytes": 82937
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-focus-viewport.png": {
+      "sha256": "883e138f2f0f4c9736bdc311c2e2df42f1cd449bc6cde8a68f25aeaa27d700b3",
+      "bytes": 43602
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-focus.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-focus.html": {
+      "sha256": "a3b50f053db520080aa587c859921cf7e691a83feb911e19688dd587be2b2da8",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-focus.json": {
+      "sha256": "ca034b892991f377663dc7aa3b9948fbd0b8119e6dacf5a698eab6d481df3c98",
+      "bytes": 2868
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-focus.png": {
+      "sha256": "7960bb7b3f3f3145e15b900c7ed678d00109f3f6eb975b3acabe14c923ba682d",
+      "bytes": 81252
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-loading-viewport.png": {
+      "sha256": "021215e84623c3b58786705c73eb63c656bf404f1efc63b2664b11d6a4aadc13",
+      "bytes": 24277
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-loading.ax.txt": {
+      "sha256": "3ae107497cdef6bc530432a0f57caed1221621031a1107b72c01aa4951656771",
+      "bytes": 1316
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-loading.html": {
+      "sha256": "8e672ae93c39927cb7685347ed694f0a380c0bba60e00806f22dbd9dfa84e380",
+      "bytes": 583108
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-loading.json": {
+      "sha256": "b55d16fbb2e77de233d5c2b4615826d288241950a9a906d7626f6bc4fe717c4d",
+      "bytes": 1671
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-loading.png": {
+      "sha256": "ac23e29efd788edc2c7151ca90a23d156759eb74479ae1c3a10312a8d61232c4",
+      "bytes": 35914
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-noticed-viewport.png": {
+      "sha256": "1ba4fcb5fafffb90568e9b79c267d5e2d31f291da2b4781082c5d6784b400942",
+      "bytes": 32527
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-noticed.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-noticed.html": {
+      "sha256": "a3b50f053db520080aa587c859921cf7e691a83feb911e19688dd587be2b2da8",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-noticed.json": {
+      "sha256": "10ab48afaf7e3a41c3fc6a0d91ba6e5d89f567d5980584e7514afeb8f49538ff",
+      "bytes": 3408
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-noticed.png": {
+      "sha256": "ec2ef336707748c1280dbb1ccc15bf253f4854df59273f1e0c76127e6bfd957f",
+      "bytes": 80633
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-retry-viewport.png": {
+      "sha256": "eb5a10202f5c363acff190759a6945446a0da874cd3f22971b8ef3265252ff24",
+      "bytes": 32485
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-retry.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-retry.html": {
+      "sha256": "e347dc2d40556a7db3ec2c218a79c624c8408a72a4aa302becce563e9ecdc6fc",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-retry.json": {
+      "sha256": "f9031010919c2a01ef270ecced03fa67ca1bf8bfadbaa89cf29c8c8dfc0e7011",
+      "bytes": 3270
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/320x800-retry.png": {
+      "sha256": "a7838e91077eca484bd7fc4875b2d93eb4aa7a83ff751a017d4df9bc06b03d3c",
+      "bytes": 80604
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-confirmed-viewport.png": {
+      "sha256": "4e0791e0df9ed933dd271383d6e11250137710d4e1469ebcb31e6ec625b0bf98",
+      "bytes": 51575
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-confirmed.ax.txt": {
+      "sha256": "f614a27290535e37c0feaf404fe8629717e681c0c292c5b33e21ab496eaf9dcd",
+      "bytes": 2770
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-confirmed.html": {
+      "sha256": "27fd9837a2d995723beba3ea06602d86b3bf90d8e6468c2d152ef586736c682c",
+      "bytes": 1732900
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-confirmed.json": {
+      "sha256": "25a861cbf829e801bb4abad5d3c0dad65eaf4279221e8f490e4d349562681a64",
+      "bytes": 3714
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-confirmed.png": {
+      "sha256": "bd4aadbaa01804f6d1c1297d2492653a314eb010da203e81b8e8aa60ef3a49da",
+      "bytes": 88340
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-dismissed-viewport.png": {
+      "sha256": "116c94b95aa30e4968c2f79ecc894da7e8249f81617201ec1446e1b7d57352e0",
+      "bytes": 54265
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-dismissed.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-dismissed.html": {
+      "sha256": "ef6c3f82f434f8a5c1ca157c3b55e790ddeb078a820e84012a045e552794088c",
+      "bytes": 2305610
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-dismissed.json": {
+      "sha256": "812eeeda97ba283c0213d51bccbd16ad6ce83eaf990a2b6e698d170c34f3362e",
+      "bytes": 4100
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-dismissed.png": {
+      "sha256": "c62bd82be721b64d62ed8eea2a98596cf19262e33bfe4427d376ee97f67aa557",
+      "bytes": 85873
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-error-viewport.png": {
+      "sha256": "de9b8a29c8d04c9ddbc9f57be14db22bf6a7dc1af7f1988ad25448ac74d2d601",
+      "bytes": 34031
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-error.html": {
+      "sha256": "bf53ab71d2c652ce829c49fadc377fb53e69a8e415109f567945491b44b7bfd6",
+      "bytes": 583037
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-error.json": {
+      "sha256": "0fccfadef04d8a00f6c019457a0502d861535c2010bb4a944996351bdec269c5",
+      "bytes": 1135
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-error.png": {
+      "sha256": "de9b8a29c8d04c9ddbc9f57be14db22bf6a7dc1af7f1988ad25448ac74d2d601",
+      "bytes": 34031
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-fit-viewport.png": {
+      "sha256": "763ab63114aaf1565df9641bb97f0bbca319314c71407bdb9ad5d5fd19f8fa85",
+      "bytes": 37663
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-fit.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-fit.html": {
+      "sha256": "213c48582c6538e0bcac77becb74f2bf1b2452666c0715c0acb70aaee10389eb",
+      "bytes": 2878249
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-fit.json": {
+      "sha256": "ceb3291c0b61767dbd6eed4e77b271f09285ae1642bfab5434d832b9dd0b078b",
+      "bytes": 4075
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-fit.png": {
+      "sha256": "1c8f969cf2d047f5eca9330bca8fc4b3a7ee031261d8553b79b8fd4f400498c6",
+      "bytes": 82871
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-focus-viewport.png": {
+      "sha256": "b7bad17ec6e8d70bc89c4bcf68e0e0ffe69cb1f6be26e821587cf7b6f7e4168b",
+      "bytes": 49489
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-focus.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-focus.html": {
+      "sha256": "98d6d96753d47bf06c9419f3ac06e1e56e813f194033bd9678887784e294ec07",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-focus.json": {
+      "sha256": "39468c56ab1bb7a4cdd4b3c34a639101224f30b39ac5171e67ec9a08a2f57672",
+      "bytes": 2855
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-focus.png": {
+      "sha256": "e05de7930b5ecd2a992ecc52397d1d618fe9c367057e4973e1d268a406b8a3ec",
+      "bytes": 80417
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-loading-viewport.png": {
+      "sha256": "c65b1134165da5ef634ffe3cd0c4487199d854784d903415868e2e494433121d",
+      "bytes": 26398
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-loading.ax.txt": {
+      "sha256": "3ae107497cdef6bc530432a0f57caed1221621031a1107b72c01aa4951656771",
+      "bytes": 1316
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-loading.html": {
+      "sha256": "8e672ae93c39927cb7685347ed694f0a380c0bba60e00806f22dbd9dfa84e380",
+      "bytes": 583108
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-loading.json": {
+      "sha256": "6b462fa0f6b5dba9f930402620661bf765ebaa12ef0e2f2cf726cf0b9db836f8",
+      "bytes": 1659
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-loading.png": {
+      "sha256": "08dcd5b89e46345b2e255384b72da1942bec7389303f3d0198db7b744a5a5efa",
+      "bytes": 35118
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-noticed-viewport.png": {
+      "sha256": "55da4219c279a4c5c197a843a31435ad89ea6f1295d01d86a971636071011f1a",
+      "bytes": 34676
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-noticed.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-noticed.html": {
+      "sha256": "98d6d96753d47bf06c9419f3ac06e1e56e813f194033bd9678887784e294ec07",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-noticed.json": {
+      "sha256": "18352e03c9cc7d0713662217e37977ecb1225a0ceda8d7335804eedfbf72f2e8",
+      "bytes": 3399
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-noticed.png": {
+      "sha256": "5f38d232675e052a4d82626cd4c0ad864ee306c1a9b72a2e85eecca05888769e",
+      "bytes": 79778
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-retry-viewport.png": {
+      "sha256": "8d866da1aadd50be6a30a692934a4a37b1f3d561399ff968efdeeddabd541497",
+      "bytes": 34615
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-retry.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-retry.html": {
+      "sha256": "3eb605104957e9671abd99a2ae690931123bf14550c80cc5e6831019f6ad6d71",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-retry.json": {
+      "sha256": "ed64d4a04f5ea93689e55faf1c3c6b4c233c4691b05972672fa54727c12a7d95",
+      "bytes": 3258
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/360x800-retry.png": {
+      "sha256": "6a1404c593cf80d547f1096414264809c238bd3ac7defe942c66b46cc536e5e2",
+      "bytes": 79728
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-confirmed-viewport.png": {
+      "sha256": "8bac03d5dd042affef141594b3e291083a686bb5db9b87e7f4d90049fab1b041",
+      "bytes": 57462
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-confirmed.ax.txt": {
+      "sha256": "f614a27290535e37c0feaf404fe8629717e681c0c292c5b33e21ab496eaf9dcd",
+      "bytes": 2770
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-confirmed.html": {
+      "sha256": "4d0df79d1e6ac843720e5d5a3a1572996e6955b4a9c85cb6e537909af0b16d7d",
+      "bytes": 1732900
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-confirmed.json": {
+      "sha256": "27ef7ef249cd45f39bfe56d08d094983f62c3e966b455ae1bddc861231d51291",
+      "bytes": 3695
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-confirmed.png": {
+      "sha256": "0a61fb903057572888daec7de5883a725e82bfd6c2b8092d1ddcc760b2b3925b",
+      "bytes": 91744
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-dismissed-viewport.png": {
+      "sha256": "0fc9d78ee77fb3e4bf14de3440fdfaae535ea99afb0d06bd917d40a8aab8d105",
+      "bytes": 57716
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-dismissed.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-dismissed.html": {
+      "sha256": "14486ee3c63a0b3fb628f70f316819912c5cb96d46aad39284f3df1ac999944e",
+      "bytes": 2305610
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-dismissed.json": {
+      "sha256": "7aeae636e5ecd7bda622d02fc932d72635e52b400049ed2c6227444650dde9fc",
+      "bytes": 4088
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-dismissed.png": {
+      "sha256": "0a011cf8f2fe94f3fe64915ac1e40755845cb0d270da6f2360b153c03d6d0043",
+      "bytes": 88884
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-error-viewport.png": {
+      "sha256": "bdfa8427a51c105578a69abb7084b3d971a8c2df0c70d306084579c5745e9d4f",
+      "bytes": 34402
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-error.html": {
+      "sha256": "bf53ab71d2c652ce829c49fadc377fb53e69a8e415109f567945491b44b7bfd6",
+      "bytes": 583037
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-error.json": {
+      "sha256": "2af5120745eaf0e156df3da5889406c4afc200ee220f33a73d3f325ead05d438",
+      "bytes": 1300
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-error.png": {
+      "sha256": "bdfa8427a51c105578a69abb7084b3d971a8c2df0c70d306084579c5745e9d4f",
+      "bytes": 34402
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-fit-viewport.png": {
+      "sha256": "0de01331c5d13939f6ac1c079e76540adc37a5cd29770c6746bbe2d24c6a82c0",
+      "bytes": 42046
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-fit.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-fit.html": {
+      "sha256": "67b770200c7fb610c81ca909e15dc00cb05b5bfea99441b9361974ff5874cbae",
+      "bytes": 2878249
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-fit.json": {
+      "sha256": "11973f8e6575c41ffd1332860305be2c1ea2b32b4ff3d1efd93870ebd80af31b",
+      "bytes": 4066
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-fit.png": {
+      "sha256": "709f1fb6b35f040d43927670cccd5105c79f666be41b0a03bbe95e43bc9d8881",
+      "bytes": 86143
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-focus-viewport.png": {
+      "sha256": "354cfaa9a4438cc829624d6e0be4013fc3b4dd048e9df7c93aa6930ffc2e6ff2",
+      "bytes": 55709
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-focus.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-focus.html": {
+      "sha256": "722668ea57a43460616ff6591e2d55e0b0d0d583a313f97c577a756a65773665",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-focus.json": {
+      "sha256": "96934f33502e3bfedf64b52d2df21cc33b5a0fc34ecbc83f566bbf8f33f2fb22",
+      "bytes": 2846
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-focus.png": {
+      "sha256": "3a86b07c6934263d60dccfe168601e2700aae9633409280c137ed7cd7a509652",
+      "bytes": 83679
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-loading-viewport.png": {
+      "sha256": "82c4a0488c18e75c51573a0bde8481a11df15f0cb7e6091ffd5d7bacb951fb5c",
+      "bytes": 30287
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-loading.ax.txt": {
+      "sha256": "3ae107497cdef6bc530432a0f57caed1221621031a1107b72c01aa4951656771",
+      "bytes": 1316
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-loading.html": {
+      "sha256": "8e672ae93c39927cb7685347ed694f0a380c0bba60e00806f22dbd9dfa84e380",
+      "bytes": 583108
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-loading.json": {
+      "sha256": "c762c65b3999b911cee5fb0561d3113934a83cfe0304b144450c623326042c41",
+      "bytes": 1659
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-loading.png": {
+      "sha256": "f89b75a8418544b3ed782568409d283cfc1b3b1ccc4fafe32a01d60291f8c185",
+      "bytes": 35525
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-noticed-viewport.png": {
+      "sha256": "2b6ae01d119d94cbce14eadc905c372fa1b08a690b8ab782816bd66c62266952",
+      "bytes": 38699
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-noticed.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-noticed.html": {
+      "sha256": "722668ea57a43460616ff6591e2d55e0b0d0d583a313f97c577a756a65773665",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-noticed.json": {
+      "sha256": "76c505f2583a13a6d571f45ea867615a86013a58c18a756946d0b9ea4a181610",
+      "bytes": 3389
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-noticed.png": {
+      "sha256": "8abaa66a87696caf473d33b4100b3542df69643a819c159f5beb1c55722e6dc6",
+      "bytes": 83017
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-retry-viewport.png": {
+      "sha256": "94123a7187cd758ede6ba2da493643ff238079d286b466c8df0da6eff25b2d52",
+      "bytes": 38685
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-retry.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-retry.html": {
+      "sha256": "dfde4f4039e2eac91bd47f95f484fe1372febb0aee91864e673de7907d9a5138",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-retry.json": {
+      "sha256": "7511f5efa0d9848d874b8731745c954d822005f6d12ca2267df6cb36be7569b4",
+      "bytes": 3256
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/390x844-retry.png": {
+      "sha256": "cd64e6ba6fe79f22406f80f742b43110da270a5afa8ebc0d8a086ce9d83394eb",
+      "bytes": 82958
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-confirmed-viewport.png": {
+      "sha256": "fef545db7c10640ff22a9cafa978d8d955ed92060f2838cdd926cb0b82dc7201",
+      "bytes": 111214
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-confirmed.ax.txt": {
+      "sha256": "f614a27290535e37c0feaf404fe8629717e681c0c292c5b33e21ab496eaf9dcd",
+      "bytes": 2770
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-confirmed.html": {
+      "sha256": "abd2690f24b2389b4b37fdb1480c90f6725abdb537d8b40fe1a62ebfaf023dfc",
+      "bytes": 1732900
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-confirmed.json": {
+      "sha256": "693d948db06855e3af0fe0cb537b0aea1a1422ce5f3b65185c234aec1cbe7fba",
+      "bytes": 3981
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-confirmed.png": {
+      "sha256": "d0a1f81077eb73718879b668b4791358a8b73db306d4fa61ba37e7b82d70b54a",
+      "bytes": 111274
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-dismissed-viewport.png": {
+      "sha256": "18c8ba48c38434d4a161b29020d872d4007012064b7b5940dcf426ef097ced3b",
+      "bytes": 107590
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-dismissed.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-dismissed.html": {
+      "sha256": "fab67aeb78909dad3487ed1f368a9518d0ff8c88f9e910ebad082dcce6ceb7a2",
+      "bytes": 2305610
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-dismissed.json": {
+      "sha256": "e34ddaf8bc3b308400c94f770fadad97016b379a4bcd8fc684e0f64f72357bbf",
+      "bytes": 4502
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-dismissed.png": {
+      "sha256": "c69086e4d3251fe09ca79cd79cb4f139af27ab5d8725eb93973993c10b24a3f2",
+      "bytes": 108243
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-error-viewport.png": {
+      "sha256": "a70bbbaced28a829e6170b7db58f5a820f03525c211c18d42aaa63b948dfee41",
+      "bytes": 38978
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-error.ax.txt": {
+      "sha256": "c301c6ac100727f66835d696fda1c321803cb0daa3cc504fc8287148aa4f8562",
+      "bytes": 1130
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-error.html": {
+      "sha256": "bf53ab71d2c652ce829c49fadc377fb53e69a8e415109f567945491b44b7bfd6",
+      "bytes": 583037
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-error.json": {
+      "sha256": "e837151ef282b9974e82c5022a057fa03167fa276dcc8ef8215a1c0b68f7dc89",
+      "bytes": 1136
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-error.png": {
+      "sha256": "a70bbbaced28a829e6170b7db58f5a820f03525c211c18d42aaa63b948dfee41",
+      "bytes": 38978
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-fit-viewport.png": {
+      "sha256": "911d403b441a616018fccc83427ae4f67136381731161e0586290acef9551647",
+      "bytes": 105546
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-fit.ax.txt": {
+      "sha256": "52e41d6b271b50a974197b8da20190618ae231d7f5328465c65f0cd9cb758742",
+      "bytes": 2843
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-fit.html": {
+      "sha256": "04012ffd9f8cf2c173e0090cd82fb68d19bdfd403c4f06a03cb702900c7996b4",
+      "bytes": 2878249
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-fit.json": {
+      "sha256": "3cfca3a6fa53c3a22626f2fc54fb0d49b5150179bb32d663b799b566da9d6fdc",
+      "bytes": 4607
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-fit.png": {
+      "sha256": "931575c3ea474488e9ab814cfddb32f809939bb068faa87d656d2a470efb52b1",
+      "bytes": 105567
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-focus-viewport.png": {
+      "sha256": "e5135246b329a039189618206dc2491e0aa9a8f19df2034b524c1a37ca665ce6",
+      "bytes": 101975
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-focus.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-focus.html": {
+      "sha256": "9dcb694a977e73e35fb2b526bdaa43f7e6440ed489f93898ebf7036df8202347",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-focus.json": {
+      "sha256": "4b60b5b18f74cca7f285efc58b1e779bc4118faf8332b8240fcb4ff78438e193",
+      "bytes": 3128
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-focus.png": {
+      "sha256": "b4c84dd4631a262b5d1b9fc6ad3740eef502f1f29521c5551ad2c34e9ecaeba3",
+      "bytes": 102031
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-loading-viewport.png": {
+      "sha256": "933ea4270ae61aaa937d463dcdf592404e05af321de1b482858a94d67d42964a",
+      "bytes": 41964
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-loading.ax.txt": {
+      "sha256": "3ae107497cdef6bc530432a0f57caed1221621031a1107b72c01aa4951656771",
+      "bytes": 1316
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-loading.html": {
+      "sha256": "8e672ae93c39927cb7685347ed694f0a380c0bba60e00806f22dbd9dfa84e380",
+      "bytes": 583108
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-loading.json": {
+      "sha256": "42ae12e8c611c20447bc28468a0310673360d46a3ef5da85b820edd48038e24a",
+      "bytes": 1654
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-loading.png": {
+      "sha256": "933ea4270ae61aaa937d463dcdf592404e05af321de1b482858a94d67d42964a",
+      "bytes": 41964
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-noticed-viewport.png": {
+      "sha256": "e087f08f6c41e9e38bcc93ba0508a804c7b54215f6080384a3b93bf41d549e8a",
+      "bytes": 101330
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-noticed.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-noticed.html": {
+      "sha256": "9dcb694a977e73e35fb2b526bdaa43f7e6440ed489f93898ebf7036df8202347",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-noticed.json": {
+      "sha256": "f3b3585da18e33e97c301c14c25e9f5173031e0c752167987147173626a9aa82",
+      "bytes": 3345
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-noticed.png": {
+      "sha256": "ae068d83ff70308dbb092d136e1964be1f8a9bf8a40313ac331c6ead2f1ef7a9",
+      "bytes": 101359
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-retry-viewport.png": {
+      "sha256": "8ae4fcf6c947a9eafe2bbb2796a312c42bfd282412f9dce496f11b77d72d0836",
+      "bytes": 101348
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-retry.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-retry.html": {
+      "sha256": "ec37c75fb2a807b2e4335ab11e89226d308340c5b6fc550d6698c43c63442226",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-retry.json": {
+      "sha256": "0c87215352f725fea7d0660b8afd1e322a1899e57cc7420d36bb043614290c76",
+      "bytes": 3341
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/768x1024-retry.png": {
+      "sha256": "0fc1c3c68650311b9e558a2ba6690e3ab4a10b8bd275be107676ba732d3ca5f5",
+      "bytes": 101356
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/all-resolved-viewport.png": {
+      "sha256": "2b5831d1acc8df50330503c24580bfd447facf040f4f0831aaa2fff8d75e205a",
+      "bytes": 114728
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/all-resolved.ax.txt": {
+      "sha256": "823cd481297b2ce7909e10da494510e7f6b6e458ea2993171feca5f13a3ccf90",
+      "bytes": 2915
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/all-resolved.html": {
+      "sha256": "e96b11d47adaf61619c2e3bc367511e5ec3bb518608d3b5b742190f414c4154f",
+      "bytes": 587745
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/all-resolved.json": {
+      "sha256": "f2341fa9045d9629f04bc66aa256acfe4ec65f46710ab31b215d7af16b3d1d22",
+      "bytes": 4801
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/all-resolved.png": {
+      "sha256": "5d8ee0a9acc7f79011dc8581c5e30481a542bf8ece5213b34f5dd9da53f46cd1",
+      "bytes": 114440
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320-fit-viewport.png": {
+      "sha256": "2947bbdb9747c07229a8d16f4d30864c099ecfa86b263589e73da1c9412e9ef6",
+      "bytes": 32672
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320-fit.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320-fit.html": {
+      "sha256": "a3b50f053db520080aa587c859921cf7e691a83feb911e19688dd587be2b2da8",
+      "bytes": 1159848
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320-fit.json": {
+      "sha256": "ff103055e02a6d67a2523f58e3b230f16d233307b479ad632f6ca081a81b71c2",
+      "bytes": 3088
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320-fit.png": {
+      "sha256": "5c5f9847b377c0eb4fdad1ba8a371cff3b98371cc0385bebe405a4957a2a042a",
+      "bytes": 80754
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320-viewport.png": {
+      "sha256": "36b0bf4c855943017f5159df4965e96615b3f5ce8d41cbfb98bfd8d528359d9d",
+      "bytes": 32447
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320.html": {
+      "sha256": "e347dc2d40556a7db3ec2c218a79c624c8408a72a4aa302becce563e9ecdc6fc",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320.json": {
+      "sha256": "614d61c5bbe05b104488b72eb8546693ff322c974224b97077dd05d3ecd2f0cb",
+      "bytes": 3272
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reflow-320.png": {
+      "sha256": "505c4ed50f0614ee239508651fea71ce3f02d5ed0f418be5ad03bc6c6bedd02a",
+      "bytes": 80540
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reload-reset-viewport.png": {
+      "sha256": "b681548fdbf5ac2de391bd5a8cc887b3b9258de8b46c9322e9f17576593baef9",
+      "bytes": 104689
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reload-reset.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reload-reset.html": {
+      "sha256": "80dfc3894e921ef26d2405937d4a729345901e3d2a6d61d08e0eb50ae0aed9b5",
+      "bytes": 587209
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reload-reset.json": {
+      "sha256": "59bab0cc9aab41f2a8f5e11f6d1a3d19d6392c84ee9b5b0ee4ee27196ba27460",
+      "bytes": 3374
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/reload-reset.png": {
+      "sha256": "646d6b9e939c4259d3cbd365053eac7093bcbe39fc933a5417605403207afe8e",
+      "bytes": 104783
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/report.json": {
+      "sha256": "0673b34433ea37acf0b3676b59c23d57e149e90ee74f843492a0059381d0fb97",
+      "bytes": 353274
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-1024x768-viewport.png": {
+      "sha256": "cf5511b7cf6f562ae59ca6611f5a3d67236a51a762e329a3d90ccaeeb5aba740",
+      "bytes": 97056
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-1024x768.json": {
+      "sha256": "e34a4ef5a1ded6d8fd3fa5302bde32cf56b6eda884fb4629ee81520e73ee9ac2",
+      "bytes": 5621
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-1440x960-viewport.png": {
+      "sha256": "e29b5e7445a0ee24a338a65b5b03d762efe175b884b4835672e7c907832586c4",
+      "bytes": 104876
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-1440x960.json": {
+      "sha256": "911db97b726d03c063f397e3ad36f7173fc0f9a26527b530c0397e4c8163c124",
+      "bytes": 5627
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-1920x1080-viewport.png": {
+      "sha256": "75ab03d1d4136cd7df3fb443e9ff5ed226e6632d74c637e1a78fb38eb26a4f1f",
+      "bytes": 109469
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-1920x1080.json": {
+      "sha256": "20304ad4c2a981b6ba63361d04cc00b5fa75c22d437b2c900bb119887368b01d",
+      "bytes": 5640
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-320x800-viewport.png": {
+      "sha256": "1b1877872b474e319d6adebad69b3f8e416ea2f508775f94c8836700bbc237f0",
+      "bytes": 32643
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-320x800.json": {
+      "sha256": "22fe2c7219ebe21df819a40bf468ac64dc9b2837074a3a22ffff6e8365436c6b",
+      "bytes": 5167
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-360x800-viewport.png": {
+      "sha256": "f74e88b52b8521847816435a4f962afc41c11ae43b06301395c09da1c20a9ab9",
+      "bytes": 34818
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-360x800.json": {
+      "sha256": "382d3dc25e376eeefc1f0bcb99048eaf1c205ffbaa96132ed1b6a8b329b5f7e6",
+      "bytes": 5135
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-390x844-viewport.png": {
+      "sha256": "3a60228a1483f646a487272c8cd1f0a100943dc1a78f5c5df4d37d430358a9c2",
+      "bytes": 38669
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-390x844.json": {
+      "sha256": "d0a7e9d426597cd2fc38e57971ae6d759ef703068c243aa3cea830557f066702",
+      "bytes": 5134
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-768x1024-viewport.png": {
+      "sha256": "1b81c85fd8c135265de8667e02a86e9e0f5362b7af12bc5e36949e5f79e4b406",
+      "bytes": 101479
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-after-768x1024.json": {
+      "sha256": "47db1f80f79b6e272c6d68c0e3be4c8aecad5a84c430e80b663cd85ec776e0a3",
+      "bytes": 5565
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-1024x768-viewport.png": {
+      "sha256": "82c86de1c7033715da63e8895edd8f02cdb3857b4aa9ff45dc219200400e31c8",
+      "bytes": 83222
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-1024x768.json": {
+      "sha256": "debcd9bd9f38f2136740c37f24bf11ed839b8d54f9cb9ebd0fba6812f1ba09c3",
+      "bytes": 5632
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-1440x960-viewport.png": {
+      "sha256": "192cdd0f870cac8795bca2716b81594889c085fe2ee02c4308fe7cafc3e19c4a",
+      "bytes": 105112
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-1440x960.json": {
+      "sha256": "473496b3014a2093cedc726f1f2eccab1f4fb5d8c610203f7504ec23406d1882",
+      "bytes": 5636
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-1920x1080-viewport.png": {
+      "sha256": "0a5ec451932c9a93bc3346eace4067eecb7211f0aa474f52a88ca0d598936324",
+      "bytes": 109796
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-1920x1080.json": {
+      "sha256": "8261e0c3614d6d1e1122220329f331aafce4dabae699b05445cc9d0a3d77552a",
+      "bytes": 5627
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-320x800-viewport.png": {
+      "sha256": "379e980fc4d76389b6be70f0bbbb423e2bb355809f4873332ca15e23de286ebd",
+      "bytes": 26767
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-320x800.json": {
+      "sha256": "6843e15e922325f9c5d902d03b930591bb31cafabe3ee6dbeb1a5f971fcbefc7",
+      "bytes": 5173
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-360x800-viewport.png": {
+      "sha256": "3574fa7e1683cc4b4f9f47900a384c8696d2ccca99924ec1bfa76047904fb601",
+      "bytes": 26455
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-360x800.json": {
+      "sha256": "78ce7b3486c475c2b28f5101583d8eb9f9b23c45041a679b9349d90456192bf3",
+      "bytes": 5137
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-390x844-viewport.png": {
+      "sha256": "ca09613f176c324ec02b365cf864bae855ee26fbb57a9c80760fe5755ce2b29c",
+      "bytes": 29261
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-390x844.json": {
+      "sha256": "20c95d2284f1f4d0d3b87a8f091a23495e04927349768dce9e23ae20f58ead4c",
+      "bytes": 5143
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-768x1024-viewport.png": {
+      "sha256": "3af953ed44e2e00437900cacdae4501cb889f6e77407b0452853a6048642794b",
+      "bytes": 102152
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/startup-before-768x1024.json": {
+      "sha256": "2e93d35efcb3c077de36da5e2d1437999bebb579c26379f832296c43aa658ce1",
+      "bytes": 5579
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/text-200pct-390-viewport.png": {
+      "sha256": "df9432437264dcc0f24367829e648604ec8fd4dc0b7ddbd489474a627ed55bc4",
+      "bytes": 76185
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/text-200pct-390.ax.txt": {
+      "sha256": "9b30b747a7e4655cb2c1add7056898c5e379630e4998cc7f4462a6aa3bb7e57a",
+      "bytes": 2581
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/text-200pct-390.html": {
+      "sha256": "f39a3d903630f79e7b289ea1da2b2e8872f32831d1631fe2f47d25580a10b855",
+      "bytes": 588610
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/text-200pct-390.json": {
+      "sha256": "0bb5d1be0f28ac074df057f9b452836b6c2c8aaf14f2480a90b514f051cfc6d2",
+      "bytes": 3243
+    },
+    "evidence/nodemem-mobile-state-20260905/run-2026-09-05-clean-startup/text-200pct-390.png": {
+      "sha256": "f6a8e88946d4c0f411dc512893e069fa19cd58dad6ba988cb54fb80bc513ff97",
+      "bytes": 243115
+    },
+    "evidence/nodemem-mobile-state-20260905/validation/assets/graph-rail/after-confirm.png": {
+      "sha256": "708b7f509919f5505766d3e517d3804cfa8147cc73f4205c4d36f76a4327d4fc",
+      "bytes": 107227
+    },
+    "evidence/nodemem-mobile-state-20260905/validation/assets/graph-rail/before-confirm.png": {
+      "sha256": "ca2c594b50cfd7667f7e20f1aa69970befeda44cfea76bb3dc5996ca57c34faf",
+      "bytes": 102902
+    },
+    "evidence/nodemem-mobile-state-20260905/validation/docs/eval/nodemem-smoke.json": {
+      "sha256": "816116f46292d3f797ca56e1434f9deda5f5771cfdb04868642291d3f60f7f01",
+      "bytes": 1466
+    },
+    "evidence/nodemem-mobile-state-20260905/validation/promotion/evidence/cdn-blocked-after-retry.png": {
+      "sha256": "17f4a57aedc7e3a2efd439edd666e14da06d9167788e5a5acd1047b4110ef89e",
+      "bytes": 112116
+    },
+    "evidence/nodemem-mobile-state-20260905/validation/promotion/evidence/cdn-blocked-error-state.png": {
+      "sha256": "e29f19f34cdfa96c8476aaecd84c621b78e02c4e34ba19a4da70f3638b8de9ee",
+      "bytes": 39544
+    }
+  }
+}

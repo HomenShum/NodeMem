@@ -1,0 +1,169 @@
+{
+  "nodes": [
+    {
+      "id": "[\"company\",\"CardioNova\"]",
+      "label": "CardioNova",
+      "type": "company",
+      "visits": 2
+    },
+    {
+      "id": "[\"person\",\"Glia Therapeutics\"]",
+      "label": "Glia Therapeutics",
+      "type": "person",
+      "visits": 1
+    },
+    {
+      "id": "[\"company\",\"Meridian Capital\"]",
+      "label": "Meridian Capital",
+      "type": "company",
+      "visits": 1
+    },
+    {
+      "id": "[\"facet\",\"funding\"]",
+      "label": "funding",
+      "type": "facet",
+      "visits": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "[\"company\",\"CardioNova\"]",
+      "target": "[\"facet\",\"funding\"]",
+      "weight": 1,
+      "type": "traversal"
+    }
+  ],
+  "ready": true,
+  "resolved": [
+    "CardioNova ↔ funding\nnoticed together in one event (start_research_job, score 0.90) — a suggestion, not an edge\nconfirmed — drawn as faint traversal history",
+    "Glia Therapeutics ↔ funding\nnoticed together in one event (start_research_job, score 1.00) — a suggestion, not an edge\ndismissed — nothing changed"
+  ],
+  "active": {
+    "tag": "BUTTON",
+    "id": "",
+    "className": "",
+    "text": "fit"
+  },
+  "overflow": 0,
+  "labels": {
+    "Glia Therapeutics": {
+      "text": "Glia Therapeutics",
+      "left": 113.26178731181706,
+      "right": 215.25104512431705,
+      "top": 143.1335261610338,
+      "bottom": 156.1335261610338,
+      "width": 252,
+      "height": 363,
+      "frame": 108
+    },
+    "Meridian Capital": {
+      "text": "Meridian Capital",
+      "left": 96.99999850988388,
+      "right": 193.87548679113388,
+      "top": 195.4788470125403,
+      "bottom": 208.4788470125403,
+      "width": 252,
+      "height": 363,
+      "frame": 108
+    },
+    "funding": {
+      "text": "funding",
+      "left": 173.00000149011612,
+      "right": 219.46679836511612,
+      "top": 196.37330839542201,
+      "bottom": 209.37330839542201,
+      "width": 252,
+      "height": 363,
+      "frame": 108
+    },
+    "CardioNova": {
+      "text": "CardioNova",
+      "left": 166.97930858167578,
+      "right": 236.64337108167578,
+      "top": 208.53314050563287,
+      "bottom": 218.53314050563287,
+      "width": 252,
+      "height": 363,
+      "frame": 108
+    }
+  },
+  "labelFrame": 108,
+  "logRows": 9,
+  "scrollY": 0,
+  "width": 320,
+  "height": 800,
+  "geometry": {
+    "stage": {
+      "x": 16,
+      "y": 217.90625,
+      "right": 304,
+      "bottom": 717.90625,
+      "width": 288,
+      "height": 500,
+      "pageY": 217.90625
+    },
+    "renderer": {
+      "x": 17,
+      "y": 218.90625,
+      "right": 303,
+      "bottom": 716.90625,
+      "width": 286,
+      "height": 498,
+      "pageY": 218.90625
+    },
+    "canvas": {
+      "x": 35,
+      "y": 335.90625,
+      "right": 287,
+      "bottom": 698.90625,
+      "width": 252,
+      "height": 363,
+      "pageY": 335.90625
+    },
+    "caption": {
+      "x": 18,
+      "y": 727.90625,
+      "right": 302,
+      "bottom": 898.65625,
+      "width": 284,
+      "height": 170.75,
+      "pageY": 727.90625
+    },
+    "bootStatus": null
+  },
+  "startup": {
+    "count": 0,
+    "hitVisible": false
+  },
+  "cls": {
+    "supported": true,
+    "maxSession": 0,
+    "allShiftValue": 0.8545112695312499,
+    "entries": [
+      {
+        "startTime": 194.5,
+        "value": 0.8545112695312499,
+        "hadRecentInput": true
+      }
+    ],
+    "dropped": 0
+  },
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true,
+  "axe": {
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "#log"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          }
+        ]
+      }
+    ]
+  }
+}
