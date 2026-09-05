@@ -1,0 +1,74 @@
+{
+  "nodes": [
+    {
+      "id": "[\"company\",\"CardioNova\"]",
+      "label": "CardioNova",
+      "type": "company",
+      "visits": 1
+    },
+    {
+      "id": "[\"person\",\"Glia Therapeutics\"]",
+      "label": "Glia Therapeutics",
+      "type": "person",
+      "visits": 1
+    },
+    {
+      "id": "[\"company\",\"Meridian Capital\"]",
+      "label": "Meridian Capital",
+      "type": "company",
+      "visits": 1
+    }
+  ],
+  "edges": [],
+  "ready": true,
+  "resolved": [],
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "overflow": 0,
+  "labels": {
+    "Glia Therapeutics": {
+      "text": "Glia Therapeutics",
+      "left": 96.99999931454659,
+      "right": 198.98925712704659,
+      "top": 97.42115132360331,
+      "bottom": 110.42115132360331,
+      "width": 306,
+      "height": 326,
+      "frame": 68
+    },
+    "Meridian Capital": {
+      "text": "Meridian Capital",
+      "left": 162.45226415209288,
+      "right": 259.3277524333429,
+      "top": 158.43013399811,
+      "bottom": 171.43013399811,
+      "width": 306,
+      "height": 326,
+      "frame": 68
+    },
+    "CardioNova": {
+      "text": "CardioNova",
+      "left": 227.00000068545341,
+      "right": 296.6640631854534,
+      "top": 217.24551534306337,
+      "bottom": 227.24551534306337,
+      "width": 306,
+      "height": 326,
+      "frame": 68
+    }
+  },
+  "labelFrame": 68,
+  "logRows": 7,
+  "scrollY": 0,
+  "width": 768,
+  "height": 1024,
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true,
+  "axe": {
+    "violations": []
+  }
+}

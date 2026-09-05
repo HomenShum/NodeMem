@@ -1,0 +1,87 @@
+{
+  "nodes": [
+    {
+      "id": "[\"company\",\"CardioNova\"]",
+      "label": "CardioNova",
+      "type": "company",
+      "visits": 1
+    },
+    {
+      "id": "[\"person\",\"Glia Therapeutics\"]",
+      "label": "Glia Therapeutics",
+      "type": "person",
+      "visits": 1
+    },
+    {
+      "id": "[\"company\",\"Meridian Capital\"]",
+      "label": "Meridian Capital",
+      "type": "company",
+      "visits": 1
+    }
+  ],
+  "edges": [],
+  "ready": true,
+  "resolved": [],
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "overflow": 0,
+  "labels": {
+    "Glia Therapeutics": {
+      "text": "Glia Therapeutics",
+      "left": 96.99999850988388,
+      "right": 198.98925632238388,
+      "top": 122.3058523482213,
+      "bottom": 135.3058523482213,
+      "width": 252,
+      "height": 326,
+      "frame": 68
+    },
+    "Meridian Capital": {
+      "text": "Meridian Capital",
+      "left": 135.27363010695916,
+      "right": 232.14911838820916,
+      "top": 157.95515747771276,
+      "bottom": 170.95515747771276,
+      "width": 252,
+      "height": 326,
+      "frame": 68
+    },
+    "CardioNova": {
+      "text": "CardioNova",
+      "left": 173.00000149011612,
+      "right": 242.66406399011612,
+      "top": 192.3608143184454,
+      "bottom": 202.3608143184454,
+      "width": 252,
+      "height": 326,
+      "frame": 68
+    }
+  },
+  "labelFrame": 68,
+  "logRows": 7,
+  "scrollY": 0,
+  "width": 320,
+  "height": 800,
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true,
+  "axe": {
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "#log"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          }
+        ]
+      }
+    ]
+  }
+}

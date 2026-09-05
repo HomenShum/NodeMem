@@ -34,7 +34,7 @@ const state = page => page.evaluate(() => {
   return { nodes: graph?.nodes ?? [], edges: graph?.edges ?? [], ready: !!window.__graphRail?.pipelineDone,
     resolved: [...document.querySelectorAll(".suggestion.resolved")].map(e => e.innerText),
     active: { tag: document.activeElement.tagName, id: document.activeElement.id, className: document.activeElement.className, text: document.activeElement.textContent.slice(0, 180) },
-    overflow: document.documentElement.scrollWidth - innerWidth, labels: window.__labelDraws,
+    overflow: document.documentElement.scrollWidth - innerWidth, labels: window.__labelDraws, labelFrame: window.__labelFrameId,
     logRows: document.querySelector("#log").children.length, scrollY, width: innerWidth, height: innerHeight,
     disclosure: document.querySelector(".sub").innerText, stageVisible: !!document.querySelector("#stage").getClientRects().length };
 });
@@ -61,11 +61,22 @@ async function context(viewport) {
   const c = await browser.newContext({ viewport });
   await c.addInitScript(() => {
     window.__labelDraws = {};
+    window.__labelFrameId = 0;
+    const clear = CanvasRenderingContext2D.prototype.clearRect;
     const original = CanvasRenderingContext2D.prototype.fillText;
+    CanvasRenderingContext2D.prototype.clearRect = function (...args) {
+      if (this.canvas.classList.contains("sigma-labels")) {
+        window.__labelDraws = {};
+        window.__labelFrameId++;
+      }
+      return clear.apply(this, args);
+    };
     CanvasRenderingContext2D.prototype.fillText = function (text, x, y, ...rest) {
       if (this.canvas.classList.contains("sigma-labels") && typeof text === "string" && text.length <= 120 && Object.keys(window.__labelDraws).length < 50) {
         const m = this.measureText(text), t = this.getTransform();
-        window.__labelDraws[text] = { text, left: x - m.actualBoundingBoxLeft, right: x + m.actualBoundingBoxRight, width: this.canvas.width / t.a, y };
+        window.__labelDraws[text] = { text, left: x - m.actualBoundingBoxLeft, right: x + m.actualBoundingBoxRight,
+          top: y - m.actualBoundingBoxAscent, bottom: y + m.actualBoundingBoxDescent,
+          width: this.canvas.width / t.a, height: this.canvas.height / t.d, frame: window.__labelFrameId };
       }
       return original.call(this, text, x, y, ...rest);
     };
@@ -84,8 +95,8 @@ async function ready(p) {
 }
 function labelsFit(label, s) {
   const labels = s.nodes.map(n => n.label);
-  check(label + " all fixture labels drawn within canvas", labels.length > 0 && labels.every(text => {
-    const d = s.labels[text]; return d && d.left >= 0 && d.right <= d.width + 0.5;
+  check(label + " all fixture labels drawn in current frame within both canvas axes", labels.length > 0 && labels.every(text => {
+    const d = s.labels[text]; return d && d.frame === s.labelFrame && d.left >= 0 && d.right <= d.width + 0.5 && d.top >= 0 && d.bottom <= d.height + 0.5;
   }), s.labels);
 }
 try {
@@ -138,6 +149,19 @@ try {
   }
   const c = await context({ width: 320, height: 800 }), p = await c.newPage();
   await p.goto(origin + DEMO_PATH); await ready(p); labelsFit("320px reflow", await capture(p, "reflow-320"));
+  // A reviewer must not accept labels left over from a prior rendered frame.
+  // Clear the actual fixture's label canvas, observe synchronously before redraw,
+  // then use the real Fit control below to verify a complete current frame again.
+  const clearedFrame = await p.evaluate(() => {
+    const expected = window.__graphRail.session.getSnapshot().nodes.map(n => n.label);
+    const before = { ...window.__labelDraws }, frameBefore = window.__labelFrameId;
+    const canvas = document.querySelector("canvas.sigma-labels");
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    return { expected, before, after: { ...window.__labelDraws }, frameBefore, frameAfter: window.__labelFrameId };
+  });
+  check("cleared real frame cannot be certified by prior fixture labels", clearedFrame.expected.length === 3
+    && clearedFrame.expected.every(label => clearedFrame.before[label])
+    && Object.keys(clearedFrame.after).length === 0 && clearedFrame.frameAfter === clearedFrame.frameBefore + 1, clearedFrame);
   await p.getByTestId("nodegraph-fit").focus(); await p.keyboard.press("Enter"); await p.waitForTimeout(300); labelsFit("320px keyboard Fit", await capture(p, "reflow-320-fit"));
   await p.setViewportSize({ width: 390, height: 844 }); await p.reload(); await ready(p);
   await p.evaluate(() => {
