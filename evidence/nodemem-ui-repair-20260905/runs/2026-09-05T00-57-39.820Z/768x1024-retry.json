@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    {
+      "id": "[\"company\",\"CardioNova\"]",
+      "label": "CardioNova",
+      "type": "company",
+      "visits": 1
+    },
+    {
+      "id": "[\"person\",\"Glia Therapeutics\"]",
+      "label": "Glia Therapeutics",
+      "type": "person",
+      "visits": 1
+    },
+    {
+      "id": "[\"company\",\"Meridian Capital\"]",
+      "label": "Meridian Capital",
+      "type": "company",
+      "visits": 1
+    }
+  ],
+  "edges": [],
+  "ready": true,
+  "resolved": [],
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "overflow": 0,
+  "labels": {
+    "CardioNova": {
+      "text": "CardioNova",
+      "left": 227.00000068545341,
+      "right": 296.6640631854534,
+      "width": 306,
+      "y": 227.2211192566397
+    },
+    "Glia Therapeutics": {
+      "text": "Glia Therapeutics",
+      "left": 96.99999931454659,
+      "right": 198.98925712704659,
+      "width": 306,
+      "y": 107.44554741002698
+    },
+    "Meridian Capital": {
+      "text": "Meridian Capital",
+      "left": 162.52272053929852,
+      "right": 259.3982088205485,
+      "width": 306,
+      "y": 168.45240854161648
+    }
+  },
+  "logRows": 7,
+  "scrollY": 0,
+  "width": 768,
+  "height": 1024,
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true,
+  "axe": {
+    "violations": []
+  }
+}

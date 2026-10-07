@@ -1,49 +1,54 @@
 # NodeKit adoption
 
-NodeMem is registered as a NodeKit `standalone-package` and maps its existing
-provider-neutral memory core, in-memory adapter, and Convex schema adapter without
-reorganizing working source code.
+A developer adding passive memory to an application needs to distinguish a
+suggestion from permission to start work. NodeMem classifies activity and applies
+policy, deduplication, quota and dismissal gates. The host supplies storage and
+decides whether an approved suggestion becomes a job.
 
-## Current conformance level
+This map complements [START_HERE.md](START_HERE.md) and
+[HANDOFF.md](../HANDOFF.md). It describes declared ownership and existing source,
+not a completed runtime migration or production certification.
 
-- **L1 registered:** `nodekit.yaml` declares repository identity, ownership,
-  lifecycle commands, no-key behavior, environment status, and the current proof
-  boundary.
-- **L2 mapped:** the manifest identifies NodeMem as the current owner of
-  `nodemem.memory` and as a consumer of the canonical NodeAgent event concept and
-  ProofLoop certification.
+## Declared boundaries
 
-NodeMem does **not** run a product agent, so it intentionally has no
-`nodeagent.yaml`. Its `ScanInput` and `MemoryStore` are domain contracts used by a
-host runtime. A future NodeAgent adapter may translate `nodeagent.event/v1` into
-`ScanInput`, but this repository does not define a competing runtime event
-envelope.
+`nodekit.yaml` registers a `standalone-package`, owning `nodemem.memory` and
+consuming the repository, event and certification contracts. NodeMem has no
+product-agent definition. Its `ScanInput` and `MemoryStore` contracts serve a
+host runtime; a canonical `nodeagent.event/v1` adapter remains unimplemented.
 
-## Contract boundaries
-
-| Concern | Current truth |
+| Concern | Current implementation boundary |
 | --- | --- |
-| Passive memory classification, policy, deduplication, and storage port | Owned by NodeMem |
-| Runtime event envelope | Consumed from `nodeagent.event/v1`; a canonical adapter is not implemented here yet |
-| Convex support | Schema definitions and schema-only smoke test; not a deployed backend proof |
-| Certification receipt | ProofLoop owns `proofloop.receipt/v1` |
-| NodeMem smoke JSON | Local evidence only; it is not yet a `proofloop.receipt/v1` implementation |
+| Passive classification, policy, deduplication and storage port | NodeMem source library; detection creates suggestions, not jobs |
+| Storage | In-memory reference implementation; hosts implement `MemoryStore` for durable storage |
+| Convex | Table/schema definitions and schema tests; no deployed backend verification |
+| Certification | `proof.receiptSchema: null`; demo JSON is local evidence, not a `proofloop.receipt/v1` implementation |
+| Package consumption | README's bare `nodemem` imports are API sketches; this checkout has no built npm entrypoint |
 
-For that reason, `nodekit.yaml` declares `proof.receiptSchema: null`. The
-`npm run proof` gate emits and verifies the existing local smoke evidence without
-claiming canonical receipt compatibility.
+Keep explicit approval in the host. A finding whose suggested action is
+`start_research_job` does not grant permission or execute that job.
 
-## Commands
+## Existing commands
+
+Use [package.json](../package.json) as the command source:
+
+| Command | Actual scope |
+| --- | --- |
+| `npm run demo` | Run the TypeScript pipeline demo through the source library |
+| `npm run proof` / `npm run doctor` | Run that same demo and write `docs/eval/nodemem-smoke.json` |
+| `npm run check` | Secret scan, TypeScript check, Vitest suite and demo proof |
+| `npm run dev` | Serve the separate browser graph demonstration |
+| `npm run demo:node` | Run the separate zero-install JavaScript demo; it does not exercise the TypeScript library |
+
+The demo receipt and schema tests do not establish live providers, durable host
+integration, a canonical event adapter or sustained production performance.
+The browser demo and current UI acceptance limits are recorded in HANDOFF.md.
+
+With a sibling checkout directory named `NodeKit`, check the declared repository
+contract using the existing CLI:
 
 ```bash
-npm run demo
-npm run doctor
-npm run check
-npm run proof
+node ../NodeKit/src/cli.mjs repo check --repo-root .
 ```
 
-From a sibling NodeKit checkout, validate the repository contract with:
-
-```bash
-node ../node-platform/src/cli.mjs repo check --repo-root .
-```
+Use the actual sibling path when it differs. Repository conformance is separate
+from the application tests, rendered UI judgments and production readiness.

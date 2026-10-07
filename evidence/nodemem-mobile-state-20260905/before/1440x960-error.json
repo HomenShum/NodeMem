@@ -1,0 +1,34 @@
+{
+  "width": 1440,
+  "height": 960,
+  "scrollY": 0,
+  "stage": null,
+  "renderer": null,
+  "canvas": null,
+  "caption": null,
+  "status": null,
+  "log": {
+    "x": 100,
+    "y": 334.15625,
+    "width": 380,
+    "height": 142,
+    "bottom": 476.15625,
+    "pageY": 334.15625
+  },
+  "suggestions": {
+    "x": 100,
+    "y": 513.15625,
+    "width": 380,
+    "height": 0,
+    "bottom": 513.15625,
+    "pageY": 513.15625
+  },
+  "ready": false,
+  "active": {
+    "tag": "BODY",
+    "id": "",
+    "className": "",
+    "text": "\n    \n      NodeMem — live graph rail\n      \n        The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not\n        re-implemented), rendered by No"
+  },
+  "overflow": 0
+}

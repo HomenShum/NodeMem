@@ -1,0 +1,13 @@
+# NodeMem repair observations
+
+[Before and annotated boundary](before/change-boundary.md) remain the scope oracle. [Comparison](comparison.html) places real 390x844 before/after captures side by side; [rendered comparison](comparison.png) is also retained. The comparison names the final `runs/2026-09-05T00-57-39.820Z` run. Its [report](runs/2026-09-05T00-57-39.820Z/report.json) passes 198 checks across 53 captures on 13 exact source/config hashes.
+
+The route, fixed four events, dark theme and isolated local session match the pre-edit contract. The six viewport dimensions are unchanged. All three declared regions were exercised: the session/disclosure and direct decision link; full entity labels before and after Fit; and readable confirmed/dismissed status with keyboard focus that clears the preceding explanation. No new application region was added.
+
+The application has no separate zero-input fixture. [Empty](after-empty.png) and [loading](after-loading.png) therefore refer to the same real imports-held state, before any fixture node or suggestion exists. [Error](after-error.png) is a blocked CDN with the original Retry recovery, not a provider failure. [Populated](after-populated.png) follows one keyboard confirmation and one dismissal.
+
+Unchanged assertions: zero edges before approval; undefined measured counts; confirmation produces traversal only; dismissal preserves the graph; the existing classifier, fixtures, GraphSession and graph-model retain their semantics; CDN error hides the unavailable graph/caption; reload returns to original fixtures. The caption, live log, filters, selection semantics and overall dark styling are preserved. Positions below the introductory paragraph move by its added disclosure/link height, as declared in the boundary. The stable 620px reservation remains; the first-viewport link supplies direct access to decisions.
+
+Earlier worker runs are preserved, in the operator recovery archive, including rejected framing/label-selection attempts, the malformed-ARIA finding, and test harness corrections for actual Tab and scroll-settle timing. A passing contrast check alone was not used to waive the other axe rules. Chromium's existing Tab/Home/End log access remains a manual pass while its axe portability flag remains explicit.
+
+A supplementary reduced-motion session renders successfully and retains actual public CDN response-body hashes. Its two screenshots were not byte-identical; this is not proof that all motion stopped. No field performance, complete design rubric, physical browser zoom, physical device, screen-reader participant, fresh-human, live provider or production grade is claimed.

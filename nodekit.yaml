@@ -24,7 +24,7 @@ noKey:
   status: certified
   command: npm run demo
   externalAccountsRequired: 0
-  disclosure: The core and in-memory demonstration are deterministic and provider-agnostic; the included Convex lane validates schema shape only and does not prove a live deployment.
+  disclosure: The TypeScript demo uses deterministic classification and an in-memory provider and never auto-executes a job; Convex support is schema-only, not a live deployment proof.
 
 environment:
   contractVersion: nodeplatform.env/v1

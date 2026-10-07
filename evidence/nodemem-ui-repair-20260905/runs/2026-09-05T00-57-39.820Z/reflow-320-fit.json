@@ -1,0 +1,77 @@
+{
+  "nodes": [
+    {
+      "id": "[\"company\",\"CardioNova\"]",
+      "label": "CardioNova",
+      "type": "company",
+      "visits": 1
+    },
+    {
+      "id": "[\"person\",\"Glia Therapeutics\"]",
+      "label": "Glia Therapeutics",
+      "type": "person",
+      "visits": 1
+    },
+    {
+      "id": "[\"company\",\"Meridian Capital\"]",
+      "label": "Meridian Capital",
+      "type": "company",
+      "visits": 1
+    }
+  ],
+  "edges": [],
+  "ready": true,
+  "resolved": [],
+  "active": {
+    "tag": "BUTTON",
+    "id": "",
+    "className": "",
+    "text": "fit"
+  },
+  "overflow": 0,
+  "labels": {
+    "CardioNova": {
+      "text": "CardioNova",
+      "left": 173.00000149011612,
+      "right": 242.66406399011612,
+      "width": 252,
+      "y": 202.36172184825364
+    },
+    "Glia Therapeutics": {
+      "text": "Glia Therapeutics",
+      "left": 96.99999850988388,
+      "right": 198.98925632238388,
+      "width": 252,
+      "y": 132.30494481841302
+    },
+    "Meridian Capital": {
+      "text": "Meridian Capital",
+      "left": 135.2652451169871,
+      "right": 232.1407333982371,
+      "width": 252,
+      "y": 167.9610201923084
+    }
+  },
+  "logRows": 7,
+  "scrollY": 0,
+  "width": 320,
+  "height": 800,
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true,
+  "axe": {
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "#log"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          }
+        ]
+      }
+    ]
+  }
+}

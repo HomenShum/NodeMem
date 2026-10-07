@@ -1,17 +1,28 @@
 /**
- * NodeMem — Provider-agnostic passive memory for agent systems.
+ * NodeMem — passive memory for agent systems.
  *
- * The core is pure TypeScript with no provider dependency:
- * - classifyNoteworthy: deterministic entity + signal detection from text
- * - dedup + dismissal learning + per-room quotas + assistive policy resolution
+ * It watches a stream of activity, notices entities worth a second look, and
+ * puts them in front of a person as suggestions. It never starts work on its
+ * own. The core is plain TypeScript with no provider dependency; storage is the
+ * `MemoryStore` interface in `core/ports.ts`, which any database can satisfy.
  *
- * Adapters (Convex, SQLite, in-memory) implement the port contracts.
+ * Start reading at `core/scanOrchestrator.ts` — every gate in the pipeline is
+ * one early return in `scanActivity`.
  */
 
+// The pipeline: one activity row in, one verdict out.
+export { scanActivity, findExistingNoteworthyForEntity, type ScanInput, type ScanResult } from "./core/scanOrchestrator.js";
+
+// Does this text deserve a person's attention?
 export { classifyNoteworthy, normalizeEntityKey, type NoteworthyFinding, type Signal, SIGNAL, SIGNAL_ORDER, CLASSIFIER_VERSION } from "./core/classifier.js";
-export { isEntityDismissed, type DismissalEntry, type DismissalStore } from "./core/dismissalLearner.js";
-export { findExistingNoteworthyForEntity, roomNoteworthyQuotaExceeded, type NoteworthyRow, type DedupStore } from "./core/dedup.js";
-export { resolveAssistivePolicy, isSignalDisabled, isEntityWatchlisted, signalFingerprintHash, type AssistiveMode, type AssistivePolicy, type PolicyStore } from "./core/policyResolver.js";
+
+// How much noticing this room allows.
+export { resolveAssistivePolicy, isSignalDisabled, isEntityWatchlisted, type AssistiveMode, type AssistivePolicy } from "./core/policyResolver.js";
+
+// Coalescing a burst of typing into a single scan.
 export { activityDedupeKey, type ActivityEvent, type ActivityDedupeArgs } from "./core/dedupeKey.js";
-export { scanActivity, type ScanInput, type ScanResult, type MemoryStore } from "./core/scanOrchestrator.js";
+export { computeDebounce } from "./core/debouncer.js";
+
+// What your backend must implement, and the reference implementation of it.
+export type { MemoryStore, DedupStore, DismissalStore, PolicyStore, NoteworthyRow, DismissalEntry, ActivityStatus } from "./core/ports.js";
 export { InMemoryAdapter } from "./adapters/inMemoryAdapter.js";

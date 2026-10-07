@@ -1,0 +1,227 @@
+{
+  "tool": "scripts/wig-review.mjs",
+  "checklist": "https://vercel.com/design/guidelines",
+  "checklistFetched": "2026-08-13",
+  "url": "/demo/graph-rail/index.html",
+  "widths": [
+    320,
+    375,
+    412,
+    768,
+    1440
+  ],
+  "ranAt": "2026-08-14T02:43:20.936Z",
+  "counts": {
+    "pass": 26,
+    "major": 0,
+    "minor": 6,
+    "na": 6
+  },
+  "findings": [
+    {
+      "rule": "Layout: no horizontal overflow (responsive coverage / no excessive scrollbars)",
+      "verdict": "pass",
+      "evidence": "scrollWidth 320 vs clientWidth 320 → no overflow",
+      "width": 320
+    },
+    {
+      "rule": "Layout: responsive coverage (the primary pane stays usable)",
+      "verdict": "pass",
+      "evidence": "#layout columns \"288px\", #stage 288px",
+      "width": 320
+    },
+    {
+      "rule": "Interactions: hit targets ≥ 44px",
+      "verdict": "minor",
+      "evidence": "1/7 under: fit 27x44",
+      "width": 320
+    },
+    {
+      "rule": "Layout: no horizontal overflow (responsive coverage / no excessive scrollbars)",
+      "verdict": "pass",
+      "evidence": "scrollWidth 375 vs clientWidth 375 → no overflow",
+      "width": 375
+    },
+    {
+      "rule": "Layout: responsive coverage (the primary pane stays usable)",
+      "verdict": "pass",
+      "evidence": "#layout columns \"343px\", #stage 343px",
+      "width": 375
+    },
+    {
+      "rule": "Interactions: hit targets ≥ 44px",
+      "verdict": "minor",
+      "evidence": "1/7 under: fit 27x44",
+      "width": 375
+    },
+    {
+      "rule": "Layout: no horizontal overflow (responsive coverage / no excessive scrollbars)",
+      "verdict": "pass",
+      "evidence": "scrollWidth 412 vs clientWidth 412 → no overflow",
+      "width": 412
+    },
+    {
+      "rule": "Layout: responsive coverage (the primary pane stays usable)",
+      "verdict": "pass",
+      "evidence": "#layout columns \"380px\", #stage 380px",
+      "width": 412
+    },
+    {
+      "rule": "Interactions: hit targets ≥ 44px",
+      "verdict": "minor",
+      "evidence": "1/7 under: fit 27x44",
+      "width": 412
+    },
+    {
+      "rule": "Layout: no horizontal overflow (responsive coverage / no excessive scrollbars)",
+      "verdict": "pass",
+      "evidence": "scrollWidth 768 vs clientWidth 768 → no overflow",
+      "width": 768
+    },
+    {
+      "rule": "Layout: responsive coverage (the primary pane stays usable)",
+      "verdict": "pass",
+      "evidence": "#layout columns \"380px 342px\", #stage 342px",
+      "width": 768
+    },
+    {
+      "rule": "Interactions: hit targets ≥ 24px",
+      "verdict": "pass",
+      "evidence": "7 controls all ≥ 24px",
+      "width": 768
+    },
+    {
+      "rule": "Layout: no horizontal overflow (responsive coverage / no excessive scrollbars)",
+      "verdict": "pass",
+      "evidence": "scrollWidth 1440 vs clientWidth 1440 → no overflow",
+      "width": 1440
+    },
+    {
+      "rule": "Layout: responsive coverage (the primary pane stays usable)",
+      "verdict": "pass",
+      "evidence": "#layout columns \"380px 846px\", #stage 846px",
+      "width": 1440
+    },
+    {
+      "rule": "Interactions: hit targets ≥ 24px",
+      "verdict": "pass",
+      "evidence": "7 controls all ≥ 24px",
+      "width": 1440
+    },
+    {
+      "rule": "Content: accurate page title",
+      "verdict": "pass",
+      "evidence": "<title> \"NodeMem — live graph rail\""
+    },
+    {
+      "rule": "Content: document has a meta description",
+      "verdict": "pass",
+      "evidence": "\"NodeMem notices entities in an activity stream and draws not…\""
+    },
+    {
+      "rule": "Interactions: respect zoom (browser zoom not disabled)",
+      "verdict": "pass",
+      "evidence": "viewport \"width=device-width, initial-scale=1\""
+    },
+    {
+      "rule": "Design: browser UI matches background (theme-color)",
+      "verdict": "pass",
+      "evidence": "#0b0e12"
+    },
+    {
+      "rule": "Design: color-scheme declared",
+      "verdict": "pass",
+      "evidence": "color-scheme: dark"
+    },
+    {
+      "rule": "Performance: preconnect to origins",
+      "verdict": "pass",
+      "evidence": "https://esm.sh/"
+    },
+    {
+      "rule": "Interactions: touch-action set to prevent double-tap zoom",
+      "verdict": "pass",
+      "evidence": "body touch-action: manipulation"
+    },
+    {
+      "rule": "Interactions: async updates are announced",
+      "verdict": "pass",
+      "evidence": "#log is a live region"
+    },
+    {
+      "rule": "Content: the canvas output surface has an accessible name",
+      "verdict": "pass",
+      "evidence": "8 <canvas>, 0 named; #stage role=figure aria-label=set"
+    },
+    {
+      "rule": "Content: heading hierarchy",
+      "verdict": "minor",
+      "evidence": "headings H1>H2>H2>H3"
+    },
+    {
+      "rule": "Content: skip link",
+      "verdict": "minor",
+      "evidence": "no skip link (single-screen page, no long nav to skip)"
+    },
+    {
+      "rule": "Content: ellipsis character",
+      "verdict": "pass",
+      "evidence": "no '...' in rendered text"
+    },
+    {
+      "rule": "Interactions: links are links",
+      "verdict": "pass",
+      "evidence": "0 navigation-shaped <button>"
+    },
+    {
+      "rule": "Content: document language",
+      "verdict": "pass",
+      "evidence": "lang=\"en\""
+    },
+    {
+      "rule": "Interactions: keyboard works everywhere",
+      "verdict": "pass",
+      "evidence": "8 focusable controls, all tabbable"
+    },
+    {
+      "rule": "Interactions: clear focus",
+      "verdict": "pass",
+      "evidence": "focused Confirm outline: auto 1px rgb(16, 16, 16)"
+    },
+    {
+      "rule": "Animations: honor prefers-reduced-motion",
+      "verdict": "minor",
+      "evidence": "page renders under prefers-reduced-motion (3 nodes, media query true); the sigma force layout still animates — no reduced variant is branched"
+    },
+    {
+      "rule": "Forms (whole section)",
+      "verdict": "n/a",
+      "evidence": "the page has no form, input, textarea or select"
+    },
+    {
+      "rule": "Interactions: URL as state / deep-link everything",
+      "verdict": "n/a",
+      "evidence": "single screen, no filters, tabs or pagination to encode"
+    },
+    {
+      "rule": "Interactions: optimistic updates",
+      "verdict": "n/a",
+      "evidence": "Confirm mutates in-process state only; there is no server round trip to be optimistic about"
+    },
+    {
+      "rule": "Interactions: confirm destructive actions",
+      "verdict": "n/a",
+      "evidence": "Dismiss is the correction control and is itself non-destructive — it records a dismissal and mutates no graph"
+    },
+    {
+      "rule": "Content: stable skeletons",
+      "verdict": "n/a",
+      "evidence": "no skeletons; the loading state is a labelled status row (#boot-status)"
+    },
+    {
+      "rule": "Performance: large lists",
+      "verdict": "n/a",
+      "evidence": "the activity log is bounded by DEMO_EVENTS (6 fixtures)"
+    }
+  ]
+}

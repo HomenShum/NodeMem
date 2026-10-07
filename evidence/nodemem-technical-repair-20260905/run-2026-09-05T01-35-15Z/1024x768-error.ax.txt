@@ -1,0 +1,18 @@
+- main:
+  - heading "NodeMem — live graph rail" [level=1]
+  - paragraph:
+    - text: "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload."
+    - link "Review suggestions":
+      - /url: "#suggestions"
+  - alert:
+    - strong: The graph rail could not start.
+    - text: A module it needs could not be downloaded. This page loads React, graphology and sigma from
+    - code: esm.sh
+    - text: at run time. When that CDN is blocked or unreachable, the module below never executes, so no pipeline log, no suggestions and no graph can appear — whatever the caption says.
+    - button "Retry"
+    - text: "Still blocked? The same pipeline — same classifier, same fixtures — runs in the terminal with no CDN and no install:"
+    - code: node demo/runNodeMemDemo.mjs
+  - heading "Activity stream → pipeline" [level=2]
+  - log
+  - heading "Suggestions (no edge until you confirm)" [level=2]
+  - group "Suggestions"

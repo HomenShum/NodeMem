@@ -1,0 +1,114 @@
+{
+  "nodes": [
+    {
+      "id": "[\"company\",\"CardioNova\"]",
+      "label": "CardioNova",
+      "type": "company",
+      "visits": 2
+    },
+    {
+      "id": "[\"person\",\"Glia Therapeutics\"]",
+      "label": "Glia Therapeutics",
+      "type": "person",
+      "visits": 1
+    },
+    {
+      "id": "[\"company\",\"Meridian Capital\"]",
+      "label": "Meridian Capital",
+      "type": "company",
+      "visits": 1
+    },
+    {
+      "id": "[\"facet\",\"funding\"]",
+      "label": "funding",
+      "type": "facet",
+      "visits": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "[\"company\",\"CardioNova\"]",
+      "target": "[\"facet\",\"funding\"]",
+      "weight": 1,
+      "type": "traversal"
+    }
+  ],
+  "ready": true,
+  "resolved": [
+    "CardioNova ↔ funding\nnoticed together in one event (start_research_job, score 0.90) — a suggestion, not an edge\nconfirmed — drawn as faint traversal history",
+    "Glia Therapeutics ↔ funding\nnoticed together in one event (start_research_job, score 1.00) — a suggestion, not an edge\ndismissed — nothing changed",
+    "Meridian Capital ↔ product_news\nnoticed together in one event (start_research_job, score 0.72) — a suggestion, not an edge\ndismissed — nothing changed"
+  ],
+  "active": {
+    "tag": "DIV",
+    "id": "",
+    "className": "state",
+    "text": "dismissed — nothing changed"
+  },
+  "overflow": 0,
+  "labels": {
+    "Glia Therapeutics": {
+      "text": "Glia Therapeutics",
+      "left": 322.87645080685616,
+      "right": 424.86570861935616,
+      "top": 82.33333302452732,
+      "bottom": 95.33333302452732,
+      "width": 810,
+      "height": 348,
+      "frame": 80
+    },
+    "Meridian Capital": {
+      "text": "Meridian Capital",
+      "left": 373.7138606748926,
+      "right": 470.5893489561426,
+      "top": 151.5750686947689,
+      "bottom": 164.5750686947689,
+      "width": 810,
+      "height": 348,
+      "frame": 80
+    },
+    "funding": {
+      "text": "funding",
+      "left": 505.12354919314384,
+      "right": 551.5903460681438,
+      "top": 225.82446772667709,
+      "bottom": 238.82446772667709,
+      "width": 810,
+      "height": 348,
+      "frame": 80
+    },
+    "CardioNova": {
+      "text": "CardioNova",
+      "left": 484.4288327440567,
+      "right": 554.0928952440568,
+      "top": 254.33333364213934,
+      "bottom": 264.33333364213934,
+      "width": 810,
+      "height": 348,
+      "frame": 80
+    }
+  },
+  "labelFrame": 80,
+  "logRows": 10,
+  "scrollY": 0,
+  "width": 1440,
+  "height": 960,
+  "disclosure": "The CLI demo's own pipeline (same classifier, same store, same fixtures — imported, not re-implemented), rendered by NodeGraph Live. Doctrine on screen: notice passively, act explicitly. Fixed demo inputs; confirmations and dismissals last only until you reload.\nReview suggestions",
+  "stageVisible": true,
+  "axe": {
+    "violations": [
+      {
+        "id": "scrollable-region-focusable",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              "#log"
+            ],
+            "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+          }
+        ]
+      }
+    ]
+  }
+}

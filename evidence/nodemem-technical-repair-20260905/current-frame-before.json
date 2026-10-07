@@ -1,0 +1,64 @@
+{
+  "scenario": "Real graph label frame is cleared before the next render",
+  "at": "2026-09-05T01:32:18.601Z",
+  "sourceSha256": "cf8aed6d242247a6bb9de9a6e2aeeb16b78506a64493d22f38cc9a795deca050",
+  "browser": "151.0.7922.34",
+  "observation": {
+    "expected": [
+      "CardioNova",
+      "Glia Therapeutics",
+      "Meridian Capital"
+    ],
+    "before": {
+      "CardioNova": {
+        "text": "CardioNova",
+        "left": 242.99999836087227,
+        "right": 312.66406086087227,
+        "width": 322,
+        "y": 234.48963802864847
+      },
+      "Glia Therapeutics": {
+        "text": "Glia Therapeutics",
+        "left": 97.00000163912773,
+        "right": 198.98925945162773,
+        "width": 322,
+        "y": 100.1770286380182
+      },
+      "Meridian Capital": {
+        "text": "Meridian Capital",
+        "left": 170.75459393615836,
+        "right": 267.63008221740836,
+        "width": 322,
+        "y": 168.84480872219282
+      }
+    },
+    "after": {
+      "CardioNova": {
+        "text": "CardioNova",
+        "left": 242.99999836087227,
+        "right": 312.66406086087227,
+        "width": 322,
+        "y": 234.48963802864847
+      },
+      "Glia Therapeutics": {
+        "text": "Glia Therapeutics",
+        "left": 97.00000163912773,
+        "right": 198.98925945162773,
+        "width": 322,
+        "y": 100.1770286380182
+      },
+      "Meridian Capital": {
+        "text": "Meridian Capital",
+        "left": 170.75459393615836,
+        "right": 267.63008221740836,
+        "width": 322,
+        "y": 168.84480872219282
+      }
+    },
+    "frameBefore": null,
+    "frameAfter": null,
+    "priorFrameComplete": true,
+    "staleFrameWouldCertify": true
+  },
+  "passed": false
+}

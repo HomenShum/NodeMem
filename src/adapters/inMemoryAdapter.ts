@@ -1,15 +1,21 @@
 /**
- * In-memory adapter — zero-dependency reference implementation of MemoryStore.
+ * The reference backend: everything in memory, nothing on disk.
  *
- * Use for testing, demos, and local development. No persistence.
- * For production, use the Convex adapter or implement your own.
+ * This is what the tests, the demo and the smoke run against, and it is the
+ * worked example for anyone implementing `MemoryStore` on a real database —
+ * seven methods, no cleverness. State disappears when the process exits, which
+ * is the point: it makes every test start from an empty room.
  */
 
 import type { NoteworthyFinding } from "../core/classifier.js";
-import type { NoteworthyRow } from "../core/dedup.js";
-import type { DismissalEntry } from "../core/dismissalLearner.js";
 import type { AssistivePolicy } from "../core/policyResolver.js";
-import type { MemoryStore, ActivityStatus, ScanInput } from "../core/scanOrchestrator.js";
+import type {
+  MemoryStore,
+  ActivityStatus,
+  NoteworthyRow,
+  DismissalEntry,
+} from "../core/ports.js";
+import type { ScanInput } from "../core/scanOrchestrator.js";
 
 interface StoredRow extends NoteworthyRow {
   finding?: NoteworthyFinding;
@@ -20,18 +26,10 @@ interface StoredRow extends NoteworthyRow {
   createdAt: number;
 }
 
-interface StoredDismissal extends DismissalEntry {}
-
-interface StoredPolicy extends AssistivePolicy {}
-
-/**
- * Full in-memory implementation of MemoryStore.
- * Also provides methods for inserting activity rows and listing noteworthy items.
- */
 export class InMemoryAdapter implements MemoryStore {
   private rows = new Map<string, StoredRow>();
-  private dismissals = new Map<string, StoredDismissal[]>();
-  private policies = new Map<string, StoredPolicy>();
+  private dismissals = new Map<string, DismissalEntry[]>();
+  private policies = new Map<string, AssistivePolicy>();
   private nextId = 0;
 
   /** Insert an activity row and return its id. */

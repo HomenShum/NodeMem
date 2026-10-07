@@ -1,18 +1,18 @@
 /**
- * Convex adapter for NodeMem — schema definitions.
+ * The same seven store methods, expressed as Convex tables.
  *
- * This is the Convex proof. The schema is designed to be dropped into a
- * Convex project's `convex/` directory. It defines the tables that back
- * the MemoryStore port:
+ * Copy this file into your Convex project's `convex/` directory and merge the
+ * exported tables into your `schema.ts`. Three tables, one per thing NodeMem
+ * remembers:
  *
- * - roomActivityOutbox: debounced activity rows (the inbox)
- * - roomDismissedEntities: entity-level dismissal learning
- * - roomAssistivePolicies: per-room assistive intelligence policy
- * - suggestionFeedback: signal-scoped dismissal feedback
- * - roomSuggestionDigests: grouped summaries for high-volume rooms
+ * - `roomActivityOutbox` — the activity rows and the verdict each scan wrote
+ * - `roomDismissedEntities` — "the user said no to this entity"
+ * - `roomAssistivePolicies` — how much noticing this room allows
  *
- * Copy this file into your Convex project and import the table definitions
- * into your schema.ts. Or use the full adapter module (convex/nodemem.ts).
+ * The indexes are the interesting part: `by_room_status` serves
+ * `listNoteworthy`, `by_room_entity` serves `isEntityDismissed`. If you port
+ * this to another database, port the indexes too or those two reads become
+ * table scans.
  */
 
 import { defineTable, defineSchema } from "convex/server";
@@ -121,47 +121,6 @@ export const roomAssistivePolicies = defineTable({
 })
   .index("by_room", ["roomId"]);
 
-export const suggestionFeedback = defineTable({
-  roomId: v.id("rooms"),
-  userId: v.string(),
-  suggestionId: v.id("roomActivityOutbox"),
-  entity: v.optional(v.string()),
-  signalFingerprintHash: v.string(),
-  dismissReason: v.union(
-    v.literal("wrong_entity"),
-    v.literal("not_relevant"),
-    v.literal("too_noisy"),
-    v.literal("already_handled"),
-    v.literal("sensitive"),
-    v.literal("other"),
-  ),
-  scope: v.union(
-    v.literal("item"),
-    v.literal("entity"),
-    v.literal("signal"),
-    v.literal("room"),
-  ),
-  expiresAt: v.optional(v.number()),
-  createdAt: v.number(),
-})
-  .index("by_room_signal", ["roomId", "signalFingerprintHash"])
-  .index("by_room_entity", ["roomId", "entity"])
-  .index("by_suggestion", ["suggestionId"]);
-
-export const roomSuggestionDigests = defineTable({
-  roomId: v.id("rooms"),
-  groupKey: v.string(),
-  groupKind: v.string(),
-  title: v.string(),
-  summary: v.string(),
-  count: v.number(),
-  sampleSuggestionIds: v.array(v.id("roomActivityOutbox")),
-  highestPriority: v.number(),
-  status: v.union(v.literal("open"), v.literal("archived")),
-  updatedAt: v.number(),
-})
-  .index("by_room_status", ["roomId", "status"]);
-
 /** Full schema for a standalone NodeMem Convex deployment. */
 export default defineSchema({
   rooms: defineTable({
@@ -172,6 +131,4 @@ export default defineSchema({
   roomActivityOutbox,
   roomDismissedEntities,
   roomAssistivePolicies,
-  suggestionFeedback,
-  roomSuggestionDigests,
 });

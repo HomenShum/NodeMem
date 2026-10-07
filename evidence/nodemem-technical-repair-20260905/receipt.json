@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "nodemem.technical-repair/v1",
+  "namedProof": "E6B-NODEMEM-TECHNICAL-01",
+  "at": "2026-09-05T01:38:59.099019+00:00",
+  "reviewStatus": "WORKER_VERIFIED_AWAITING_FRESH_JUDGE",
+  "base": "da9ca34d17514e93cb5f5f694fd46398271f01f5",
+  "scope": "Development lock entries and current-frame proof recorder only; no application UI/runtime/vendor change.",
+  "dependencyDelta": {
+    "postcss": {
+      "before": "8.5.16",
+      "after": "8.5.28"
+    },
+    "nanoid": {
+      "before": "3.3.15",
+      "after": "3.3.18"
+    }
+  },
+  "audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "commands": [
+    {
+      "argv": [
+        "npm.cmd",
+        "update",
+        "postcss",
+        "nanoid",
+        "--package-lock-only",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund"
+      ],
+      "startedAt": "2026-09-05T01:32:57.085363+00:00",
+      "finishedAt": "2026-09-05T01:32:59.508225+00:00",
+      "durationSeconds": 2.422,
+      "exit": 0,
+      "logSha256": "ce7bf91f54adc7390cff6bf1c2572fd00ce9cfbd0611637e273059c4710a80c9",
+      "logBytes": 18
+    },
+    {
+      "argv": [
+        "npm.cmd",
+        "ci"
+      ],
+      "startedAt": "2026-09-05T01:33:19.718755+00:00",
+      "finishedAt": "2026-09-05T01:33:37.356223+00:00",
+      "durationSeconds": 17.641,
+      "exit": 0,
+      "logSha256": "623846e4c77fc22e0bd55b37ff10247a5a0e834ed31ce502227515a744ee2604",
+      "logBytes": 76
+    },
+    {
+      "argv": [
+        "npm.cmd",
+        "audit",
+        "--json"
+      ],
+      "startedAt": "2026-09-05T01:34:34.506476+00:00",
+      "finishedAt": "2026-09-05T01:34:37.547912+00:00",
+      "durationSeconds": 3.047,
+      "exit": 0,
+      "logSha256": "67c1ab01f0b01edad58051c1d4c02b4624a6e084e4327cfc8413dee71d6a1214",
+      "logBytes": 363
+    },
+    {
+      "argv": [
+        "npm.cmd",
+        "run",
+        "check"
+      ],
+      "startedAt": "2026-09-05T01:34:49.794310+00:00",
+      "finishedAt": "2026-09-05T01:35:10.949972+00:00",
+      "durationSeconds": 21.156,
+      "exit": 0,
+      "logSha256": "7ece174b06d89916a6f604b6d62c096f179312ef08671bea593ec4e79a04abbc",
+      "logBytes": 3130
+    },
+    {
+      "argv": [
+        "node",
+        "scripts/verify-ui-repair.mjs",
+        "evidence/nodemem-technical-repair-20260905/run-2026-09-05T01-35-15Z"
+      ],
+      "startedAt": "2026-09-05T01:35:19.548993+00:00",
+      "finishedAt": "2026-09-05T01:37:23.797959+00:00",
+      "durationSeconds": 124.25,
+      "exit": 0,
+      "logSha256": "388c1b6ad34c6908512d50515e02145e33657a18c4341a6a5152a8a58c9ef29a",
+      "logBytes": 13915
+    }
+  ],
+  "browser": {
+    "report": "run-2026-09-05T01-35-15Z/report.json",
+    "sha256": "af52670428b710ae311aa48a4074fa32506d1ceef5588eb26fc28c38c8db29e1",
+    "passed": true,
+    "checks": 199,
+    "captures": 53,
+    "sourceBefore": {
+      "demo/graph-rail/index.html": "b7d822ff586fe116ee74ed20e74131c35ca48f13745ce589faf8b553b3857892",
+      "demo/graph-rail/main.js": "a0e9f743b03d6cbd1263909f9dede4a26b65a7e1c4cf34386e94492d828c1e41",
+      "demo/nodeMemDemoCore.mjs": "98f2c0a05758c995e5b0d91b6310e3948f9673ce95fc1cae3f469d52ba319bac",
+      "vendor/nodegraph-live/NodeGraph.js": "ab295d13e3fa254122ba9f4ad65a67bd2dc167dd3b544ac682f8e3d873dde86b",
+      "vendor/nodegraph-live/graph-model.js": "f599d5677230abb22134ccc6554c19b53161c92170a764d15a3f33b9ff8a3d6b",
+      "vendor/nodegraph-live/session.js": "18fdd651e1f5cb7c2bf791309de0a22010f5dd836630abedec9b9de7f54e1282",
+      "vendor/nodegraph-live/index.js": "3617688e70d3583ed7295795c19597b20e7f300d0ca18004a0d639d2ee1e8969",
+      "vendor/nodegraph-live/react.js": "c548be84f505f0b5cf2f45b9531c35768370a7a32620d4b3e0151a45a39fa6ff",
+      "scripts/serve.mjs": "e5d966fa69c0f66e7532fcbf5edad3e0e21c3d91de507d6db36d9821366a499d",
+      "scripts/verify-ui-repair.mjs": "abc829daf1b5ca9bacce975bf24812497b2d86f0046f657a2037b5a32f641758",
+      "package.json": "01bca2b5807baa1b4d569d5000d5591aeb00b8ca41045750d8ee7a66cdb5db86",
+      "package-lock.json": "c05c3592fd9a8374d449dba891b8cd4623ecc9c4fff2d6208bc9505b99ff673a",
+      ".gitattributes": "97d8ad3e1814df1165aeeee5d3d1a19ac547c0da20f76adb7fb0b0e878ac46ff"
+    },
+    "sourceAfter": {
+      "demo/graph-rail/index.html": "b7d822ff586fe116ee74ed20e74131c35ca48f13745ce589faf8b553b3857892",
+      "demo/graph-rail/main.js": "a0e9f743b03d6cbd1263909f9dede4a26b65a7e1c4cf34386e94492d828c1e41",
+      "demo/nodeMemDemoCore.mjs": "98f2c0a05758c995e5b0d91b6310e3948f9673ce95fc1cae3f469d52ba319bac",
+      "vendor/nodegraph-live/NodeGraph.js": "ab295d13e3fa254122ba9f4ad65a67bd2dc167dd3b544ac682f8e3d873dde86b",
+      "vendor/nodegraph-live/graph-model.js": "f599d5677230abb22134ccc6554c19b53161c92170a764d15a3f33b9ff8a3d6b",
+      "vendor/nodegraph-live/session.js": "18fdd651e1f5cb7c2bf791309de0a22010f5dd836630abedec9b9de7f54e1282",
+      "vendor/nodegraph-live/index.js": "3617688e70d3583ed7295795c19597b20e7f300d0ca18004a0d639d2ee1e8969",
+      "vendor/nodegraph-live/react.js": "c548be84f505f0b5cf2f45b9531c35768370a7a32620d4b3e0151a45a39fa6ff",
+      "scripts/serve.mjs": "e5d966fa69c0f66e7532fcbf5edad3e0e21c3d91de507d6db36d9821366a499d",
+      "scripts/verify-ui-repair.mjs": "abc829daf1b5ca9bacce975bf24812497b2d86f0046f657a2037b5a32f641758",
+      "package.json": "01bca2b5807baa1b4d569d5000d5591aeb00b8ca41045750d8ee7a66cdb5db86",
+      "package-lock.json": "c05c3592fd9a8374d449dba891b8cd4623ecc9c4fff2d6208bc9505b99ff673a",
+      ".gitattributes": "97d8ad3e1814df1165aeeee5d3d1a19ac547c0da20f76adb7fb0b0e878ac46ff"
+    },
+    "browser": "151.0.7922.34",
+    "node": "v22.22.2",
+    "playwright": "1.62.1",
+    "axe": "4.12.1"
+  },
+  "regression": {
+    "before": "current-frame-before.json",
+    "beforeExit": 1,
+    "beforeExpectedFailure": "All three real labels remained recorded after clearing their canvas.",
+    "after": "current-frame-after.json",
+    "afterExit": 0,
+    "afterObservation": "Map empty and frame advanced before next render; real Fit redraw subsequently passes."
+  },
+  "historicalUIProof": {
+    "report": "../nodemem-ui-repair-20260905/runs/2026-09-05T00-57-39.820Z/report.json",
+    "sha256": "cb6c2fdb52187b8b52a33a02e3d167b6f8e2c059c67d2178b257354162c01c04",
+    "sourceBindings": {
+      "demo/graph-rail/index.html": "b7d822ff586fe116ee74ed20e74131c35ca48f13745ce589faf8b553b3857892",
+      "demo/graph-rail/main.js": "a0e9f743b03d6cbd1263909f9dede4a26b65a7e1c4cf34386e94492d828c1e41",
+      "demo/nodeMemDemoCore.mjs": "98f2c0a05758c995e5b0d91b6310e3948f9673ce95fc1cae3f469d52ba319bac",
+      "vendor/nodegraph-live/NodeGraph.js": "ab295d13e3fa254122ba9f4ad65a67bd2dc167dd3b544ac682f8e3d873dde86b",
+      "vendor/nodegraph-live/graph-model.js": "f599d5677230abb22134ccc6554c19b53161c92170a764d15a3f33b9ff8a3d6b",
+      "vendor/nodegraph-live/session.js": "18fdd651e1f5cb7c2bf791309de0a22010f5dd836630abedec9b9de7f54e1282",
+      "vendor/nodegraph-live/index.js": "3617688e70d3583ed7295795c19597b20e7f300d0ca18004a0d639d2ee1e8969",
+      "vendor/nodegraph-live/react.js": "c548be84f505f0b5cf2f45b9531c35768370a7a32620d4b3e0151a45a39fa6ff",
+      "scripts/serve.mjs": "e5d966fa69c0f66e7532fcbf5edad3e0e21c3d91de507d6db36d9821366a499d",
+      "scripts/verify-ui-repair.mjs": "cf8aed6d242247a6bb9de9a6e2aeeb16b78506a64493d22f38cc9a795deca050",
+      "package.json": "01bca2b5807baa1b4d569d5000d5591aeb00b8ca41045750d8ee7a66cdb5db86",
+      "package-lock.json": "97319336b1e5e425074b0630e065acc57b66d53898a7fcb6c150ed908db7df3a",
+      ".gitattributes": "97d8ad3e1814df1165aeeee5d3d1a19ac547c0da20f76adb7fb0b0e878ac46ff"
+    },
+    "unchangedHistoricalBindings": 13,
+    "independentVerdict": "VERIFIED_WITH_CAVEATS at da9ca34; named fixed-fixture UI scope only, not current dependencies."
+  },
+  "limits": [
+    "Fixed fixture only; no provider, persistent user data or production claim.",
+    "Viewport and DOM text enlargement are not physical devices or actual browser zoom.",
+    "Whole-dimension and human usability grades remain open.",
+    "The existing axe log-focus flag is reported separately from demonstrated Chromium keyboard access.",
+    "Audit is a timestamped advisory-database result, not a complete security audit.",
+    "Only the current single graph fixed fixture is certified; arbitrary labels/graphs/pan/zoom and other browser engines remain unproved.",
+    "No native capture rerun: application and README/promotion images unchanged; new browser screenshots are retained.",
+    "Reduced motion was not recertified; prior differing frames remain a limitation.",
+    "No commit, push, deployment, hook activation, provider call or persistent user-data mutation."
+  ]
+}

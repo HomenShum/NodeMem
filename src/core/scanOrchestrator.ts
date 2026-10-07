@@ -1,40 +1,31 @@
 /**
- * Scan orchestrator — the core loop that ties classifier + dedup + dismissal +
- * policy + quotas together. Provider-agnostic: delegates all persistence to
- * the MemoryStore port.
+ * The scan — one activity row in, one verdict out.
  *
- * Doctrine: "Notice passively, act explicitly."
- * The scan creates suggestions (noteworthy rows), NOT jobs.
- * The caller decides whether to promote a suggestion to an action.
+ * The person this is for: someone whose product has a stream of user activity
+ * (chat messages, saved documents, spreadsheet cells) and who wants the system
+ * to notice "that looked important" without acting on its own. A message
+ * mentioning a company the team met last week should surface as a suggestion
+ * in an inbox. It must not start a research job, send an email, or spend money.
+ *
+ * So this function only ever writes a status onto the row it was given. The
+ * doctrine, in the repo's words: **notice passively, act explicitly.** Turning
+ * a "noteworthy" row into an action is the caller's decision, always.
+ *
+ * Every early return below is a reason a suggestion was withheld, and every one
+ * of them is written onto the row so a human can ask "why did nothing happen?"
+ * and get an answer.
  */
 
 import { classifyNoteworthy, type NoteworthyFinding } from "./classifier.js";
-import { findExistingNoteworthyForEntity, roomNoteworthyQuotaExceeded } from "./dedup.js";
-import { isEntityDismissed } from "./dismissalLearner.js";
 import {
   resolveAssistivePolicy,
   isSignalDisabled,
   isEntityWatchlisted,
-  signalFingerprintHash,
   type AssistivePolicy,
 } from "./policyResolver.js";
-import type { DismissalStore } from "./dismissalLearner.js";
-import type { DedupStore } from "./dedup.js";
-import type { PolicyStore } from "./policyResolver.js";
+import type { MemoryStore, ActivityStatus, NoteworthyRow } from "./ports.js";
 
-/** Status of an outbox row after scanning. */
-export type ActivityStatus =
-  | "queued"
-  | "running"
-  | "scanning"
-  | "completed"
-  | "ignored"
-  | "not_noteworthy"
-  | "noteworthy"
-  | "job_created"
-  | "failed";
-
-/** Result of scanning a single activity row. */
+/** What the scan decided, and why. */
 export interface ScanResult {
   status: ActivityStatus;
   finding?: NoteworthyFinding;
@@ -42,7 +33,7 @@ export interface ScanResult {
   text?: string;
 }
 
-/** Input row for scanning. */
+/** One activity row on its way in. */
 export interface ScanInput {
   id: string;
   roomId: string;
@@ -54,117 +45,99 @@ export interface ScanInput {
   ownerId?: string;
 }
 
-/**
- * The combined port contract for all persistence needs.
- * An adapter implements this single interface; the orchestrator uses it.
- */
-export interface MemoryStore extends DismissalStore, DedupStore, PolicyStore {
-  /** Patch a row's status + finding after scanning. */
-  patchRow(id: string, patch: { status: ActivityStatus; finding?: NoteworthyFinding; reason?: string; updatedAt: number }): Promise<void>;
-}
-
-/** Configuration for the scan orchestrator. */
 export interface ScanConfig {
-  /** Max suggestions per room per hour. Default: 10, max: 50. */
+  /** Ceiling on suggestions per room per hour. Default 10. */
   maxPerRoomPerHour?: number;
-  /** System default policy override. */
+  /** Override the built-in system default policy. */
   systemDefaultPolicy?: Partial<AssistivePolicy>;
 }
 
-const DEFAULT_CONFIG: Required<Pick<ScanConfig, "maxPerRoomPerHour">> = {
-  maxPerRoomPerHour: 10,
-};
+/** A suggestion older than two days no longer blocks a fresh one for the same entity. */
+const FEED_STALENESS_MS = 2 * 24 * 60 * 60 * 1000;
+
+const DEFAULT_MAX_PER_ROOM_PER_HOUR = 10;
 
 /**
- * Scan a single activity row and decide its fate.
+ * Does this room already have an open suggestion about any of these entities?
  *
- * Pipeline:
- * 1. Classify text → finding (score, signals, entities)
- * 2. If not noteworthy → return
- * 3. Resolve room assistive policy
- * 4. Check policy mode (off, watchlist, disabled signals)
- * 5. Check per-room quota
- * 6. Check entity dedup
- * 7. Check entity dismissal
- * 8. Check signal-scoped dismissal
- * 9. If all gates pass → mark as "noteworthy" (suggestion, not a job)
+ * Without this, one company mentioned in six messages becomes six identical
+ * inbox items and the user stops reading the inbox.
+ */
+export async function findExistingNoteworthyForEntity(
+  store: Pick<MemoryStore, "listNoteworthy">,
+  roomId: string,
+  entityNames: string[],
+  excludeId?: string,
+): Promise<boolean> {
+  if (!entityNames.length) return false;
+  const rows: NoteworthyRow[] = await store.listNoteworthy(roomId, 50);
+  const cutoff = Date.now() - FEED_STALENESS_MS;
+  const wanted = new Set(entityNames.map((e) => e.toLowerCase().trim()).filter(Boolean));
+  return rows.some(
+    (row) =>
+      row.id !== excludeId &&
+      row.updatedAt >= cutoff &&
+      row.entityNames.some((e) => wanted.has(e.toLowerCase().trim())),
+  );
+}
+
+/**
+ * Scan one activity row and decide its fate.
  *
- * This function is pure aside from store calls. Same input + same store state → same result.
+ * The gates, in order — the first one that trips wins, and its name becomes the
+ * row's `reason`:
+ *
+ * 1. `not_noteworthy` — the text scored below the bar.
+ * 2. `policy_off`     — the room turned passive intelligence off.
+ * 3. `signal_disabled_by_policy` — the room muted this kind of signal.
+ * 4. `not_on_watchlist` — the room only wants pre-approved entities.
+ * 5. `room_quota_exceeded` — too many suggestions this hour already.
+ * 6. `duplicate_entity` — an open suggestion for this entity exists.
+ * 7. `previously_dismissed` — a human already said no to this entity.
+ *
+ * Survive all seven and the row becomes `noteworthy`: a suggestion waiting for
+ * a person, not a job that has started.
  */
 export async function scanActivity(
   store: MemoryStore,
   input: ScanInput,
   config?: ScanConfig,
 ): Promise<ScanResult> {
-  const cfg = { ...DEFAULT_CONFIG, ...config };
-  const text = input.text;
+  const maxPerRoomPerHour = config?.maxPerRoomPerHour ?? DEFAULT_MAX_PER_ROOM_PER_HOUR;
+  const { text } = input;
   const finding = classifyNoteworthy(text);
 
-  // Step 1: Not noteworthy enough → skip.
-  if (finding.action === "ignore" || finding.score < 0.35) {
-    const result: ScanResult = { status: "not_noteworthy", finding, text };
-    await store.patchRow(input.id, { status: "not_noteworthy", finding, updatedAt: Date.now() });
-    return result;
-  }
+  /** Write the verdict onto the row and hand the same verdict back to the caller. */
+  const settle = async (status: ActivityStatus, reason?: string): Promise<ScanResult> => {
+    await store.patchRow(input.id, { status, finding, reason, updatedAt: Date.now() });
+    return { status, finding, reason, text };
+  };
+
+  if (finding.action === "ignore") return settle("not_noteworthy");
 
   const entityNames = finding.entities.map((e) => e.displayName).filter(Boolean);
-  const signalKinds = finding.signals;
 
-  // Step 2: Resolve room assistive policy.
-  const policy = await resolveAssistivePolicy(store, input.roomId, cfg.systemDefaultPolicy);
-
-  // Step 3: Mode "off" → suppress all.
-  if (policy.mode === "off") {
-    const result: ScanResult = { status: "not_noteworthy", finding, reason: "policy_off", text };
-    await store.patchRow(input.id, { status: "not_noteworthy", finding, reason: "policy_off", updatedAt: Date.now() });
-    return result;
+  const policy = await resolveAssistivePolicy(store, input.roomId, config?.systemDefaultPolicy);
+  if (policy.mode === "off") return settle("not_noteworthy", "policy_off");
+  if (isSignalDisabled(policy.disabledSignalKinds, finding.signals)) {
+    return settle("not_noteworthy", "signal_disabled_by_policy");
+  }
+  if (
+    policy.mode === "approved_watchlist_only" &&
+    !isEntityWatchlisted(policy.approvedEntityWatchlist, entityNames)
+  ) {
+    return settle("not_noteworthy", "not_on_watchlist");
   }
 
-  // Step 4: Disabled signal kinds.
-  if (isSignalDisabled(policy.disabledSignalKinds, signalKinds)) {
-    const result: ScanResult = { status: "not_noteworthy", finding, reason: "signal_disabled_by_policy", text };
-    await store.patchRow(input.id, { status: "not_noteworthy", finding, reason: "signal_disabled_by_policy", updatedAt: Date.now() });
-    return result;
+  if ((await store.countNoteworthyLastHour(input.roomId)) >= maxPerRoomPerHour) {
+    return settle("not_noteworthy", "room_quota_exceeded");
   }
-
-  // Step 5: Approved watchlist only.
-  if (policy.mode === "approved_watchlist_only" && !isEntityWatchlisted(policy.approvedEntityWatchlist, entityNames)) {
-    const result: ScanResult = { status: "not_noteworthy", finding, reason: "not_on_watchlist", text };
-    await store.patchRow(input.id, { status: "not_noteworthy", finding, reason: "not_on_watchlist", updatedAt: Date.now() });
-    return result;
-  }
-
-  // Step 6: Per-room quota.
-  if (await roomNoteworthyQuotaExceeded(store, input.roomId, cfg.maxPerRoomPerHour)) {
-    const result: ScanResult = { status: "not_noteworthy", finding, reason: "room_quota_exceeded", text };
-    await store.patchRow(input.id, { status: "not_noteworthy", finding, reason: "room_quota_exceeded", updatedAt: Date.now() });
-    return result;
-  }
-
-  // Step 7: Entity dedup.
   if (await findExistingNoteworthyForEntity(store, input.roomId, entityNames, input.id)) {
-    const result: ScanResult = { status: "not_noteworthy", finding, reason: "duplicate_entity", text };
-    await store.patchRow(input.id, { status: "not_noteworthy", finding, reason: "duplicate_entity", updatedAt: Date.now() });
-    return result;
+    return settle("not_noteworthy", "duplicate_entity");
+  }
+  if (entityNames.length && (await store.isEntityDismissed(input.roomId, entityNames))) {
+    return settle("not_noteworthy", "previously_dismissed");
   }
 
-  // Step 8: Entity dismissal learning.
-  if (await isEntityDismissed(store, input.roomId, entityNames)) {
-    const result: ScanResult = { status: "not_noteworthy", finding, reason: "previously_dismissed", text };
-    await store.patchRow(input.id, { status: "not_noteworthy", finding, reason: "previously_dismissed", updatedAt: Date.now() });
-    return result;
-  }
-
-  // Step 9: Signal-scoped dismissal.
-  const signalKind = signalKinds[0] ?? "entity_mention";
-  const entityKind = finding.entities[0]?.type ?? "unknown";
-  const fpHash = signalFingerprintHash({ sourceKind: input.sourceKind, signalKind, entityKind });
-  // Note: signal-scoped dismissal check is delegated to the store if it supports it.
-  // The MemoryStore interface extends DismissalStore which handles entity-level dismissal.
-  // Signal-scoped dismissal is an optional extension — adapters can implement it.
-
-  // All gates passed → mark as noteworthy (suggestion, not a job).
-  const result: ScanResult = { status: "noteworthy", finding, text };
-  await store.patchRow(input.id, { status: "noteworthy", finding, updatedAt: Date.now() });
-  return result;
+  return settle("noteworthy");
 }
