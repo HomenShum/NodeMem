@@ -51,6 +51,7 @@ Both clips above have committed producers: `node scripts/record-graph-rail.mjs` 
 | Document | What it answers |
 |---|---|
 | [`docs/START_HERE.md`](docs/START_HERE.md) | One message, followed through the code in runtime order. Start here. |
+| [`docs/NODEKIT_ADOPTION.md`](docs/NODEKIT_ADOPTION.md) | Portable ownership, current commands and incomplete protocol boundaries |
 | [`docs/codebase/STACK.md`](docs/codebase/STACK.md) | What is installed and why; every command |
 | [`docs/codebase/STRUCTURE.md`](docs/codebase/STRUCTURE.md) | What each file is for |
 | [`docs/codebase/ARCHITECTURE.md`](docs/codebase/ARCHITECTURE.md) | The boundaries, the gate order, why the browser page is shaped as it is |
