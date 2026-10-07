@@ -142,33 +142,10 @@ sequenceDiagram
 
 ## Quick start
 
-### Zero-dependency demo (no install)
-
-```bash
-node demo/runNodeMemDemo.mjs
-```
-
-<details>
-<summary>Expected output</summary>
-
-```
-  NodeMem — Zero-dependency demo
-  Doctrine: "Notice passively, act explicitly."
-
-  ✓ Entity detected — CardioNova
-  ✓ Score > 0.35 — score=0.90
-  ✓ 4+ signals — 4 signals
-  ✓ Action: start_research_job
-  ✓ Dismissal learning works
-  ✓ Classifier is deterministic
-
-  Pass: 6  Fail: 0
-  ✓ PASSED
-```
-
-</details>
-
 ### Full TypeScript demo
+
+Start here to exercise the library in `src/`. The existing demo follows classification,
+policy, duplicate suppression, dismissal and quota behavior through the real source modules.
 
 ```bash
 npm install
@@ -202,6 +179,35 @@ npm run demo
 
   Summary: Pass=13  Fail=0  Total=13
   ✓ DEMO PASSED — all gates green (13/13)
+```
+
+</details>
+
+### Zero-dependency demo (no install)
+
+This runs the JavaScript classifier and minimal store in `demo/nodeMemDemoCore.mjs`,
+shared with the browser demo. It does not exercise the canonical TypeScript library below `src/`.
+
+```bash
+node demo/runNodeMemDemo.mjs
+```
+
+<details>
+<summary>Expected output</summary>
+
+```
+  NodeMem — Zero-dependency demo
+  Doctrine: "Notice passively, act explicitly."
+
+  ✓ Entity detected — CardioNova
+  ✓ Score > 0.35 — score=0.90
+  ✓ 4+ signals — 4 signals
+  ✓ Action: start_research_job
+  ✓ Dismissal learning works
+  ✓ Classifier is deterministic
+
+  Pass: 6  Fail: 0
+  ✓ PASSED
 ```
 
 </details>
@@ -260,6 +266,12 @@ npm run proof     # the pipeline story plus a receipt at docs/eval/nodemem-smoke
 ---
 
 ## Code examples
+
+These snippets illustrate the source API exported by [`src/index.ts`](src/index.ts).
+The bare `nodemem` imports are API sketches: this checkout does not declare a built package
+entrypoint or build script for npm consumers. For runnable source usage, follow
+[`demo/demo-runner.ts`](demo/demo-runner.ts) with `npm run demo`; do not treat the sketches
+as a verified package-installation recipe.
 
 ### Classify text for noteworthy entities
 
