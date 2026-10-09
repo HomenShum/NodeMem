@@ -14,6 +14,8 @@
 <!-- brand:end -->
 
 
+# NodeMem
+
 A provider-agnostic passive memory component for agent systems.
 
 It notices entities in activity streams, surfaces noteworthy suggestions, learns from dismissals, and deduplicates — **without auto-executing jobs**.
