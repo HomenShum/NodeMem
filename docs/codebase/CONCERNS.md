@@ -23,7 +23,7 @@ finding across ten texts, so drift fails the suite instead of a screenshot.
 acceptable for the demo surfaces, delete `demo/nodeMemDemoCore.mjs` and the
 mirror test with it.
 
-## 2. No run-time input validation anywhere in `src/`
+## 2. Activity input and reference-store retention remain unchecked
 
 `ScanInput` is a compile-time interface. Nothing checks that `text` is a string,
 that `roomId` is non-empty, or that the row id exists. A host passing raw user
@@ -31,9 +31,12 @@ input passes it straight into the regexes. No defect has been observed from this
 — the regexes are linear and bounded — but a very long string is scanned in full,
 seven times.
 
-The only run-time guard in the repository is the path check in
-`scripts/serve.mjs`, which rejects anything resolving outside the repo root
-(verified: `GET /../../../etc/passwd` → 404).
+Suggestion budget numbers now reject invalid values before they can permit a
+suggestion. This does not validate the other activity fields. The path check in
+`scripts/serve.mjs` also rejects anything resolving outside the repo root
+(verified: `GET /../../../etc/passwd` → 404). The reference in-memory store retains
+rows, policies and dismissals until `clear()` or process exit; it is not a bounded
+production store for an unattended long-running loop.
 
 ## 3. Store failures are not handled
 
@@ -48,6 +51,19 @@ Two scans in the same room can both read `countNoteworthyLastHour` before either
 writes, and both pass the quota gate. The same race exists for entity dedup. No
 store method is transactional and the port does not offer one. Single-writer
 hosts are unaffected; a fan-out host would exceed its own quota.
+
+The numeric policy repair applies the lower room/system/host ceiling, but does
+not change this transaction boundary. A 32-way same-room burst still admits 32
+suggestions at a positive ceiling of one. The zero-ceiling burst is safe because
+every scan is suppressed regardless of the count.
+
+Two other storage-contract defects were reproduced separately: replaying the
+same row at capacity counts itself and can demote its existing suggestion; the
+next replay can restore it while leaving an old reason. Completing suggestions
+removes them from the reference adapter's current-row count, and rescanning an
+old row refreshes `updatedAt`. Therefore that count is not a history of suggestions
+produced in an hour. Repair requires a deliberate storage/consumer contract,
+not a process-local lock presented as cross-host correctness.
 
 ## 5. `roomActivityOutbox` carries fields this library never writes
 

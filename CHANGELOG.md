@@ -15,3 +15,15 @@
   automatic conformance is recorded on
   [PR #3](https://github.com/HomenShum/NodeMem/pull/3); this workflow does not run
   the application test suite or certify a live deployment.
+
+## 2026-10-14 — Respect the room's quieter suggestion budget
+
+A room owner asking for one suggestion could receive ten because the scanner
+ignored the resolved numeric policy. The scan now applies the lower host and
+room/system ceilings; zero withholds suggestions, and invalid limits reject
+before a quota read or verdict write for an otherwise eligible scan. Real-store
+scenarios cover budget order,
+policy changes, malformed settings, degraded reads, interleaved rooms and a
+zero-cap burst. Positive-cap same-room races, row replay and historical counting
+remain separate storage-contract defects, explicitly documented. No classifier,
+storage API, dependencies or browser-demo behavior changed.

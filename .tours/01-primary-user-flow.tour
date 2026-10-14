@@ -47,7 +47,7 @@
     },
     {
       "file": "src/core/scanOrchestrator.ts",
-      "line": 142,
+      "line": 144,
       "symbol": "settle(\"noteworthy\")",
       "title": "It survived every gate",
       "description": "The row becomes `noteworthy`: an offer sitting in an inbox. Turning it into an action is the host's job, after a person clicks. This is the doctrine — *notice passively, act explicitly* — in one line of code."
@@ -82,7 +82,7 @@
     },
     {
       "file": "tests/scanOrchestrator.test.ts",
-      "line": 30,
+      "line": 36,
       "symbol": "suppresses a second suggestion about the same entity",
       "title": "The test that proves it",
       "description": "Every gate has one of these. `scanMessage` (in `tests/room.ts`) does the insert-then-scan a host would do, so the test body is the assertion and nothing else.\n\nRun: `npm test`."

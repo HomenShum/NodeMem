@@ -5,14 +5,14 @@
   "steps": [
     {
       "file": "src/core/scanOrchestrator.ts",
-      "line": 111,
+      "line": 112,
       "symbol": "const settle = async",
       "title": "Every path ends the same way",
       "description": "`settle` writes the verdict onto the row and returns the same verdict to the caller. One writer, so a decision can never be reported and not stored, or stored and not reported.\n\nThe `reason` it writes is what a support engineer reads when a user asks *why did nothing appear?*"
     },
     {
       "file": "src/core/policyResolver.ts",
-      "line": 53,
+      "line": 60,
       "symbol": "export async function resolveAssistivePolicy",
       "title": "Gate 1–3: how much noticing this room allows",
       "description": "**The person:** a room owner who does not want background suggestions during a client call. They set a mode. The product may also impose its own ceiling.\n\nWhen the two disagree, the quieter one wins — a room can always ask for *less* noticing than the system permits, never more."
@@ -26,10 +26,10 @@
     },
     {
       "file": "src/core/scanOrchestrator.ts",
-      "line": 133,
+      "line": 135,
       "symbol": "\"room_quota_exceeded\"",
       "title": "Gate 4: the hourly ceiling",
-      "description": "Ten suggestions per room per hour by default. Without it, one busy meeting fills the inbox and the user stops reading it — at which point every later suggestion is worthless too."
+      "description": "The lower host and resolved room/system ceiling wins; the host defaults to ten, and zero withholds suggestions. For an otherwise eligible scan, invalid numeric limits reject before counting or writing. Ignored messages skip validation; room/system limits validate during policy resolution, and the host limit validates at this quota gate. The storage port does not make count-and-write atomic, so a hard same-room concurrent cap still needs a host transaction."
     },
     {
       "file": "src/core/scanOrchestrator.ts",
@@ -40,7 +40,7 @@
     },
     {
       "file": "src/core/scanOrchestrator.ts",
-      "line": 138,
+      "line": 140,
       "symbol": "store.isEntityDismissed",
       "title": "Gate 6: the human already said no",
       "description": "The dismissal from tour 1 arrives here. This is the difference between a system that learns and one that nags."
