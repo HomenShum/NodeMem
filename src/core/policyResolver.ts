@@ -45,6 +45,13 @@ const SYSTEM_DEFAULT_POLICY: AssistivePolicy = {
   source: "system_default",
 };
 
+/** Keep malformed host settings from turning a finite suggestion budget into no limit. */
+export function validateSuggestionLimit(limit: number): void {
+  if (!Number.isSafeInteger(limit) || limit < 0) {
+    throw new RangeError("Suggestion limits must be non-negative safe integers");
+  }
+}
+
 /**
  * Combine the system default with the room's own policy, quieter setting wins.
  *
@@ -56,8 +63,13 @@ export async function resolveAssistivePolicy(
   systemDefault?: Partial<AssistivePolicy>,
 ): Promise<AssistivePolicy> {
   const system: AssistivePolicy = { ...SYSTEM_DEFAULT_POLICY, ...systemDefault };
+  if (systemDefault?.maxSuggestionsPerHour === undefined) {
+    system.maxSuggestionsPerHour = SYSTEM_DEFAULT_POLICY.maxSuggestionsPerHour;
+  }
+  validateSuggestionLimit(system.maxSuggestionsPerHour);
   const room = await store.getRoomPolicy(roomId);
   if (!room) return system;
+  validateSuggestionLimit(room.maxSuggestionsPerHour);
 
   const systemIsQuieter =
     MODE_RESTRICTION_ORDER.indexOf(system.mode) <= MODE_RESTRICTION_ORDER.indexOf(room.mode);

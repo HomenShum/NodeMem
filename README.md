@@ -365,6 +365,20 @@ await store.setRoomPolicy("room-1", {
 // Most restrictive setting always wins
 ```
 
+The scanner uses the lower of the resolved room/system `maxSuggestionsPerHour`
+and the host's `maxPerRoomPerHour` (default 10). Setting either ceiling to zero
+withholds new suggestions. Each supplied limit must be a non-negative safe
+integer. For an otherwise eligible scan, invalid limits reject with `RangeError`
+before a quota read or verdict write. Ignored messages skip validation; room/system
+limits validate during policy resolution, and the host limit validates at the quota
+gate. An omitted or `undefined` optional host/system override keeps its default.
+
+The storage port separates counting from writing. Hosts must supply serialization
+or a transaction for a hard cap during concurrent scans in the same room. The
+reference adapter counts currently noteworthy rows by `updatedAt`, not a durable
+history of every suggestion produced. Same-row retries also remain unsafe; see
+[the recorded storage limits](docs/codebase/CONCERNS.md#4-the-scan-is-not-concurrency-safe).
+
 ### Debounce rapid activity
 
 ```typescript

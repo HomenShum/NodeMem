@@ -104,8 +104,8 @@ is why a screenshot of it can be a test.
 
 **There is no schema validation layer in this repository.** `ScanInput` is a
 TypeScript interface, enforced at compile time and trusted at run time. A host
-passing unvalidated user text is passing it straight in. The only run-time input
-guard in the repo is the path check in Step 1. That is a real gap, recorded in
+passing unvalidated user text is passing it straight in. Suggestion budget numbers
+and the server's request paths are checked, but activity input is not. That gap is recorded in
 [`codebase/CONCERNS.md`](codebase/CONCERNS.md).
 
 **Core code**
@@ -148,7 +148,7 @@ if (finding.action === "ignore") return settle("not_noteworthy");
 if (policy.mode === "off") return settle("not_noteworthy", "policy_off");
 if (isSignalDisabled(…)) return settle("not_noteworthy", "signal_disabled_by_policy");
 if (policy.mode === "approved_watchlist_only" && !isEntityWatchlisted(…)) return settle("not_noteworthy", "not_on_watchlist");
-if (await store.countNoteworthyLastHour(roomId) >= maxPerRoomPerHour) return settle("not_noteworthy", "room_quota_exceeded");
+if (await store.countNoteworthyLastHour(roomId) >= Math.min(maxPerRoomPerHour, policy.maxSuggestionsPerHour)) return settle("not_noteworthy", "room_quota_exceeded");
 if (await findExistingNoteworthyForEntity(…)) return settle("not_noteworthy", "duplicate_entity");
 if (entityNames.length && await store.isEntityDismissed(…)) return settle("not_noteworthy", "previously_dismissed");
 return settle("noteworthy");
@@ -157,6 +157,14 @@ return settle("noteworthy");
 **Input** — a `MemoryStore`, one `ScanInput` row, an optional `ScanConfig`.
 **Output** — a `ScanResult` whose `status` is `noteworthy` or `not_noteworthy`,
 plus the `reason` when something withheld it.
+The room/system policy and host ceiling both apply; the lower wins. Zero withholds
+suggestions. For an otherwise eligible scan, invalid numeric limits reject with
+`RangeError` before a quota read or verdict write. Ignored messages skip validation;
+room/system limits validate during policy resolution, and the host limit validates
+at the quota gate. Optional `undefined` host/system values retain the defaults.
+This gate uses the adapter's count; it does not make separate reads and writes
+atomic or provide a historical issuance counter.
+
 **Failure behavior** — no try/catch. If the store rejects, the rejection
 propagates to the caller and the row keeps its previous status. That is
 deliberate (a half-written verdict would be worse) and is listed in

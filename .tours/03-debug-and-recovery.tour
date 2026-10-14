@@ -14,7 +14,7 @@
       "file": "scripts/serve.mjs",
       "line": 51,
       "symbol": "outside root",
-      "title": "The one run-time input guard in the repository",
+      "title": "The file server's path guard",
       "description": "Any path resolving outside the repo root is a 404. Verified: `GET /../../../etc/passwd` → 404.\n\nThe same function serves the capture scripts on an ephemeral port, so the page a human looks at and the page the gate asserts against are byte-identical."
     },
     {

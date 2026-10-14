@@ -18,7 +18,7 @@
 
 import { classifyNoteworthy, type NoteworthyFinding } from "./classifier.js";
 import {
-  resolveAssistivePolicy,
+  resolveAssistivePolicy, validateSuggestionLimit,
   isSignalDisabled,
   isEntityWatchlisted,
   type AssistivePolicy,
@@ -46,7 +46,7 @@ export interface ScanInput {
 }
 
 export interface ScanConfig {
-  /** Ceiling on suggestions per room per hour. Default 10. */
+  /** Additional ceiling; room/system policy can lower it. Non-negative integer, default 10. */
   maxPerRoomPerHour?: number;
   /** Override the built-in system default policy. */
   systemDefaultPolicy?: Partial<AssistivePolicy>;
@@ -103,7 +103,8 @@ export async function scanActivity(
   input: ScanInput,
   config?: ScanConfig,
 ): Promise<ScanResult> {
-  const maxPerRoomPerHour = config?.maxPerRoomPerHour ?? DEFAULT_MAX_PER_ROOM_PER_HOUR;
+  const maxPerRoomPerHour = config?.maxPerRoomPerHour === undefined
+    ? DEFAULT_MAX_PER_ROOM_PER_HOUR : config.maxPerRoomPerHour;
   const { text } = input;
   const finding = classifyNoteworthy(text);
 
@@ -129,7 +130,8 @@ export async function scanActivity(
     return settle("not_noteworthy", "not_on_watchlist");
   }
 
-  if ((await store.countNoteworthyLastHour(input.roomId)) >= maxPerRoomPerHour) {
+  validateSuggestionLimit(maxPerRoomPerHour);
+  if ((await store.countNoteworthyLastHour(input.roomId)) >= Math.min(maxPerRoomPerHour, policy.maxSuggestionsPerHour)) {
     return settle("not_noteworthy", "room_quota_exceeded");
   }
   if (await findExistingNoteworthyForEntity(store, input.roomId, entityNames, input.id)) {
