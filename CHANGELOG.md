@@ -27,3 +27,16 @@ policy changes, malformed settings, degraded reads, interleaved rooms and a
 zero-cap burst. Positive-cap same-room races, row replay and historical counting
 remain separate storage-contract defects, explicitly documented. No classifier,
 storage API, dependencies or browser-demo behavior changed.
+
+## 2026-10-15 — Reject verdicts for missing activity rows
+
+A worker resuming a scan after its reference store was cleared could receive a
+verdict even though no activity row existed to save it. The reference adapter now
+rejects that write, and the existing scanner propagates the failure. The storage
+contract requires other adapters to reject missing rows too; hosts can re-enqueue
+the activity through their normal creation path before retrying.
+
+Real-store scenarios cover noteworthy, ignored and policy-off messages, concurrent
+and repeated absent-row attempts, unchanged neighboring data, and re-enqueue
+recovery. This does not add persistence, prevent reused IDs, or repair the separate
+quota, lifecycle-replay and retention limitations.

@@ -68,7 +68,7 @@ export class InMemoryAdapter implements MemoryStore {
     patch: { status: ActivityStatus; finding?: NoteworthyFinding; reason?: string; updatedAt: number },
   ): Promise<void> {
     const row = this.rows.get(id);
-    if (!row) return;
+    if (!row) throw new Error(`Activity row not found: ${id}`);
     row.status = patch.status;
     if (patch.finding) {
       row.finding = patch.finding;

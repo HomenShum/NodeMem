@@ -427,6 +427,10 @@ interface MemoryStore extends DismissalStore, DedupStore, PolicyStore {
 ```
 
 Implement this single interface with any backend. The in-memory adapter is the reference.
+`patchRow` must reject if the activity row does not exist. A fulfilled write lets
+`scanActivity` return its verdict, so silently ignoring a missing row would report
+an outcome that was never saved. Re-enqueue through the host's normal activity
+creation path before scanning again; the scanner does not create missing rows.
 
 ---
 

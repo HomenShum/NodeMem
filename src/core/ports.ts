@@ -74,7 +74,7 @@ export interface PolicyStore {
  * is the reference implementation and is what the tests and demos run against.
  */
 export interface MemoryStore extends DismissalStore, DedupStore, PolicyStore {
-  /** Write the scan's verdict back onto the row it scanned. */
+  /** Write the scan's verdict back onto its row; reject if that row does not exist. */
   patchRow(
     id: string,
     patch: { status: ActivityStatus; finding?: NoteworthyFinding; reason?: string; updatedAt: number },
