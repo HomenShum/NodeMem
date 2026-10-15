@@ -71,7 +71,7 @@
       "line": 66,
       "symbol": "async patchRow",
       "title": "The only write in the pipeline",
-      "description": "Rows are patched, never deleted — the status, the finding, and the reason. The history of what the system decided stays readable.\n\nNote the silent return on an unknown id: acceptable in memory, probably not in your database."
+      "description": "Rows are patched, never deleted — the status, the finding, and the reason. The history of what the system decided stays readable.\n\nAn unknown id rejects the write, so the scan cannot return a verdict that was never stored. Re-enqueue through the host's normal activity creation path before scanning again."
     },
     {
       "file": "src/adapters/convexSchema.ts",

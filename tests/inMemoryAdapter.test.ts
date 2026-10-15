@@ -9,6 +9,7 @@
 
 import { describe, it, expect, beforeEach } from "vitest";
 import { InMemoryAdapter } from "../src/adapters/inMemoryAdapter.js";
+import { scanActivity } from "../src/core/scanOrchestrator.js";
 import { scanMessage } from "./room.js";
 
 describe("InMemoryAdapter", () => {
@@ -57,5 +58,42 @@ describe("InMemoryAdapter", () => {
     store.clear();
     expect(store.getAllRows()).toHaveLength(0);
     expect(await store.listDismissed("r1")).toHaveLength(0);
+  });
+
+  it.each([
+    { name: "a noteworthy message", text: "Met with CardioNova about their Series A funding raise.", off: false },
+    { name: "an ignored message", text: "hello", off: false },
+    { name: "a room with suggestions disabled", text: "Met with CardioNova about their Series A funding raise.", off: true },
+  ])("refuses a forgotten row for $name and recovers after re-enqueue", async ({ text, off }) => {
+    const input = { roomId: "r1", sourceKind: "message", sourceId: "saved-message", sourceHash: "saved-hash", text, visibility: "room" as const };
+    const forgottenId = store.insertActivity(input);
+    store.clear();
+    if (off) await store.setRoomPolicy("r1", {
+      mode: "off", allowExternalCalls: false, maxSuggestionsPerHour: 0,
+      maxApprovedBackgroundJobsPerDay: 0, disabledSignalKinds: [], approvedEntityWatchlist: [],
+    });
+
+    await expect(scanActivity(store, { id: forgottenId, ...input }))
+      .rejects.toThrow(`Activity row not found: ${forgottenId}`);
+    expect(store.getAllRows()).toEqual([]);
+    expect(store.listNoteworthyRows("r1")).toEqual([]);
+
+    const id = store.insertActivity(input);
+    const result = await scanActivity(store, { id, ...input });
+    expect(result.status).toBe(off || text === "hello" ? "not_noteworthy" : "noteworthy");
+    expect(store.getRow(id)).toMatchObject({ status: result.status, finding: result.finding });
+    expect(store.getAllRows()).toHaveLength(1);
+  });
+
+  it("rejects burst and repeated absent-row retries without altering another room", async () => {
+    await scanMessage(store, "Met with Stripe about their Series B funding raise.", { roomId: "retained-room" });
+    const retained = structuredClone(store.getAllRows());
+    const input = { roomId: "missing-room", sourceKind: "message", sourceId: "retry-message", sourceHash: "retry-hash", text: "Met with CardioNova about their Series A funding raise.", visibility: "room" as const };
+    const retry = (id: string) => expect(scanActivity(store, { id, ...input }))
+      .rejects.toThrow(`Activity row not found: ${id}`);
+    await Promise.all(Array.from({ length: 8 }, (_, i) => retry(`burst-absent-${i}`)));
+    for (let i = 0; i < 32; i++) await retry(`sequential-absent-${i}`);
+    expect(store.getAllRows()).toEqual(retained);
+    expect(store.listNoteworthyRows("missing-room")).toEqual([]);
   });
 });

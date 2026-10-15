@@ -206,8 +206,8 @@ export interface MemoryStore extends DismissalStore, DedupStore, PolicyStore {
 
 **Input** — the row id and the verdict.
 **Output** — nothing; the row now carries its status, finding and reason.
-**Failure behavior** — `InMemoryAdapter.patchRow` silently ignores an unknown id.
-A real adapter should not; the contract does not currently say so.
+**Failure behavior** — `patchRow` rejects an unknown id; `scanActivity` propagates
+that error instead of returning an unsaved verdict. The host must re-enqueue first.
 **Next** — how any of this reaches a human, Step 7.
 
 ---

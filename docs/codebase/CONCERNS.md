@@ -25,8 +25,8 @@ mirror test with it.
 
 ## 2. Activity input and reference-store retention remain unchecked
 
-`ScanInput` is a compile-time interface. Nothing checks that `text` is a string,
-that `roomId` is non-empty, or that the row id exists. A host passing raw user
+`ScanInput` is a compile-time interface. The reference adapter rejects missing rows
+when writing a verdict, but `text` and `roomId` remain unchecked. A host passing raw
 input passes it straight into the regexes. No defect has been observed from this
 — the regexes are linear and bounded — but a very long string is scanned in full,
 seven times.
